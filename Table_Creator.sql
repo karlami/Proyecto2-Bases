@@ -1,115 +1,137 @@
--- Tabla Provincia con IdProvincia, IdPais y NombreProvincia
+--------------------------------------------------------------------
+-- Proyecto #2 - Hospital TECNológico
+--------------------------------------------------------------------
+-- Instituto Técnológico de Costa Rica
+-- Área Académica de Ingeniería en Computadores
+-- Bases de Datos (CE3101)
+-- I Semestre 2020
+-- Prof. Luis Diego Noguera Mena
+-- Cristhofer Azofeifa, Fiorella Delgado, Karla Rivera & Rubén Salas
+--------------------------------------------------------------------
+-- Hospital_TECNológico - Table Creator
+--------------------------------------------------------------------
+
+-- Tabla Provincia
+-- Atributos: IdProvincia y Nombre de Provincia
 
 CREATE TABLE IF NOT EXISTS Provincia(
     idProvincia INTEGER PRIMARY KEY,
     provincia VARCHAR(40) NOT NULL
 );
 
--- Tabla Canton con IdCanton, IdProvincia y NombreCanton
+-- Tabla Canton
+-- Atributos: IdCanton, nombre del canton y
+-- Referencia a Provincia
 
 CREATE TABLE IF NOT EXISTS Canton(
     idCanton INTEGER PRIMARY KEY,
-    idProvincia INTEGER NOT NULL REFERENCES Provincia(idProvincia),
-    canton VARCHAR(40) NOT NULL
+    canton VARCHAR(40) NOT NULL,
+    idProvincia INTEGER NOT NULL REFERENCES Provincia(idProvincia)
+
 );
 
--- Tabla Distrito con IdDistrito, IdCanton y NombreDistrito
-
-CREATE TABLE IF NOT EXISTS Distrito(
-    idDistrito INTEGER PRIMARY KEY,
-    IdCanton INTEGER NOT NULL REFERENCES Canton(idCanton),
-    distrito VARCHAR(40) NOT NULL
-);
-
--- Tabla Direccion con IdDireccion, IdCanton y Direccion
+-- Tabla Direccion
+-- Atributos: IdDireccion, nombre del Distrito y
+-- Referencia a Canton
 
 CREATE TABLE IF NOT EXISTS Direccion(
     idDireccion INTEGER PRIMARY KEY,
-    idCanton INTEGER NOT NULL REFERENCES Canton(idCanton),
-    direccion VARCHAR(40) NOT NULL
+    distrito VARCHAR(40) NOT NULL,
+    idCanton INTEGER NOT NULL REFERENCES Canton(idCanton)
 );
 
--- Tabla CategoriaArticulo con IdCategoriaArticulo y Categoria
-
-CREATE TABLE IF NOT EXISTS Tratamiento(
-    idTratamiento INTEGER PRIMARY KEY,
-    nombre VARCHAR(40) NOT NULL
-);
-
--- Tabla CategoriaArticulo con IdCategoriaArticulo y Categoria
+-- Tabla Patologia
+-- Atributos: idPatologia, nombre y descripcion
 
 CREATE TABLE IF NOT EXISTS Patologia(
     idPatologia INTEGER PRIMARY KEY,
-    nombre VARCHAR(40) NOT NULL
+    nombre VARCHAR(40) NOT NULL,
+    descripcion VARCHAR(100) NOT NULL
 );
 
--- Tabla CategoriaArticulo con IdCategoriaArticulo y Categoria
-
-CREATE TABLE IF NOT EXISTS TratamientoPatologia(
-    idTratamientoPatologia INTEGER PRIMARY KEY,
-    idTratamiento INTEGER NOT NULL REFERENCES Tratamiento(idTratamiento),
-    idPatologia INTEGER NOT NULL REFERENCES Patologia(idPatologia)
-);
-
--- Tabla Persona con IdPersona, Nombre, Apellido e Identificacion
+-- Tabla Persona
+-- Atributos: cedula, Nombre, primer Apellido, segundo
+-- Apellido, telefono, fecha de nacimiento y
+-- Referencia a Direccion
 
 CREATE TABLE IF NOT EXISTS Persona(
       cedula INTEGER PRIMARY KEY,
       nombre VARCHAR(40) NOT NULL,
       primerApellido VARCHAR(40) NOT NULL,
       segundoApellido VARCHAR(40) NOT NULL,
-      telefono VARCHAR(20) NOT NULL,
+      telefono INTEGER NOT NULL,
       fechaNacimiento DATE NOT NULL,
       idDireccion INTEGER NOT NULL REFERENCES Direccion(idDireccion)
 );
 
--- Tabla MarcaArticulo con IdMarcaArticulo y Marca
+-- Tabla Paciente
+-- Atributos: IdPaciente y cedula: hace referencia a Persona
 
 CREATE TABLE IF NOT EXISTS Paciente(
     idPaciente INTEGER PRIMARY KEY,
-    cedula INTEGER REFERENCES Persona(cedula),
-    idTratamientoPatologia INTEGER NOT NULL REFERENCES TratamientoPatologia(idTratamientoPatologia)
+    cedula INTEGER REFERENCES Persona(cedula)
 );
 
--- Tabla CategoriaArticulo con IdCategoriaArticulo y Categoria
+-- Tabla Cruz Paciente
+-- Atributos: referencia a Paciente, referencia a Patolofia
+-- y tratamiento para el paciente, segun la patologia
+
+CREATE TABLE IF NOT EXISTS Paciente_Patologia(
+    idPaciente INTEGER REFERENCES Paciente(idPaciente),
+    idPatologia INTEGER REFERENCES Patologia(idPatologia),
+    tratamiento VARCHAR(100) NOT NULL
+
+);
+
+-- Tabla Procedimiento
+-- Atributos: idProcedimiento, nombre y dias de Recuperacion
 -- Cargar los Procedimientos: Apendicectomía, Biopsia de mama, Cirugía de cataratas,
 -- Cesárea, Histerectomía, Cirugía para la lumbalgia, Mastectomía, Amigdalectomía.
 
 CREATE TABLE IF NOT EXISTS Procedimiento(
     idProcedimiento INTEGER PRIMARY KEY,
     nombre VARCHAR(40) NOT NULL,
-    diasRecuperacion INT NOT NULL
+    diasRecuperacion INTEGER NOT NULL
 );
 
--- Tabla MarcaArticulo con IdMarcaArticulo y Marca
+-- Tabla Cruz Paciente_Procedimiento
+-- Atributos: nombre del tratamiento (el tratamiento puede ser diferente para los
+-- pacientes, aunque tengan el mismo procedimiento), fecha del
+-- tratamiento aplicado al paciente, referencia a Pacinte y
+-- referencia al Procedimiento
 
-CREATE TABLE IF NOT EXISTS Historial(
-    idHistorial INTEGER PRIMARY KEY,
-    cedula INTEGER REFERENCES Persona(cedula),
-    idTratamientoPatologia INTEGER NOT NULL REFERENCES TratamientoPatologia(idTratamientoPatologia)
+CREATE TABLE IF NOT EXISTS Paciente_Procedimiento(
+    tratamiento VARCHAR(40) NOT NULL,
+    fecha DATE NOT NULL,
+    idPaciente INTEGER NOT NULL REFERENCES Paciente(idPaciente),
+    idProcedimiento INTEGER NOT NULL REFERENCES Procedimiento(idProcedimiento)
 );
 
--- Tabla CategoriaArticulo con IdCategoriaArticulo y Categoria
+-- Tabla Cama
+-- Atributos: idCama, numero de Cama y si es uci o no
+
+CREATE TABLE IF NOT EXISTS Cama(
+    idCama INTEGER PRIMARY KEY,
+    numeroCama INTEGER NOT NULL,
+    uci BOOLEAN NOT NULL
+);
+
+-- Tabla Reservacion
+-- Atributos: idReservacion, fecha de Ingreso, fecha de Salida
+-- Referencia a Paciente y referencia a Cama
 -- Fecha Salida = fecha ingreso mas dias requeridos de cada procedimiento
 
 CREATE TABLE IF NOT EXISTS Reservacion(
     idReservacion INTEGER PRIMARY KEY,
     fechaIngreso DATE NOT NULL,
-    diasRecuperacion INT NOT NULL,
     fechaSalida DATE NOT NULL,
-    idPaciente INTEGER NOT NULL REFERENCES Paciente(idPaciente)
+    idPaciente INTEGER NOT NULL REFERENCES Paciente(idPaciente),
+    idCama INTEGER NOT NULL REFERENCES Cama(idCama)
 
 );
 
--- Tabla CategoriaArticulo con IdCategoriaArticulo y Categoria
-
-CREATE TABLE IF NOT EXISTS ProcedimientoReservacion(
-    idProcedimientoReservacion INTEGER PRIMARY KEY,
-    idProcedimiento INTEGER NOT NULL REFERENCES Procedimiento(idProcedimiento),
-    idReservacion INTEGER NOT NULL REFERENCES Reservacion(idReservacion)
-);
-
--- Tabla CategoriaArticulo con IdCategoriaArticulo y Categoria
+-- Tabla Equipo
+-- Atributos: idEquipo, nombre del equipo y proveedor
 -- Por default se conocen: luces quirúrgicas, ultrasonidos,
 -- esterilizadores, desfibriladores, monitores,
 -- respiradores artificiales y electrocardiógrafos.
@@ -117,18 +139,21 @@ CREATE TABLE IF NOT EXISTS ProcedimientoReservacion(
 CREATE TABLE IF NOT EXISTS Equipo(
     idEquipo INTEGER PRIMARY KEY,
     nombre VARCHAR(40) NOT NULL,
-    proveedor VARCHAR(40) NOT NULL,
-    cantidadDisponible INT NOT NULL
+    proveedor VARCHAR(40) NOT NULL
 );
 
--- Tabla CategoriaArticulo con IdCategoriaArticulo y Categoria
+-- Tabla Puesto
+-- Atribtuos: nombre del puesto de cada empleado
+-- Puestos existentes: personal administrativo, doctor o enfermero
 
 CREATE TABLE IF NOT EXISTS Puesto(
     idPuesto INTEGER PRIMARY KEY,
     nombre VARCHAR(40) NOT NULL
 );
 
--- Tabla Empleado con IdEmpleado, IdPersona, Estado, FechaIngreso y Puesto
+-- Tabla Empleado
+-- Atributos: IdEmpleado, Fecha de Ingreso, referencai a Persona
+-- y referencia a Puesto
 
 CREATE TABLE IF NOT EXISTS Empleado(
     IdEmpleado INTEGER PRIMARY KEY,
@@ -137,36 +162,45 @@ CREATE TABLE IF NOT EXISTS Empleado(
     idPuesto INTEGER NOT NULL REFERENCES Puesto(idPuesto)
 );
 
--- Tabla Empleado con IdEmpleado, IdPersona, Estado, FechaIngreso y Puesto
+-- Tabla TipoSalon
+-- Atributos: IdTipoSalon y tipo de Salon
+-- Tipos existentes: medicina de mujeres, hombres o niños
+
+CREATE TABLE IF NOT EXISTS TipoSalon(
+    idTipoSalon INTEGER PRIMARY KEY,
+    tipo VARCHAR(40) NOT NULL
+);
+
+-- Tabla Salon
+-- Atributos: numero de Salon, nombre de salon, cantidad de
+-- camas disponibles en salon, numero de piso
+-- y referencia al tipo de Salon al que pertenece
 
 CREATE TABLE IF NOT EXISTS Salon(
     numeroSalon INTEGER PRIMARY KEY,
     nombre VARCHAR(40) NOT NULL,
-    capacidad INT NOT NULL,
-    tipoMedicina VARCHAR(40) NOT NULL,
-    pisoUbica INT NOT NULL
+    cantidadCama INTEGER NOT NULL,
+    numeroPiso INTEGER NOT NULL,
+    idTipoSalon INTEGER NOT NULL REFERENCES TipoSalon(idTipoSalon)
 );
 
--- Tabla Empleado con IdEmpleado, IdPersona, Estado, FechaIngreso y Puesto
+-- Tabla Cruz Cama_Salon
+-- Atributos: referencias a Cama y Salon
 
-CREATE TABLE IF NOT EXISTS Cama(
-    numeroCama INTEGER PRIMARY KEY,
-    uci BOOLEAN NOT NULL
-);
-
--- Tabla CategoriaArticulo con IdCategoriaArticulo y Categoria
-
-CREATE TABLE IF NOT EXISTS CamaSalon(
-    idCamaSalon INTEGER PRIMARY KEY,
-    numeroCama INTEGER NOT NULL REFERENCES Cama(numeroCama),
-    numeroSalon INTEGER NOT NULL REFERENCES Salon(numeroSalon)
+CREATE TABLE IF NOT EXISTS Cama_Salon(
+    idCama INTEGER NOT NULL REFERENCES Cama(idCama),
+    idSalon INTEGER NOT NULL REFERENCES Salon(numeroSalon)
 
 );
 
--- Tabla CategoriaArticulo con IdCategoriaArticulo y Categoria
+-- Tabla Cruz Cama_Equipo
+-- Atributos: cantidad disponible de camas por equipo y
+-- referencias a Cama y Equipo
 
-CREATE TABLE IF NOT EXISTS EquipoCama(
-    idEquipoCama INTEGER PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS Cama_Equipo(
+    idCama INTEGER NOT NULL REFERENCES Cama(idCama),
     idEquipo INTEGER NOT NULL REFERENCES Equipo(idEquipo),
-    numeroCama INTEGER NOT NULL REFERENCES Cama(numeroCama)
+    cantidadDisponible INTEGER NOT NULL
 );
+
+
