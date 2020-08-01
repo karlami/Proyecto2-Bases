@@ -1,0 +1,224 @@
+<app-nav-bar-administrador></app-nav-bar-administrador>
+
+<br><br><br><br><br><br>
+
+<div class="container">
+  <h1 style="color:#54CA8F">Gestión de Personal </h1>
+</div>
+
+<br><br>
+
+<!-- Modal para ingresar personal -->
+<div class="container">
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Ingresar nuevo empleado</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      
+      <form #camaForm = "ngForm" (ngSubmit)="onSubmit(equipoForm)">
+
+          <div class="form-group">
+            <label>Nombre</label>
+            <input name="nombre"  #Nombre="ngModel" [(ngModel)]="empleadoo.nombre" [ngModelOptions]="{standalone: true}" type= "text" class="form-control" required>
+          </div>
+  
+          <div class="form-group">
+            <label>Primer apellido</label>
+            <input name="primerapellido"  #PrimerApellido="ngModel" [(ngModel)]="empleadoo.primerapellido" [ngModelOptions]="{standalone: true}" type= "text" class="form-control" required>
+          </div>
+          
+          <div class="form-group">
+            <label>Segundo apellido</label>
+            <input name="segundoapellido"  #SegundoApellido="ngModel" [(ngModel)]="empleadoo.segundoapellido" [ngModelOptions]="{standalone: true}" type= "text" class="form-control" required>
+          </div>
+
+          <div class="form-group">
+            <label>Cédula</label>
+            <input name="cedula"  #Cedula="ngModel" [(ngModel)]="empleadoo.cedula" [ngModelOptions]="{standalone: true}" type= "number" class="form-control" required>
+          </div>
+
+          <div class="form-group">
+            <label>Teléfono</label>
+            <input name="telefono"  #Telefono="ngModel" [(ngModel)]="empleadoo.telefono" [ngModelOptions]="{standalone: true}" type= "number" class="form-control" required>
+          </div>
+
+          <div class="form-group">
+            <label>Dirección</label>
+            <input name="direccion"  #Direccion="ngModel" [(ngModel)]="empleadoo.direccion" [ngModelOptions]="{standalone: true}" type= "text" class="form-control" required>
+          </div>
+
+
+          <!-- Poner calendarios -->
+          <div class="form-group">
+            <label>Fecha Nacimiento</label>
+            <input name="fechanacimiento"  #FechaNacimiento="ngModel" [(ngModel)]="empleadoo.fechanacimiento" [ngModelOptions]="{standalone: true}" type= "date" class="form-control" required>
+          </div>
+
+          <div class="form-group">
+            <label>Fecha Ingreso</label>
+            <input name="fechaingreso"  #FechoIngreso="ngModel" [(ngModel)]="empleadoo.fechaingreso" [ngModelOptions]="{standalone: true}" type= "date" class="form-control" required>
+          </div>
+
+          <div class="form-group">
+            <label for="puesto"> Puesto </label>
+            <select name="puesto"  #Internado="ngModel" [(ngModel)]="empleadoo.puesto" [ngModelOptions]="{standalone: true}" type= "text" class="form-control" required>
+              <option value="">Seleccionar</option>
+                <option value="Administrativo">Administrativo</option>
+                <option value="Doctor/Doctora">Doctor</option>
+                <option value="Enfermero/Enfermera">Enfermero</option>
+            </select>
+          </div>
+        
+        <div class = "form-group">
+          <div class = "col-md-4 col-md-offset-3">
+            <input class = "btn btn-primary" type = "submit" value = "Agregar" />
+          </div>
+        </div>
+      
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Salir</button>
+    </div>
+  </ng-template>
+
+  <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Ingresar</button>
+
+
+  <pre>{{ closeResult }}</pre>
+
+</div>
+
+<!-- Modal para actualizar personal -->
+<div class="container">
+  <ng-template #content1 let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Actualizar empleado</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      
+      <form #updateForm = "ngForm" (ngSubmit)="onUpdate(updateForm)">
+
+        <div class="form-group">
+            <label>Id Empleado</label>
+            <input name="idempleado"  #IdEmpleado="ngModel" [(ngModel)]="empleadoU.idempleado" [ngModelOptions]="{standalone: true}" type= "number" class="form-control" required>
+          </div>
+  
+          <div class="form-group">
+            <label>Nombre</label>
+            <input name="nombre"  #Nombre="ngModel" [(ngModel)]="empleadoU.nombre" [ngModelOptions]="{standalone: true}" type= "text" class="form-control" required>
+          </div>
+  
+          <div class="form-group">
+            <label>Primer apellido</label>
+            <input name="primerapellido"  #PrimerApellido="ngModel" [(ngModel)]="empleadoU.primerapellido" [ngModelOptions]="{standalone: true}" type= "text" class="form-control" required>
+          </div>
+          
+          <div class="form-group">
+            <label>Segundo apellido</label>
+            <input name="segundoapellido"  #SegundoApellido="ngModel" [(ngModel)]="empleadoU.segundoapellido" [ngModelOptions]="{standalone: true}" type= "text" class="form-control" required>
+          </div>
+
+          <div class="form-group">
+            <label>Cédula</label>
+            <input name="cedula"  #Cedula="ngModel" [(ngModel)]="empleadoU.cedula" [ngModelOptions]="{standalone: true}" type= "number" class="form-control" required>
+          </div>
+
+          <div class="form-group">
+            <label>Teléfono</label>
+            <input name="telefono"  #Telefono="ngModel" [(ngModel)]="empleadoU.telefono" [ngModelOptions]="{standalone: true}" type= "number" class="form-control" required>
+          </div>
+
+          <div class="form-group">
+            <label>Dirección</label>
+            <input name="direccion"  #Direccion="ngModel" [(ngModel)]="empleadoU.direccion" [ngModelOptions]="{standalone: true}" type= "text" class="form-control" required>
+          </div>
+
+
+          <!-- Poner calendarios -->
+          <div class="form-group">
+            <label>Fecha Nacimiento</label>
+            <input name="fechanacimiento"  #FechaNacimiento="ngModel" [(ngModel)]="empleadoU.fechanacimiento" [ngModelOptions]="{standalone: true}" type= "date" class="form-control" required>
+          </div>
+
+          <div class="form-group">
+            <label>Fecha Ingreso</label>
+            <input name="fechaingreso"  #FechoIngreso="ngModel" [(ngModel)]="empleadoU.fechaingreso" [ngModelOptions]="{standalone: true}" type= "date" class="form-control" required>
+          </div>
+
+          <div class="form-group">
+            <label for="puesto"> Puesto </label>
+            <select name="puesto"  #Internado="ngModel" [(ngModel)]="empleadoU.puesto" [ngModelOptions]="{standalone: true}" type= "text" class="form-control" required>
+              <option value="">Seleccionar</option>
+                <option value="Administrativo">Administrativo</option>
+                <option value="Doctor/Doctora">Doctor</option>
+                <option value="Enfermero/Enfermera">Enfermero</option>
+            </select>
+          </div>
+
+        
+        <div class = "form-group">
+          <div class = "col-md-4 col-md-offset-3">
+            <input class = "btn btn-primary" type = "submit" value = "Actualizar" />
+          </div>
+        </div>
+      
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Salir</button>
+    </div>
+  </ng-template>
+
+  <button class="btn btn-lg btn-outline-primary" (click)="open(content1)">Actualizar</button>
+
+
+  <pre>{{ closeResult }}</pre>
+
+</div>
+
+
+
+<div class="table-responsive">
+  <table class="table table-hover">
+    <tr>
+      <th>Id</th>
+      <th>Nombre</th>
+      <th>Primer apellido</th>
+      <th>Segundo apellido</th>
+      <th>Cédula</th>
+      <th>Teléfono</th>
+      <th>Dirección</th>
+      <th>Fecha Nacimiento</th>
+      <th>Fecha Ingreso</th>
+      <th>Puesto</th>
+    </tr>
+
+
+<!-- -->
+    <tr *ngFor="let Empleado of service.empleadoList" >
+      <td>{{Equipo.idempleado}}</td>
+      <td>{{Equipo.nombre}}</td>
+      <td>{{Equipo.primerapellido}}</td>
+      <td>{{Equipo.segundoapellido}}</td>
+      <td>{{Equipo.cedula}}</td>
+      <td>{{Equipo.telefono}}</td>
+      <td>{{Equipo.direccion}}</td>
+      <td>{{Equipo.fechanacimiento}}</td>
+      <td>{{Equipo.fechaingreso}}</td>
+      <td>{{Equipo.puesto}}</td>
+      <button type="button" class="btn btn-default" data-toggle="modal" data-target=" #updateForm" 
+      (click)="selectId(Empleado)">Ed</button>
+      <td><button type="button" class="btn btn-danger" (click)="onDelete(Empleado.idempleado)">
+      X<span class="glyphicon glyphicon-trash" ></span></button></td>
+    </tr>
+  </table>
+</div>
+

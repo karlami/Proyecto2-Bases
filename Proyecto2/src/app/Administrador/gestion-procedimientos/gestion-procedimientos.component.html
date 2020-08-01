@@ -1,0 +1,129 @@
+<app-nav-bar-administrador></app-nav-bar-administrador>
+
+<br><br><br><br><br><br>
+
+<div class="container">
+  <h1 style="color:#54CA8F">Gestión de Procedimientos Médicos </h1>
+</div>
+
+<br><br>
+
+<!-- Modal para ingresar procedimiento 
+Contiene el nombre: text y los diasrecuperacion: number -->
+
+<div class="container">
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Ingresar nuevo procedimiento</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      
+      <form #procedimientoForm = "ngForm" (ngSubmit)="onSubmit(equipoForm)">
+
+        <div class="form-group">
+          <label>Nombre</label>
+          <input name="nombre"  #Nombre="ngModel" [(ngModel)]="procedimientoo.nombre" [ngModelOptions]="{standalone: true}" type= "text" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+          <label>Días de recuperación en salón</label>
+          <input name="diasrecuperacion"  #DiasRecuperacion="ngModel" [(ngModel)]="procedimientoo.diasrecuperacion" [ngModelOptions]="{standalone: true}" type= "number" class="form-control" required>
+        </div>
+        
+        
+        <div class = "form-group">
+          <div class = "col-md-4 col-md-offset-3">
+            <input class = "btn btn-primary" type = "submit" value = "Agregar" />
+          </div>
+        </div>
+      
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Salir</button>
+    </div>
+  </ng-template>
+
+  <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Ingresar</button>
+
+
+  <pre>{{ closeResult }}</pre>
+
+</div>
+
+<!-- Modal para actualizar equipo -->
+<div class="container">
+  <ng-template #content1 let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Actualizar procedimiento</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      
+      <form #updateForm = "ngForm" (ngSubmit)="onUpdate(updateForm)">
+
+        <div class="form-group">
+            <label>IdProcedimiento</label>
+            <input name="idprocedimiento"  #IdProcedimiento="ngModel" [(ngModel)]="procedimientoo.idprocedimiento" [ngModelOptions]="{standalone: true}" type= "number" class="form-control" required>
+          </div>
+  
+          <div class="form-group">
+            <label>Nombre</label>
+            <input name="nombre"  #Nombre="ngModel" [(ngModel)]="procedimientoo.nombre" [ngModelOptions]="{standalone: true}" type= "text" class="form-control" required>
+          </div>
+  
+          <div class="form-group">
+            <label>Días de recuperación en salón</label>
+            <input name="diasrecuperacion"  #DiasRecuperacion="ngModel" [(ngModel)]="procedimientoo.diasrecuperacion" [ngModelOptions]="{standalone: true}" type= "number" class="form-control" required>
+          </div>
+
+        
+        <div class = "form-group">
+          <div class = "col-md-4 col-md-offset-3">
+            <input class = "btn btn-primary" type = "submit" value = "Actualizar" />
+          </div>
+        </div>
+      
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Salir</button>
+    </div>
+  </ng-template>
+
+  <button class="btn btn-lg btn-outline-primary" (click)="open(content1)">Actualizar</button>
+
+
+  <pre>{{ closeResult }}</pre>
+
+</div>
+
+
+
+<div class="table-responsive">
+  <table class="table table-hover">
+    <tr>
+      <th>Id</th>
+      <th>Nombre</th>
+      <th>Días de recuperación</th>
+    </tr>
+
+
+<!-- -->
+    <tr *ngFor="let Equipo of service.equipoList" >
+      <td>{{Procedimiento.idprocedimiento}}</td>
+      <td>{{Procedimiento.nombre}}</td>
+      <td>{{Procedimiento.diasrecuperacion}}</td>
+      <button type="button" class="btn btn-default" data-toggle="modal" data-target=" #updateForm" 
+      (click)="selectId(Procedimiento)">Ed</button>
+      <td><button type="button" class="btn btn-danger" (click)="onDelete(Procedimiento.idprocedimiento)">
+      X<span class="glyphicon glyphicon-trash" ></span></button></td>
+    </tr>
+  </table>
+</div>
+
