@@ -1,5 +1,4 @@
-export class Paciente {
-    idpaciente: number;
+export class Pacientep {
     cedula: number;
     nombre: string;
     primerapellido: string;
@@ -8,5 +7,4 @@ export class Paciente {
     fechanacimiento: Date;
     contrasena: string;
     iddireccion: number;
-
 }

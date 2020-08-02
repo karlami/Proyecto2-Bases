@@ -1,7 +1,8 @@
 export class Reservacion {
-    cedula: number;
-    fechaIngreso: Date;
+    idreservacion: number;
+    idpaciente: number;
+    fechaingreso: Date;
     procedimientos: string;
-    fechaSalida: Date;
+    fechasalida: Date;
 
 }

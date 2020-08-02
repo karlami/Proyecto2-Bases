@@ -8,4 +8,5 @@ export class Empleadop {
     fechanacimiento: Date;
     fechaingreso: Date;
     puesto: string;
+    constrasena: string;
 }

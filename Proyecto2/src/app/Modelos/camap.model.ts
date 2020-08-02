@@ -1,6 +1,6 @@
 export class Camap {
     numerocama: number;
     equipomedico: string;
-    salon: string;
+    idsalon: number;
     uci: boolean;
 }
