@@ -15,16 +15,47 @@
 Proceso para modificar datos de CentroHospitalario
 */
 
-CREATE PROCEDURE modifyPaciente(
-	-- Atributos de CentroHospitalario
-	idCentroHospitalario INT,
-	nombre VARCHAR(200),
-	capacidad INT,
-	capacidadUci INT,
-	contacto VARCHAR(50),
-	irector VARCHAR(30),
-	pais VARCHAR(75),
-	egion VARCHAR(75),
+CREATE PROCEDURE agregarPaciente(
+	-- Atributos de Persona
+      _cedula INTEGER, _nombre VARCHAR(40), _primerApellido VARCHAR(40), _segundoApellido VARCHAR(40),
+      _telefono INTEGER, _fechaNacimiento DATE, _contrasena VARCHAR(40), _idDireccion INTEGER)
+language plpgsql
+as $$
+begin
+    --Genera una Persona
+    INSERT INTO persona(cedula,	nombre,	primerApellido,	segundoApellido, telefono,
+        fechaNacimiento, contrasena, idDireccion)
+    VALUES (_cedula, _nombre, _primerApellido, _segundoApellido, _telefono,
+        _fechaNacimiento, _contrasena, _idDireccion);
+
+    -- Genera un Paciente
+    INSERT INTO paciente(cedula)
+    VALUES(_cedula);
+
+    commit;
+end;$$;
+
+/*
+--Para ejecutar agregarPaciente:
+
+CALL agregarPaciente(
+-- Atributos de Persona
+11,
+'Karla',
+'Rivera',
+'Sanchez',
+85766410,
+'1997-10-24',
+'23df',
+3);
+*/
+
+
+/*
+CREATE PROCEDURE agregarPaciente(
+	-- Atributos de Persona
+      _cedula INTEGER, _nombre VARCHAR(40), _primerApellido VARCHAR(40), _segundoApellido VARCHAR(40),
+      _telefono INTEGER, _fechaNacimiento DATE, _contrasena VARCHAR(40), _idDireccion INTEGER,
 	-- Atributo para tipo de declaracion
 	tipoOperacion VARCHAR(20) )
 language plpgsql
@@ -33,20 +64,10 @@ begin
 
 	IF tipoOperacion = 'Insert' THEN
 			--Genera un CentroHospitalario
-			INSERT INTO CentroHospitalario (
-				nombre,
-				capacidad,
-				capacidadUci,
-				contacto,
-				director,
-				idUbicacion )
-			VALUES (
-				@nombre,
-				@capacidad,
-				@capacidadUci,
-				@contacto,
-				@director,
-				dbo.getIdUbicacionFromRegionPais(@region, @pais) );
+			INSERT INTO persona(cedula,	nombre,	primerApellido,	segundoApellido, telefono,
+				fechaNacimiento, contrasena, idDireccion)
+			VALUES (_cedula, _nombre, _primerApellido, _segundoApellido, _telefono,
+				_fechaNacimiento, _contrasena, _idDireccion);
 
 	ELSIF @statementType = 'Update' THEN
 			--Actualiza un CentroHospitalario con idCentroHospitalario especifico
@@ -95,4 +116,5 @@ EXEC modifyCentroHospitalario
 @region = 'Heredia',
 -- Atributo para tipo de declaracion
 @statementType = 'Insert';
+*/
 */

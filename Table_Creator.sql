@@ -27,7 +27,6 @@ CREATE TABLE IF NOT EXISTS Canton(
     idCanton INTEGER PRIMARY KEY,
     canton VARCHAR(40) NOT NULL,
     idProvincia INTEGER NOT NULL REFERENCES Provincia(idProvincia)
-
 );
 
 -- Tabla Direccion
@@ -44,9 +43,9 @@ CREATE TABLE IF NOT EXISTS Direccion(
 -- Atributos: idPatologia, nombre y descripcion
 
 CREATE TABLE IF NOT EXISTS Patologia(
-    idPatologia INTEGER PRIMARY KEY,
-    nombre VARCHAR(40) NOT NULL,
-    descripcion VARCHAR(100) NOT NULL
+    idPatologia INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL,
+    descripcion VARCHAR(255) NOT NULL
 );
 
 -- Tabla Persona
@@ -61,6 +60,7 @@ CREATE TABLE IF NOT EXISTS Persona(
       segundoApellido VARCHAR(40) NOT NULL,
       telefono INTEGER NOT NULL,
       fechaNacimiento DATE NOT NULL,
+      contrasena VARCHAR(40) NOT NULL,
       idDireccion INTEGER NOT NULL REFERENCES Direccion(idDireccion)
 );
 
@@ -68,7 +68,7 @@ CREATE TABLE IF NOT EXISTS Persona(
 -- Atributos: IdPaciente y cedula: hace referencia a Persona
 
 CREATE TABLE IF NOT EXISTS Paciente(
-    idPaciente INTEGER PRIMARY KEY,
+    idPaciente INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     cedula INTEGER REFERENCES Persona(cedula)
 );
 
@@ -89,7 +89,7 @@ CREATE TABLE IF NOT EXISTS Paciente_Patologia(
 -- Cesárea, Histerectomía, Cirugía para la lumbalgia, Mastectomía, Amigdalectomía.
 
 CREATE TABLE IF NOT EXISTS Procedimiento(
-    idProcedimiento INTEGER PRIMARY KEY,
+    idProcedimiento INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     nombre VARCHAR(40) NOT NULL,
     diasRecuperacion INTEGER NOT NULL
 );
@@ -111,7 +111,7 @@ CREATE TABLE IF NOT EXISTS Paciente_Procedimiento(
 -- Atributos: idCama, numero de Cama y si es uci o no
 
 CREATE TABLE IF NOT EXISTS Cama(
-    idCama INTEGER PRIMARY KEY,
+    idCama INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     numeroCama INTEGER NOT NULL,
     uci BOOLEAN NOT NULL
 );
@@ -122,7 +122,7 @@ CREATE TABLE IF NOT EXISTS Cama(
 -- Fecha Salida = fecha ingreso mas dias requeridos de cada procedimiento
 
 CREATE TABLE IF NOT EXISTS Reservacion(
-    idReservacion INTEGER PRIMARY KEY,
+    idReservacion INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     fechaIngreso DATE NOT NULL,
     fechaSalida DATE NOT NULL,
     idPaciente INTEGER NOT NULL REFERENCES Paciente(idPaciente),
@@ -137,9 +137,10 @@ CREATE TABLE IF NOT EXISTS Reservacion(
 -- respiradores artificiales y electrocardiógrafos.
 
 CREATE TABLE IF NOT EXISTS Equipo(
-    idEquipo INTEGER PRIMARY KEY,
+    idEquipo INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     nombre VARCHAR(40) NOT NULL,
-    proveedor VARCHAR(40) NOT NULL
+    proveedor VARCHAR(40) NOT NULL,
+    cantidad INTEGER NOT NULL
 );
 
 -- Tabla Puesto
@@ -147,7 +148,7 @@ CREATE TABLE IF NOT EXISTS Equipo(
 -- Puestos existentes: personal administrativo, doctor o enfermero
 
 CREATE TABLE IF NOT EXISTS Puesto(
-    idPuesto INTEGER PRIMARY KEY,
+    idPuesto INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     nombre VARCHAR(40) NOT NULL
 );
 
@@ -156,7 +157,7 @@ CREATE TABLE IF NOT EXISTS Puesto(
 -- y referencia a Puesto
 
 CREATE TABLE IF NOT EXISTS Empleado(
-    IdEmpleado INTEGER PRIMARY KEY,
+    IdEmpleado INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     fechaIngreso DATE NOT NULL,
     cedula INTEGER NOT NULL REFERENCES Persona(cedula),
     idPuesto INTEGER NOT NULL REFERENCES Puesto(idPuesto)
@@ -167,7 +168,7 @@ CREATE TABLE IF NOT EXISTS Empleado(
 -- Tipos existentes: medicina de mujeres, hombres o niños
 
 CREATE TABLE IF NOT EXISTS TipoSalon(
-    idTipoSalon INTEGER PRIMARY KEY,
+    idTipoSalon INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     tipo VARCHAR(40) NOT NULL
 );
 
@@ -177,7 +178,7 @@ CREATE TABLE IF NOT EXISTS TipoSalon(
 -- y referencia al tipo de Salon al que pertenece
 
 CREATE TABLE IF NOT EXISTS Salon(
-    numeroSalon INTEGER PRIMARY KEY,
+    numeroSalon INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     nombre VARCHAR(40) NOT NULL,
     cantidadCama INTEGER NOT NULL,
     numeroPiso INTEGER NOT NULL,
