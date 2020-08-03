@@ -12,12 +12,13 @@ namespace Hospital_TECNologico.Models
         }
 
         [Key]
-        public string cedula { get; set; }
+        public int cedula { get; set; }
         public string nombre { get; set; }
-        public string primerApellido { get; set; }
-        public string segundoApellido { get; set; }
-        public string telefono { get; set; }
-        public DateTime fechaNacimiento { get; set; }
-        public int idDireccion { get; set; }
+        public string primerapellido { get; set; }
+        public string segundoapellido { get; set; }
+        public int telefono { get; set; }
+        public DateTime fechanacimiento { get; set; }
+        public string contrasena { get; set; }
+        public int iddireccion { get; set; }
     }
 }

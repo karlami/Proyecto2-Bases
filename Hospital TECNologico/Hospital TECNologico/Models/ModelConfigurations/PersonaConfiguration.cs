@@ -12,30 +12,33 @@ namespace Hospital_TECNologico.Models.ModelConfigurations
     {
         public void Configure(EntityTypeBuilder<Persona> builder)
         {
-            builder.HasKey(prop => prop.cedula)
-                .HasName("cedula");
+            builder.HasKey(prop => prop.cedula);
 
             builder.Property(prop => prop.nombre)
-                .HasMaxLength(30)
+                .HasMaxLength(40)
                 .IsRequired();
 
-            builder.Property(prop => prop.primerApellido)
-                .HasMaxLength(30)
+            builder.Property(prop => prop.primerapellido)
+                .HasMaxLength(40)
                 .IsRequired();
 
-            builder.Property(prop => prop.segundoApellido)
-                .HasMaxLength(30)
+            builder.Property(prop => prop.segundoapellido)
+                .HasMaxLength(40)
                 .IsRequired();
 
             builder.Property(prop => prop.telefono)
-                .HasMaxLength(15)
+                .HasColumnType("INTEGER")
                 .IsRequired();
 
-            builder.Property(prop => prop.fechaNacimiento)
+            builder.Property(prop => prop.fechanacimiento)
                 .HasColumnType("DATE")
                 .IsRequired();
 
-            builder.Property(prop => prop.idDireccion)
+            builder.Property(prop => prop.contrasena)
+                .HasMaxLength(40)
+                .IsRequired();
+
+            builder.Property(prop => prop.iddireccion)
                 .HasColumnType("INTEGER")
                 .IsRequired();
         }

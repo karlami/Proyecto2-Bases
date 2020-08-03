@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Hospital_TECNologico.Data;
 using Hospital_TECNologico.Models;
 
 namespace Hospital_TECNologico.Controllers
@@ -22,14 +23,14 @@ namespace Hospital_TECNologico.Controllers
 
         // GET: api/Personas
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Persona>>> GetPersonas()
+        public async Task<ActionResult<IEnumerable<Persona>>> Getpersona()
         {
             return await _context.persona.ToListAsync();
         }
 
         // GET: api/Personas/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Persona>> GetPersona(string id)
+        public async Task<ActionResult<Persona>> GetPersona(int id)
         {
             var persona = await _context.persona.FindAsync(id);
 
@@ -45,7 +46,7 @@ namespace Hospital_TECNologico.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutPersona(string id, Persona persona)
+        public async Task<ActionResult<Persona>> PutPersona(int id, [FromForm] Persona persona)
         {
             if (id != persona.cedula)
             {
@@ -70,38 +71,28 @@ namespace Hospital_TECNologico.Controllers
                 }
             }
 
-            return NoContent();
+            return persona;
         }
 
         // POST: api/Personas
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<Persona>> PostPersona(Persona persona)
+        //[Route("api/PostPersonas")]
+        public async Task<ActionResult<Persona>> PostPersona([FromForm] Persona persona)
         {
+            Console.WriteLine("POST PERSONA");
+            Console.WriteLine(persona.cedula);
             _context.persona.Add(persona);
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (PersonaExists(persona.cedula))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetPersona", new { id = persona.cedula }, persona);
         }
 
         // DELETE: api/Personas/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<Persona>> DeletePersona(string id)
+        [HttpDelete] //"{id}"
+        [Route("api/DeletePersonas/{id}")]
+        public async Task<ActionResult<Persona>> DeletePersona(int id)
         {
             var persona = await _context.persona.FindAsync(id);
             if (persona == null)
@@ -115,7 +106,7 @@ namespace Hospital_TECNologico.Controllers
             return persona;
         }
 
-        private bool PersonaExists(string id)
+        private bool PersonaExists(int id)
         {
             return _context.persona.Any(e => e.cedula == id);
         }
