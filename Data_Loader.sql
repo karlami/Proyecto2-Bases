@@ -1162,3 +1162,19 @@ INSERT INTO patologia(nombre, descripcion) VALUES
     ('Faringitis','Es la inflamación de la garganta o faringe a menudo causada por una infección bacteriana o vírica.'),
     ('Linfoma','Un linfoma es una proliferación maligna de linfocitos.');
 
+INSERT INTO equipo(nombre, proveedor, cantidad) VALUES
+    ('Luz quirurjica','ELEINMSA',60),
+    ('Ultrasonido','Philips',40),
+    ('Esterilizador','Seyla',100),
+    ('Desfibrilador','INSUMED',80),
+    ('Monitor','ELEINMSA',80),
+    ('Respirador artificial','Avante',120),
+    ('Electrocardiografo','INSUMED',40),
+    ('Oximetro','Seyla',40),
+    ('Maquina de anestesia','ELEINMSA',40),
+    ('Electrobisturi','MESA Medical',100),
+    ('Rayos X','Alfa Médica',5),
+    ('Bombas de infusion','Sire Medical',120),
+    ('Glucometro','Baxter',100),
+    ('Esfigmomanometro de mercurio','Avante',40);
+

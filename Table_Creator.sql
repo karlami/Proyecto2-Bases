@@ -90,7 +90,7 @@ CREATE TABLE IF NOT EXISTS Paciente_Patologia(
 
 CREATE TABLE IF NOT EXISTS Procedimiento(
     idProcedimiento INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    nombre VARCHAR(40) NOT NULL,
+    nombre VARCHAR(100) NOT NULL,
     diasRecuperacion INTEGER NOT NULL
 );
 
