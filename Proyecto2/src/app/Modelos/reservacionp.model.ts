@@ -1,8 +1,6 @@
-export class Reservacion {
-    idreservacion: number;
+export class Reservacionp {
     idpaciente: number;
     fechaingreso: Date;
     idprocedimientos: string;
     fechasalida: Date;
-
 }
