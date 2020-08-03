@@ -8,12 +8,13 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { NgForm } from '@angular/forms';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
+
 @Component({
-  selector: 'app-agregar-paciente',
-  templateUrl: './agregar-paciente.component.html',
-  styleUrls: ['./agregar-paciente.component.css']
+  selector: 'app-registrarse',
+  templateUrl: './registrarse.component.html',
+  styleUrls: ['./registrarse.component.css']
 })
-export class AgregarPacienteComponent implements OnInit {
+export class RegistrarseComponent implements OnInit {
 
   pacienteList: Paciente[];
   pacienteForm: NgForm;

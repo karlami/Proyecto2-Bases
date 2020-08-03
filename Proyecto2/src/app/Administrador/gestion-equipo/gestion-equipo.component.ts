@@ -24,7 +24,7 @@ export class GestionEquipoComponent implements OnInit {
     private modalService: NgbModal) { }
 
   ngOnInit(): void {
-  this.service.getEquipos();
+  // this.service.getEquipos();
   this.generateFormU();
   this.generateForm();
   }
@@ -74,9 +74,9 @@ export class GestionEquipoComponent implements OnInit {
 
   onSubmit(equipoForm: NgForm) {
   console.log('Ingresado');
-  console.log(this.service.postEquipos(this.equipoo));
-  this.service.postEquipos(this.equipoo);
-  this.service.getEquipos();
+  // console.log(this.service.postEquipos(this.equipoo));
+  // this.service.postEquipos(this.equipoo);
+  // this.service.getEquipos();
   this.generateFormU();
   this.generateForm();
   }
@@ -84,16 +84,16 @@ export class GestionEquipoComponent implements OnInit {
   onUpdate(updateForm: NgForm) {
   console.log('Actualizado');
   console.log(this.equipoU);
-  this.service.putEquipos(this.equipoU);
-  this.service.getEquipos();
+  // this.service.putEquipos(this.equipoU);
+  // this.service.getEquipos();
   this.generateFormU();
   this.generateForm();
   }
 
   onDelete(idequipo: number) {
   console.log('Deleted');
-  this.service.deleteEquipos(idequipo);
-  this.service.getEquipos();
+  // this.service.deleteEquipos(idequipo);
+  // this.service.getEquipos();
   this.generateFormU();
   this.generateForm();
   }

@@ -26,7 +26,7 @@ export class GestionCamasComponent implements OnInit {
               private modalService: NgbModal) { }
 
   ngOnInit(): void {
-    this.service.getCamas();
+    // this.service.getCamas();
     this.generateFormU();
     this.generateForm();
   }
@@ -39,7 +39,7 @@ export class GestionCamasComponent implements OnInit {
         idcama: 1,
         numerocama: 1,
         equipomedico: '',
-        salon: '',
+        idsalon: 1,
         uci: false
     };
 
@@ -52,7 +52,7 @@ export class GestionCamasComponent implements OnInit {
     this.camaa = {
         numerocama: 1,
         equipomedico: '',
-        salon: '',
+        idsalon: 1,
         uci: false
     };
 
@@ -78,9 +78,9 @@ export class GestionCamasComponent implements OnInit {
 
   onSubmit(camaForm: NgForm) {
     console.log('Ingresado');
-    console.log(this.service.postCamas(this.camaa));
-    this.service.postCamas(this.camaa);
-    this.service.getCamas();
+    // console.log(this.service.postCamas(this.camaa));
+    // this.service.postCamas(this.camaa);
+    // this.service.getCamas();
     this.generateFormU();
     this.generateForm();
   }
@@ -89,16 +89,16 @@ export class GestionCamasComponent implements OnInit {
   onUpdate(updateForm: NgForm) {
     console.log('Actualizado');
     console.log(this.camaU);
-    this.service.putCamas(this.camaU);
-    this.service.getCamas();
+    // this.service.putCamas(this.camaU);
+    // this.service.getCamas();
     this.generateFormU();
     this.generateForm();
   }
 
   onDelete(idcama: number) {
     console.log('Deleted');
-    this.service.deleteCamas(idcama);
-    this.service.getCamas();
+    // this.service.deleteCamas(idcama);
+    // this.service.getCamas();
     this.generateFormU();
     this.generateForm();
    }

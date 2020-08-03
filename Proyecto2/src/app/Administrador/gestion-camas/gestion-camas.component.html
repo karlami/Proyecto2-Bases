@@ -1,4 +1,4 @@
-<app-nav-bar-administrador></app-nav-bar-administrador>
+<app-nav-bar-admin></app-nav-bar-admin>
 
 <br><br><br><br><br><br>
 
@@ -35,7 +35,7 @@
         
         <div class="form-group">
           <label>Salon</label>
-          <input name="salon"  #Salon="ngModel" [(ngModel)]="camaa.salon" [ngModelOptions]="{standalone: true}" type= "number" class="form-control" required>
+          <input name="idsalon"  #Salon="ngModel" [(ngModel)]="camaa.idsalon" [ngModelOptions]="{standalone: true}" type= "number" class="form-control" required>
         </div>
 
         <div class="form-group">
@@ -96,7 +96,7 @@
         
         <div class="form-group">
             <label>Salón</label>
-            <input name="salon"  #Salon="ngModel" [(ngModel)]="camaU.salon" [ngModelOptions]="{standalone: true}" type= "number" class="form-control" required>
+            <input name="idsalon"  #Salon="ngModel" [(ngModel)]="camaU.idsalon" [ngModelOptions]="{standalone: true}" type= "number" class="form-control" required>
         </div>
 
         <div class="form-group">
@@ -138,7 +138,7 @@
     </tr>
 
 
-<!-- -->
+<!-- 
     <tr *ngFor="let Cama of service.camaList" >
       <td>{{Cama.idcama}}</td>
       <td>{{Cama.numerocama}}</td>
@@ -153,4 +153,4 @@
   </table>
 </div>
 
-
+-->

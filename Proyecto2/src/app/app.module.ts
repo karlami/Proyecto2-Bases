@@ -7,12 +7,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavBarPacienteComponent } from './Miscelanious/nav-bar-paciente/nav-bar-paciente.component';
-import { NavBarDoctorComponent } from './Miscelanious/nav-bar-doctor/nav-bar-doctor.component';
-import { NavBarAdminComponent } from './Miscelanious/nav-bar-admin/nav-bar-admin.component';
-import { WelcomePacienteComponent } from './Miscelanious/welcome-paciente/welcome-paciente.component';
-import { WelcomeDoctorComponent } from './Miscelanious/welcome-doctor/welcome-doctor.component';
-import { WelcomeAdminComponent } from './Miscelanious/welcome-admin/welcome-admin.component';
+import { NavBarPacienteComponent } from './Miscellanious/nav-bar-paciente/nav-bar-paciente.component';
+import { NavBarDoctorComponent } from './Miscellanious/nav-bar-doctor/nav-bar-doctor.component';
+import { NavBarAdminComponent } from './Miscellanious/nav-bar-admin/nav-bar-admin.component';
+import { WelcomePacienteComponent } from './Miscellanious/welcome-paciente/welcome-paciente.component';
+import { WelcomeDoctorComponent } from './Miscellanious/welcome-doctor/welcome-doctor.component';
+import { WelcomeAdminComponent } from './Miscellanious/welcome-admin/welcome-admin.component';
 import { GestionSalonesComponent } from './Administrador/gestion-salones/gestion-salones.component';
 import { GestionEquipoComponent } from './Administrador/gestion-equipo/gestion-equipo.component';
 import { GestionCamasComponent } from './Administrador/gestion-camas/gestion-camas.component';
@@ -20,9 +20,11 @@ import { GestionProcedimientosComponent } from './Administrador/gestion-procedim
 import { GestionPersonalComponent } from './Administrador/gestion-personal/gestion-personal.component';
 import { ReporteAreaMejoraComponent } from './Administrador/reporte-area-mejora/reporte-area-mejora.component';
 import { GestionReservacionesComponent } from './Paciente/gestion-reservaciones/gestion-reservaciones.component';
-import { HistorialComponent } from './Paciente/historial/historial.component';
+import { HistorialComponent } from './Doctor/historial/historial.component';
 import { EncuestaComponent } from './Paciente/encuesta/encuesta.component';
 import { AgregarPacienteComponent } from './Doctor/agregar-paciente/agregar-paciente.component';
+import { RegistrarseComponent } from './Paciente/registrarse/registrarse.component';
+import { MiHistorialComponent } from './Paciente/mi-historial/mi-historial.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import { AgregarPacienteComponent } from './Doctor/agregar-paciente/agregar-paci
     GestionReservacionesComponent,
     HistorialComponent,
     EncuestaComponent,
-    AgregarPacienteComponent
+    AgregarPacienteComponent,
+    RegistrarseComponent,
+    MiHistorialComponent
   ],
   imports: [
     BrowserModule,

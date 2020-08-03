@@ -25,7 +25,7 @@ export class GestionSalonesComponent implements OnInit {
     private modalService: NgbModal) { }
 
   ngOnInit(): void {
-  this.service.getSalones();
+  // this.service.getSalones();
   this.generateFormU();
   this.generateForm();
   }
@@ -77,9 +77,9 @@ export class GestionSalonesComponent implements OnInit {
 
   onSubmit(salonForm: NgForm) {
   console.log('Ingresado');
-  console.log(this.service.postSalones(this.salonn));
-  this.service.postSalones(this.salonn);
-  this.service.getSalones();
+  // console.log(this.service.postSalones(this.salonn));
+  // this.service.postSalones(this.salonn);
+  // this.service.getSalones();
   this.generateFormU();
   this.generateForm();
   }
@@ -87,16 +87,16 @@ export class GestionSalonesComponent implements OnInit {
   onUpdate(updateForm: NgForm) {
   console.log('Actualizado');
   console.log(this.salonU);
-  this.service.putSalones(this.salonU);
-  this.service.getSalones();
+  // this.service.putSalones(this.salonU);
+  // this.service.getSalones();
   this.generateFormU();
   this.generateForm();
   }
 
   onDelete(numero: number) {
   console.log('Deleted');
-  this.service.deleteSalones(numero);
-  this.service.getSalones();
+  // this.service.deleteSalones(numero);
+  // this.service.getSalones();
   this.generateFormU();
   this.generateForm();
   }

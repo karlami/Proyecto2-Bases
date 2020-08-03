@@ -9,5 +9,5 @@ export class Empleado {
     fechanacimiento: Date;
     fechaingreso: Date;
     puesto: string;
-    constrasena: string;
+    contrasena: string;
 }

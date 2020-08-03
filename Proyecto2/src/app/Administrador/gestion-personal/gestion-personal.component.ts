@@ -25,7 +25,7 @@ export class GestionPersonalComponent implements OnInit {
     private modalService: NgbModal) { }
 
   ngOnInit(): void {
-  this.service.getEmpleados();
+  // this.service.getEmpleados();
   this.generateFormU();
   this.generateForm();
   }
@@ -44,7 +44,8 @@ export class GestionPersonalComponent implements OnInit {
     direccion: '',
     fechanacimiento: new Date('Ene 01 2020'),
     fechaingreso: new Date('Ene 01 2020'),
-    puesto: ''
+    puesto: '',
+    contrasena: ''
   };
 
   }
@@ -62,7 +63,8 @@ export class GestionPersonalComponent implements OnInit {
     direccion: '',
     fechanacimiento: new Date('Ene 01 2020'),
     fechaingreso: new Date('Ene 01 2020'),
-    puesto: ''
+    puesto: '',
+    contrasena: ''
   };
 
   }
@@ -87,9 +89,9 @@ export class GestionPersonalComponent implements OnInit {
 
   onSubmit(empeadoForm: NgForm) {
   console.log('Ingresado');
-  console.log(this.service.postEmpleados(this.empleadoo));
-  this.service.postEmpleados(this.empleadoo);
-  this.service.getEmpleados();
+  // console.log(this.service.postEmpleados(this.empleadoo));
+  // this.service.postEmpleados(this.empleadoo);
+  // this.service.getEmpleados();
   this.generateFormU();
   this.generateForm();
   }
@@ -97,16 +99,16 @@ export class GestionPersonalComponent implements OnInit {
   onUpdate(updateForm: NgForm) {
   console.log('Actualizado');
   console.log(this.empleadoU);
-  this.service.putEmpleados(this.empleadoU);
-  this.service.getEmpleados();
+  // this.service.putEmpleados(this.empleadoU);
+  // this.service.getEmpleados();
   this.generateFormU();
   this.generateForm();
   }
 
   onDelete(idequipo: number) {
   console.log('Deleted');
-  this.service.deleteEmpleados(idempleado);
-  this.service.getEmpleados();
+  // this.service.deleteEmpleados(idempleado);
+  // this.service.getEmpleados();
   this.generateFormU();
   this.generateForm();
   }
