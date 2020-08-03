@@ -111,8 +111,7 @@ CREATE TABLE IF NOT EXISTS Paciente_Procedimiento(
 -- Atributos: idCama, numero de Cama y si es uci o no
 
 CREATE TABLE IF NOT EXISTS Cama(
-    idCama INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    numeroCama INTEGER NOT NULL,
+    numeroCama INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     uci BOOLEAN NOT NULL
 );
 
@@ -127,7 +126,6 @@ CREATE TABLE IF NOT EXISTS Reservacion(
     fechaSalida DATE NOT NULL,
     idPaciente INTEGER NOT NULL REFERENCES Paciente(idPaciente),
     idCama INTEGER NOT NULL REFERENCES Cama(idCama)
-
 );
 
 -- Tabla Equipo
@@ -191,7 +189,6 @@ CREATE TABLE IF NOT EXISTS Salon(
 CREATE TABLE IF NOT EXISTS Cama_Salon(
     idCama INTEGER NOT NULL REFERENCES Cama(idCama),
     idSalon INTEGER NOT NULL REFERENCES Salon(numeroSalon)
-
 );
 
 -- Tabla Cruz Cama_Equipo
