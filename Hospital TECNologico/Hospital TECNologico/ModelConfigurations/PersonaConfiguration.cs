@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Hospital_TECNologico.Models.ModelConfigurations
-{
+{/*
     public class PersonaConfiguration : IEntityTypeConfiguration<Persona>
     {
         public void Configure(EntityTypeBuilder<Persona> builder)
@@ -42,5 +42,5 @@ namespace Hospital_TECNologico.Models.ModelConfigurations
                 .HasColumnType("INTEGER")
                 .IsRequired();
         }
-    }
+    }*/
 }

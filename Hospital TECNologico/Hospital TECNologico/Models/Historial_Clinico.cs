@@ -6,15 +6,17 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Hospital_TECNologico.Models
 {
-    public class Procedimiento
+    public class Historial_Clinico
     {
-        public Procedimiento()
+        public Historial_Clinico()
         {
         }
 
         [Key]
+        public int idhistorial { get; set; }
+        public int idpaciente { get; set; }
         public int idprocedimiento { get; set; }
-        public string nombre { get; set; }
-        public int diasrecuperacion { get; set; }
+        public string tratamiento { get; set; }
+        public DateTime fecha { get; set; }
     }
 }

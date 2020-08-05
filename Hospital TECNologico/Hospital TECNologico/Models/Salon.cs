@@ -6,16 +6,17 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Hospital_TECNologico.Models
 {
-    public class Equipo
+    public class Salon
     {
-        public Equipo()
+        public Salon()
         {
         }
 
         [Key]
-        public int idequipo { get; set; }
+        public int numerosalon { get; set; }
         public string nombre { get; set; }
-        public string proveedor { get; set; }
-        public int cantidad { get; set; }
+        public int cantidadcama { get; set; }
+        public int numeropiso { get; set; }
+        public int idtiposalon { get; set; }
     }
 }

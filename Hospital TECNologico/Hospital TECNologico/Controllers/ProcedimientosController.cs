@@ -10,7 +10,6 @@ using Hospital_TECNologico.Models;
 
 namespace Hospital_TECNologico.Controllers
 {
-    //[Route("api/[controller]")]
     [ApiController]
     public class ProcedimientosController : ControllerBase
     {
@@ -24,17 +23,17 @@ namespace Hospital_TECNologico.Controllers
         // GET: api/Procedimientos
         [Route("api/GetProcedimientos")]
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Procedimiento>>> GetProcedimiento()
+        public async Task<ActionResult<IEnumerable<Procedimiento>>> Getprocedimiento()
         {
-            return await _context.Procedimiento.ToListAsync();
+            return await _context.procedimiento.ToListAsync();
         }
 
         // GET: api/Procedimientos/5
         [Route("api/GetProcedimiento/{id}")]
-        [HttpGet] //("{id}")]
+        [HttpGet]
         public async Task<ActionResult<Procedimiento>> GetProcedimiento(int id)
         {
-            var procedimiento = await _context.Procedimiento.FindAsync(id);
+            var procedimiento = await _context.procedimiento.FindAsync(id);
 
             if (procedimiento == null)
             {
@@ -45,9 +44,9 @@ namespace Hospital_TECNologico.Controllers
         }
 
         // PUT: api/Procedimientos/5
-        [Route("api/PutEquipo")]
-        [HttpPut] //("{id}")]
-        public async Task<IActionResult> PutProcedimiento(/*int id,*/ [FromForm] Procedimiento procedimiento)
+        [Route("api/PutProcedimiento")]
+        [HttpPut]
+        public async Task<IActionResult> PutProcedimiento([FromForm] Procedimiento procedimiento)
         {
             /*if (id != procedimiento.idprocedimiento)
             {
@@ -76,11 +75,11 @@ namespace Hospital_TECNologico.Controllers
         }
 
         // POST: api/Procedimientos
-        [Route("api/PostEquipo")]
+        [Route("api/PostProcedimiento")]
         [HttpPost]
         public async Task<ActionResult<Procedimiento>> PostProcedimiento([FromForm] Procedimiento procedimiento)
         {
-            _context.Procedimiento.Add(procedimiento);
+            _context.procedimiento.Add(procedimiento);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetProcedimiento", new { id = procedimiento.idprocedimiento }, procedimiento);
@@ -88,16 +87,16 @@ namespace Hospital_TECNologico.Controllers
 
         // DELETE: api/Procedimientos/5
         [Route("api/DeleteProcedimiento/{id}")]
-        [HttpDelete] //("{id}")]
+        [HttpDelete]
         public async Task<ActionResult<Procedimiento>> DeleteProcedimiento(int id)
         {
-            var procedimiento = await _context.Procedimiento.FindAsync(id);
+            var procedimiento = await _context.procedimiento.FindAsync(id);
             if (procedimiento == null)
             {
                 return NotFound();
             }
 
-            _context.Procedimiento.Remove(procedimiento);
+            _context.procedimiento.Remove(procedimiento);
             await _context.SaveChangesAsync();
 
             return procedimiento;
@@ -105,7 +104,7 @@ namespace Hospital_TECNologico.Controllers
 
         private bool ProcedimientoExists(int id)
         {
-            return _context.Procedimiento.Any(e => e.idprocedimiento == id);
+            return _context.procedimiento.Any(e => e.idprocedimiento == id);
         }
     }
 }

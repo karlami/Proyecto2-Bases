@@ -10,7 +10,6 @@ using Hospital_TECNologico.Models;
 
 namespace Hospital_TECNologico.Controllers
 {
-    //[Route("api/[controller]")]
     [ApiController]
     public class EquiposController : ControllerBase
     {
@@ -31,7 +30,6 @@ namespace Hospital_TECNologico.Controllers
 
         // GET: api/Equipos/5
         [Route("api/GetEquipo/{id}")]
-        //[HttpGet("{id}")]
         [HttpGet]
         public async Task<ActionResult<Equipo>> GetEquipo(int id)
         {
@@ -47,9 +45,8 @@ namespace Hospital_TECNologico.Controllers
 
         // PUT: api/Equipos/5
         [Route("api/PutEquipo")]
-        //[HttpPut("{id}")]
         [HttpPut]
-        public async Task<IActionResult> PutEquipo(/*int id,*/ [FromForm] Equipo equipo)
+        public async Task<IActionResult> PutEquipo([FromForm] Equipo equipo)
         {
             /*if (id != equipo.idequipo)
             {
@@ -89,8 +86,8 @@ namespace Hospital_TECNologico.Controllers
         }
 
         // DELETE: api/Equipos/5
+        //Not needed, yet
         [Route("api/DeleteEquipo/{id}")]
-        //[HttpDelete("{id}")]
         [HttpDelete]
         public async Task<ActionResult<Equipo>> DeleteEquipo(int id)
         {

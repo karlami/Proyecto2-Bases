@@ -13,14 +13,14 @@ namespace Hospital_TECNologico.Data
         {
         }
 
-        public HospitalTECNologicoContext()
+        /*public HospitalTECNologicoContext()
             : base()
         {
-        }
+        }*/
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new PersonaConfiguration());
+            //modelBuilder.ApplyConfiguration(new PersonaConfiguration());
         }
 
         public override int SaveChanges()
@@ -29,10 +29,10 @@ namespace Hospital_TECNologico.Data
             return base.SaveChanges();
         }
 
-        public DbSet<Persona> persona { get; set; }
-        public DbSet<Provincia> provincia { get; set; }
-        public DbSet<Canton> canton { get; set; }
         public DbSet<Equipo> equipo { get; set; }
-        public DbSet<Hospital_TECNologico.Models.Procedimiento> Procedimiento { get; set; }
+        public DbSet<Salon> salon { get; set; }
+        public DbSet<Procedimiento> procedimiento { get; set; }
+        public DbSet<Historial_Clinico> historial_clinico { get; set; }
+        public DbSet<Paciente_Patologia> paciente_patologia { get; set; }
     }
 }
