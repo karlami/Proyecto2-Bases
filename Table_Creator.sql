@@ -94,14 +94,14 @@ CREATE TABLE IF NOT EXISTS Procedimiento(
     diasRecuperacion INTEGER NOT NULL
 );
 
--- Tabla HistorialClinico
+-- Tabla Historial_Clinico
 -- Atributos: idHistorialClinico, nombre del tratamiento (el tratamiento puede ser diferente para los
 -- pacientes, aunque tengan el mismo procedimiento), fecha del
 -- tratamiento aplicado al paciente, referencia a Paciente y
 -- referencia al Procedimiento
 
-CREATE TABLE IF NOT EXISTS HistorialClinico(
-    idHistorialClinico INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS Historial_Clinico(
+    idHistorial INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     tratamiento VARCHAR(255) NOT NULL,
     fecha DATE NOT NULL,
     idPaciente INTEGER NOT NULL REFERENCES Paciente(idPaciente),
@@ -196,7 +196,7 @@ CREATE TABLE IF NOT EXISTS Salon(
 -- Atributos: referencias a Cama y Salon
 
 CREATE TABLE IF NOT EXISTS Cama_Salon(
-    idCama INTEGER NOT NULL REFERENCES Cama(idCama),
+    idCama INTEGER NOT NULL REFERENCES Cama(numeroCama),
     idSalon INTEGER NOT NULL REFERENCES Salon(numeroSalon)
 );
 
@@ -205,9 +205,7 @@ CREATE TABLE IF NOT EXISTS Cama_Salon(
 -- referencias a Cama y Equipo
 
 CREATE TABLE IF NOT EXISTS Cama_Equipo(
-    idCama INTEGER NOT NULL REFERENCES Cama(idCama),
+    idCama INTEGER NOT NULL REFERENCES Cama(numeroCama),
     idEquipo INTEGER NOT NULL REFERENCES Equipo(idEquipo),
     cantidadDisponible INTEGER NOT NULL
 );
-
-
