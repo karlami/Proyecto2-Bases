@@ -80,7 +80,6 @@ CREATE TABLE IF NOT EXISTS Paciente_Patologia(
     idPaciente INTEGER REFERENCES Paciente(idPaciente),
     idPatologia INTEGER REFERENCES Patologia(idPatologia),
     tratamiento VARCHAR(100) NOT NULL
-
 );
 
 -- Tabla Procedimiento
