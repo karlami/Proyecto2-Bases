@@ -159,43 +159,44 @@ INSERT INTO patologia(nombre, descripcion) VALUES
     ('Linfoma','Un linfoma es una proliferación maligna de linfocitos.');
 
 INSERT INTO persona VALUES
-    (100000000,'Jorge','Rodriguez','Asquez',80000000,'1991-08-13','persona',1),
-    (100198769,'Marco','Biffen','Allmann',80006730,'1982-11-28','persona',2),
-    (100397538,'Reta','Salas','Ralls',80013460,'1979-06-29','persona',3),
-    (100795076,'Catharina','Sanchez','Drogan',80020190,'1977-06-15','persona',4),
-    (101192614,'Ana','Petracek','Breche',80026920,'2016-11-13','persona',5),
-    (101590152,'Juan','Ray','Dumphry',80033650,'2015-11-29','persona',6),
-    (101788921,'Emilia','Martinez','Tuckie',80040380,'1946-07-13','persona',7),
-    (102186459,'Rosa','Simonds','Garrand',80047110,'1932-05-06','persona',8),
+    (200765074,'Cherish','Niesegen','Asquez',80000000,'1991-08-13','persona',1),
+    (500198769,'Amerigo','Biffen','Allmann',80006730,'1982-11-28','persona',2),
+    (300397538,'Reta','Colton','Ralls',80013460,'1979-06-29','persona',3),
+    (100795076,'Catharina','Abden','Drogan',80020190,'1977-06-15','persona',4),
+    (501192614,'Jena','Petracek','Breche',80026920,'2016-11-13','persona',5),
+    (101590152,'Parker','Ray','Dumphry',80033650,'2015-11-29','persona',6),
+    (501788921,'Fenelia','Bartlomieczak','Tuckie',80040380,'1946-07-13','persona',7),
+    (302186459,'Claudell','Simonds','Garrand',80047110,'1932-05-06','persona',8),
     (102385228,'Neddie','Pyle','Fobidge',80053840,'1998-02-18','persona',9),
-    (102583997,'Marybeth','Larderot','Jardein',80060570,'1949-10-13','persona',10),
+    (402583997,'Marybeth','Larderot','Jardein',80060570,'1949-10-13','persona',10),
     (102981535,'Aeriel','Stainsby','Martini',80067300,'1979-07-25','persona',11),
-    (103180304,'Jose','Scutter','Hawton',80074030,'1995-05-29','persona',12),
-    (103379073,'Chevy','Towson','Cerman',80080760,'2018-08-25','persona',13),
-    (103577842,'Martin','Bony','Rennard',80087490,'1970-02-22','persona',14),
-    (103776611,'Ligia','Sprague','Wagner',80094220,'1947-10-19','persona',15),
-    (103975380,'Ana','Yarr','Kaplin',80100950,'1984-04-25','persona',16),
+    (103180304,'Daron','Scutter','Hawton',80074030,'1995-05-29','persona',12),
+    (303379073,'Chevy','Towson','Cerman',80080760,'2018-08-25','persona',13),
+    (403577842,'Buckie','Bony','Rennard',80087490,'1970-02-22','persona',14),
+    (103776611,'Yettie','Sprague','Wagner',80094220,'1947-10-19','persona',15),
+    (703975380,'Annetta','Yarr','Kaplin',80100950,'1984-04-25','persona',16),
     (104174149,'Delbert','Roden','Huffa',80107680,'1968-01-19','persona',17),
-    (104372918,'Donavon','Vedyaev','Eglin',80114410,'2010-01-23','persona',18),
+    (304372918,'Donavon','Vedyaev','Eglin',80114410,'2010-01-23','persona',18),
     (104571687,'Beatrisa','Sumbler','Rumin',80121140,'2001-08-11','persona',19),
-    (104770456,'Tandie','Rupp','Edgin',80127870,'1971-12-05','persona',20),
-    (105167994,'Pail','Mitrikhin','Caldera',80134600,'1936-10-22','persona',21),
-    (105565532,'Vinicio','Belison','Abbis',80141330,'1982-03-05','persona',22),
-    (105764301,'Deb','Chestnut','Life',80148060,'1966-01-04','persona',23),
-    (105963070,'Maurice','Mecozzi','Gilks',80154790,'2002-06-04','persona',24),
-    (106161839,'Pablo','Pimlett','Scrancher',80161520,'1981-10-13','persona',25);
+    (704770456,'Tandie','Rupp','Edgin',80127870,'1971-12-05','persona',20),
+    (405167994,'Pail','Mitrikhin','Caldera',80134600,'1936-10-22','persona',21),
+    (205565532,'Vincenty','Belison','Abbis',80141330,'1982-03-05','persona',22),
+    (305764301,'Deb','Chestnut','Life',80148060,'1966-01-04','persona',23),
+    (505963070,'Maurice','Mecozzi','Gilks',80154790,'2002-06-04','persona',24),
+    (606161839,'Pablo','Pimlett','Scrancher',80161520,'1981-10-13','persona',25);
 
+-- Datos de paciente
 INSERT INTO paciente(cedula) VALUES
-    (100000000),
-    (100198769),
-    (100397538),
+    (200765074),
+    (500198769),
+    (300397538),
     (100795076),
-    (101192614),
+    (501192614),
     (101590152),
-    (101788921),
-    (102186459),
+    (501788921),
+    (302186459),
     (102385228),
-    (102583997);
+    (402583997);
 
 INSERT INTO paciente_patologia VALUES
     (1,17,'Tomar paracetamol para aliviar la fiebre producida por el dengue.'),
@@ -325,7 +326,23 @@ INSERT INTO puesto(nombre) VALUES
     ('Doctor/Doctora'),
     ('Enfermero/Enfermera');
 
--- empleado
+-- Datos de Empleado
+INSERT INTO empleado(fechaingreso, cedula, idpuesto) VALUES
+    ('2014-12-08',102981535,2),
+    ('2004-12-20',103180304,3),
+    ('2017-10-14',303379073,3),
+    ('2008-03-25',403577842,3),
+    ('2008-05-30',103776611,2),
+    ('2009-07-02',703975380,2),
+    ('2002-07-06',104174149,1),
+    ('2006-12-17',304372918,3),
+    ('2001-01-08',104571687,1),
+    ('2013-06-25',704770456,2),
+    ('2019-05-05',405167994,1),
+    ('2011-11-16',205565532,2),
+    ('2000-10-24',305764301,2),
+    ('2013-07-24',505963070,3),
+    ('2014-10-13',606161839,2);
 
 INSERT INTO tiposalon(tipo) VALUES
     ('Medicina de mujer'),
