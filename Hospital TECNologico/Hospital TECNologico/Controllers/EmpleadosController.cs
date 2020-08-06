@@ -65,7 +65,7 @@ namespace Hospital_TECNologico.Controllers
          */
         [Route("api/PutEmpleado")]
         [HttpPut]
-        public async Task<IActionResult> PutEmpleado([FromForm] Empleado empleado)
+        public async Task<IActionResult> PutEmpleado([FromBody] Empleado empleado)
         {
             /*if (id != empleado.idempleado)
             {
@@ -101,7 +101,7 @@ namespace Hospital_TECNologico.Controllers
          */
         [Route("api/PostEmpleado")]
         [HttpPost]
-        public async Task<ActionResult<Empleado>> PostEmpleado(Empleado empleado)
+        public async Task<ActionResult<Empleado>> PostEmpleado([FromBody] Empleado empleado)
         {
             /*_context.empleado.Add(empleado);
             await _context.SaveChangesAsync();*/
@@ -127,11 +127,11 @@ namespace Hospital_TECNologico.Controllers
          */
         [Route("api/DeleteEmpleado/{idempleado}")]
         [HttpDelete]
-        public async Task<ActionResult<Empleado>> DeleteEmpleado(int id)
+        public async Task<ActionResult<Empleado>> DeleteEmpleado(int idempleado)
         {
             //DELETE EN DELETE DE STORED PROCEDURE DE EMPLEADO
 
-            var empleado = await _context.empleado.FindAsync(id);
+            var empleado = await _context.empleado.FindAsync(idempleado);
             if (empleado == null)
             {
                 return NotFound();
@@ -143,9 +143,9 @@ namespace Hospital_TECNologico.Controllers
             return empleado;
         }
 
-        private bool EmpleadoExists(int id)
+        private bool EmpleadoExists(int idempleado)
         {
-            return _context.empleado.Any(e => e.idempleado == id);
+            return _context.empleado.Any(e => e.idempleado == idempleado);
         }
     }
 }

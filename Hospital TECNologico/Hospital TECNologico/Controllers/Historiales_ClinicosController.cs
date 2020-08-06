@@ -77,7 +77,7 @@ namespace Hospital_TECNologico.Controllers
          */
         [Route("api/PutHistorial_Clinico")]
         [HttpPut]
-        public async Task<IActionResult> PutHistorial_Clinico([FromForm] Historial_Clinico historial_clinico)
+        public async Task<IActionResult> PutHistorial_Clinico([FromBody] Historial_Clinico historial_clinico)
         {
             /*if (id != historial_Clinico.idhistorial)
             {
@@ -111,7 +111,7 @@ namespace Hospital_TECNologico.Controllers
          */
         [Route("api/PostHistorial_Clinico")]
         [HttpPost]
-        public async Task<ActionResult<Historial_Clinico>> PostHistorial_Clinico([FromForm] Historial_Clinico historial_clinico)
+        public async Task<ActionResult<Historial_Clinico>> PostHistorial_Clinico([FromBody] Historial_Clinico historial_clinico)
         {
             _context.historial_clinico.Add(historial_clinico);
             await _context.SaveChangesAsync();

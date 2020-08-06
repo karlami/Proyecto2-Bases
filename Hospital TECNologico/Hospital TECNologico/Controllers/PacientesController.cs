@@ -66,7 +66,7 @@ namespace Hospital_TECNologico.Controllers
          */
         [Route("api/PutPaciente")]
         [HttpPut]
-        public async Task<IActionResult> PutPaciente([FromForm] Paciente paciente)
+        public async Task<IActionResult> PutPaciente([FromBody] Paciente paciente)
         {
             /*if (id != paciente.cedula)
             {
@@ -102,7 +102,7 @@ namespace Hospital_TECNologico.Controllers
          */
         [Route("api/PostPaciente")]
         [HttpPost]
-        public async Task<ActionResult<Paciente>> PostPaciente([FromForm] Paciente paciente)
+        public async Task<ActionResult<Paciente>> PostPaciente([FromBody] Paciente paciente)
         {
             /*_context.paciente.Add(paciente);
             await _context.SaveChangesAsync();*/

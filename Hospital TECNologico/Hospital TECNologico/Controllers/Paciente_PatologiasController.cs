@@ -85,7 +85,7 @@ namespace Hospital_TECNologico.Controllers
          */
         [Route("api/PutPaciente_Patologia")]
         [HttpPut]
-        public async Task<IActionResult> PutPaciente_Patologia([FromForm] Paciente_Patologia paciente_Patologia)
+        public async Task<IActionResult> PutPaciente_Patologia([FromBody] Paciente_Patologia paciente_Patologia)
         {
             /*if (id != paciente_Patologia.idpaciente)
             {
@@ -121,7 +121,7 @@ namespace Hospital_TECNologico.Controllers
          */
         [Route("api/PostPaciente_Patologia")]
         [HttpPost]
-        public async Task<ActionResult<Paciente_Patologia>> PostPaciente_Patologia([FromForm] Paciente_Patologia paciente_Patologia)
+        public async Task<ActionResult<Paciente_Patologia>> PostPaciente_Patologia([FromBody] Paciente_Patologia paciente_Patologia)
         {
             _context.paciente_patologia.Add(paciente_Patologia);
             await _context.SaveChangesAsync();

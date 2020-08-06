@@ -59,7 +59,7 @@ namespace Hospital_TECNologico.Controllers
          */
         [Route("api/PutSalon")]
         [HttpPut]
-        public async Task<IActionResult> PutSalon([FromForm] Salon salon)
+        public async Task<IActionResult> PutSalon([FromBody] Salon salon)
         {
             /*if (id != salon.numerosalon)
             {
@@ -93,7 +93,7 @@ namespace Hospital_TECNologico.Controllers
          */
         [Route("api/PostSalon")]
         [HttpPost]
-        public async Task<ActionResult<Salon>> PostSalon([FromForm] Salon salon)
+        public async Task<ActionResult<Salon>> PostSalon([FromBody] Salon salon)
         {
             _context.salon.Add(salon);
             await _context.SaveChangesAsync();

@@ -65,7 +65,7 @@ namespace Hospital_TECNologico.Controllers
          */
         [Route("api/PutCama")]
         [HttpPut]
-        public async Task<IActionResult> PutCama([FromForm] Cama cama)
+        public async Task<IActionResult> PutCama([FromBody] Cama cama)
         {
             /*if (id != cama.numerocama)
             {
@@ -101,7 +101,7 @@ namespace Hospital_TECNologico.Controllers
          */
         [Route("api/PostCama")]
         [HttpPost]
-        public async Task<ActionResult<Cama>> PostCama([FromForm] Cama cama)
+        public async Task<ActionResult<Cama>> PostCama([FromBody] Cama cama)
         {
             /*_context.cama.Add(cama);
             await _context.SaveChangesAsync();*/
