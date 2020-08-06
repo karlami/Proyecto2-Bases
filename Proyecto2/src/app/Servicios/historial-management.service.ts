@@ -37,10 +37,10 @@ export class HistorialManagementService {
       })
     };
     const body = {
-      idHistorial: historialData.idHistorial,
+      idHistorial: historialData.idhistorial,
       cedula: historialData.cedula,
       idprocedimiento: historialData.idprocedimiento,
-      fechaIngreso: historialData.fechaIngreso,
+      fechaIngreso: historialData.fechaingreso,
       tratamiento: historialData.tratamiento
     };
     this.http.put(this.constante.rutaURL + '/api/PutHistorial_Clinico', body, httpOptions).toPromise();
