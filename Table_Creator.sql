@@ -94,14 +94,15 @@ CREATE TABLE IF NOT EXISTS Procedimiento(
     diasRecuperacion INTEGER NOT NULL
 );
 
--- Tabla Cruz Paciente_Procedimiento
--- Atributos: nombre del tratamiento (el tratamiento puede ser diferente para los
+-- Tabla HistorialClinico
+-- Atributos: idHistorialClinico, nombre del tratamiento (el tratamiento puede ser diferente para los
 -- pacientes, aunque tengan el mismo procedimiento), fecha del
--- tratamiento aplicado al paciente, referencia a Pacinte y
+-- tratamiento aplicado al paciente, referencia a Paciente y
 -- referencia al Procedimiento
 
-CREATE TABLE IF NOT EXISTS Paciente_Procedimiento(
-    tratamiento VARCHAR(40) NOT NULL,
+CREATE TABLE IF NOT EXISTS HistorialClinico(
+    idHistorialClinico INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    tratamiento VARCHAR(255) NOT NULL,
     fecha DATE NOT NULL,
     idPaciente INTEGER NOT NULL REFERENCES Paciente(idPaciente),
     idProcedimiento INTEGER NOT NULL REFERENCES Procedimiento(idProcedimiento)
@@ -125,7 +126,15 @@ CREATE TABLE IF NOT EXISTS Reservacion(
     fechaIngreso DATE NOT NULL,
     fechaSalida DATE NOT NULL,
     idPaciente INTEGER NOT NULL REFERENCES Paciente(idPaciente),
-    idCama INTEGER NOT NULL REFERENCES Cama(idCama)
+    idCama INTEGER NOT NULL REFERENCES Cama(numeroCama)
+);
+
+-- Tabla cruz Reservacion_Procedimiento
+-- Atributos: Referencia a Paciente y referencia a Procedimiento
+
+CREATE TABLE IF NOT EXISTS Reservacion_Procedimiento(
+    idReservacion INTEGER NOT NULL REFERENCES Reservacion(idReservacion),
+    idProcedimiento INTEGER NOT NULL REFERENCES Procedimiento(idProcedimiento)
 );
 
 -- Tabla Equipo
