@@ -10,6 +10,10 @@ using Hospital_TECNologico.Models;
 
 namespace Hospital_TECNologico.Controllers
 {
+    /*
+     * Controlador de Historial Clinico
+     * Recibe las solicitudes para Ingresar, Mostrar y Modificar estos de la base de datos.
+     */
     [ApiController]
     public class Historiales_ClinicosController : ControllerBase
     {
@@ -20,20 +24,41 @@ namespace Hospital_TECNologico.Controllers
             _context = context;
         }
 
-        // GET: api/Historiales_Clinicos
+        /*
+         * GET: "api/GetHistoriales_Clinicos"
+         * Obtiene todos los historiales clinicos de todos los pacientes en la base de datos
+         */
         [Route("api/GetHistoriales_Clinicos")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Historial_Clinico>>> Gethistorial_clinico()
         {
+            //GET DE UN VIEW ESPECIFICO DE HISTORIAL_CLINICO
+            //TODOS TODOS LOS HISTORIALES CLINICOS
+            return await _context.historial_clinico.ToListAsync();
+        }
+
+        /*
+         * GET: "api/GetHistoriales_Clinicos"
+         * Obtiene todos los historiales clinicos de UN SOLO PACIENTE con el idpaciente indicado
+         */
+        [Route("api/GetHistoriales_Clinicos/{idpaciente}")]
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Historial_Clinico>>> Gethistorial_clinico(int idpaciente)
+        {
+            //GET DE UN VIEW ESPECIFICO DE HISTORIAL_CLINICO
+            //TODOS LOS HISTORIALES CLINICOS DE UN PACIENTE ESPECIFICO
             return await _context.historial_clinico.ToListAsync();
         }
 
         // GET: api/Historiales_Clinicos/5
-        [Route("api/GetHistorial_Clinico/{id}")]
+        [Route("api/GetHistorial_Clinico/{idhistorial}")]
         [HttpGet]
-        public async Task<ActionResult<Historial_Clinico>> GetHistorial_Clinico(int id)
+        public async Task<ActionResult<Historial_Clinico>> GetHistorial_Clinico(int idhistorial)
         {
-            var historial_Clinico = await _context.historial_clinico.FindAsync(id);
+            //GET DE UN VIEW ESPECIFICO DE HISTORIAL_CLINICO
+            //UN UNICO HISTORIAL_CLINICO
+
+            var historial_Clinico = await _context.historial_clinico.FindAsync(idhistorial);
 
             if (historial_Clinico == null)
             {
@@ -86,11 +111,11 @@ namespace Hospital_TECNologico.Controllers
         }
 
         // DELETE: api/Historiales_Clinicos/5
-        [Route("api/PutHistorial_Clinico/{id}")]
+        [Route("api/DeleteHistorial_Clinico/{idhistorial}")]
         [HttpDelete]
-        public async Task<ActionResult<Historial_Clinico>> DeleteHistorial_Clinico(int id)
+        public async Task<ActionResult<Historial_Clinico>> DeleteHistorial_Clinico(int idhistorial)
         {
-            var historial_Clinico = await _context.historial_clinico.FindAsync(id);
+            var historial_Clinico = await _context.historial_clinico.FindAsync(idhistorial);
             if (historial_Clinico == null)
             {
                 return NotFound();
@@ -102,9 +127,9 @@ namespace Hospital_TECNologico.Controllers
             return historial_Clinico;
         }
 
-        private bool Historial_ClinicoExists(int id)
+        private bool Historial_ClinicoExists(int idhistorial)
         {
-            return _context.historial_clinico.Any(e => e.idhistorial == id);
+            return _context.historial_clinico.Any(e => e.idhistorial == idhistorial);
         }
     }
 }

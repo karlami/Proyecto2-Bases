@@ -10,6 +10,10 @@ using Hospital_TECNologico.Models;
 
 namespace Hospital_TECNologico.Controllers
 {
+    /*
+     * Controlador de Procedimiento
+     * Recibe las solicitudes para Ingresar, Mostrar y Modificar estos de la base de datos.
+     */
     [ApiController]
     public class ProcedimientosController : ControllerBase
     {
@@ -20,7 +24,10 @@ namespace Hospital_TECNologico.Controllers
             _context = context;
         }
 
-        // GET: api/Procedimientos
+        /*
+         * GET: "api/GetProcedimientos"
+         * Obtiene todos los procedimientos en la base de datos
+         */
         [Route("api/GetProcedimientos")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Procedimiento>>> Getprocedimiento()
@@ -28,12 +35,15 @@ namespace Hospital_TECNologico.Controllers
             return await _context.procedimiento.ToListAsync();
         }
 
-        // GET: api/Procedimientos/5
-        [Route("api/GetProcedimiento/{id}")]
+        /*
+         * GET: "api/GetProcedimiento/idProcedimiento"
+         * Obtiene solo el procedimiento con el idprocedimiento indicado
+         */
+        [Route("api/GetProcedimiento/{idprocedimiento}")]
         [HttpGet]
-        public async Task<ActionResult<Procedimiento>> GetProcedimiento(int id)
+        public async Task<ActionResult<Procedimiento>> GetProcedimiento(int idprocedimiento)
         {
-            var procedimiento = await _context.procedimiento.FindAsync(id);
+            var procedimiento = await _context.procedimiento.FindAsync(idprocedimiento);
 
             if (procedimiento == null)
             {
@@ -43,7 +53,10 @@ namespace Hospital_TECNologico.Controllers
             return procedimiento;
         }
 
-        // PUT: api/Procedimientos/5
+        /*
+         * PUT: "api/PutProcedimiento"
+         * Actualiza un procedimiento con el idprocedimiento que se indica en el Form.
+         */
         [Route("api/PutProcedimiento")]
         [HttpPut]
         public async Task<IActionResult> PutProcedimiento([FromForm] Procedimiento procedimiento)
@@ -74,7 +87,10 @@ namespace Hospital_TECNologico.Controllers
             return NoContent();
         }
 
-        // POST: api/Procedimientos
+        /*
+         * POST: "api/PostProcedimiento"
+         * Agregar un procedimiento nuevo a la base de datos con la informacion que se indica en el Form.
+         */
         [Route("api/PostProcedimiento")]
         [HttpPost]
         public async Task<ActionResult<Procedimiento>> PostProcedimiento([FromForm] Procedimiento procedimiento)
@@ -85,12 +101,16 @@ namespace Hospital_TECNologico.Controllers
             return CreatedAtAction("GetProcedimiento", new { id = procedimiento.idprocedimiento }, procedimiento);
         }
 
-        // DELETE: api/Procedimientos/5
-        [Route("api/DeleteProcedimiento/{id}")]
+        /*
+         * DELETE: "api/DeleteProcedimiento/idProcedimiento"
+         * Elimina de la base de datos el procedimiento con el idprocedimiento indicado
+         * No necesario por especificacion!
+         */
+        [Route("api/DeleteProcedimiento/{idprocedimiento}")]
         [HttpDelete]
-        public async Task<ActionResult<Procedimiento>> DeleteProcedimiento(int id)
+        public async Task<ActionResult<Procedimiento>> DeleteProcedimiento(int idprocedimiento)
         {
-            var procedimiento = await _context.procedimiento.FindAsync(id);
+            var procedimiento = await _context.procedimiento.FindAsync(idprocedimiento);
             if (procedimiento == null)
             {
                 return NotFound();
@@ -102,9 +122,9 @@ namespace Hospital_TECNologico.Controllers
             return procedimiento;
         }
 
-        private bool ProcedimientoExists(int id)
+        private bool ProcedimientoExists(int idprocedimiento)
         {
-            return _context.procedimiento.Any(e => e.idprocedimiento == id);
+            return _context.procedimiento.Any(e => e.idprocedimiento == idprocedimiento);
         }
     }
 }

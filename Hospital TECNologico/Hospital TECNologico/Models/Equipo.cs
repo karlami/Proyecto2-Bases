@@ -6,6 +6,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Hospital_TECNologico.Models
 {
+    /*
+     * Representa al Equipo Medico usado en las camas del Hospital
+     * El Personal puede ingresar y modificar equipo medico.
+     */
     public class Equipo
     {
         public Equipo()

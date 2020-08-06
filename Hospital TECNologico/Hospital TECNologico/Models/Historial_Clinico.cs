@@ -6,6 +6,13 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Hospital_TECNologico.Models
 {
+    /*
+     * Representa el historial clinicos de un paciente.
+     * Es una coleccion de los procedimientos que se
+     * ha realizado un paciente, así como su tratamiento
+     * propio y la fecha en la que se realizó.
+     * Los Doctores pueden ingresar y modificar procedimientos.
+     */
     public class Historial_Clinico
     {
         public Historial_Clinico()

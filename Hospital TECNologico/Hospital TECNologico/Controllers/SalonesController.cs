@@ -10,6 +10,10 @@ using Hospital_TECNologico.Models;
 
 namespace Hospital_TECNologico.Controllers
 {
+    /*
+     * Controlador de Salon
+     * Recibe las solicitudes para Ingresar, Mostrar, Modificar y Eliminar estos de la base de datos.
+     */
     [ApiController]
     public class SalonesController : ControllerBase
     {
@@ -20,7 +24,10 @@ namespace Hospital_TECNologico.Controllers
             _context = context;
         }
 
-        // GET: api/Salones
+        /*
+         * GET: "api/GetSalones"
+         * Obtiene todos los salones en la base de datos
+         */
         [Route("api/GetSalones")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Salon>>> GetSalon()
@@ -28,12 +35,15 @@ namespace Hospital_TECNologico.Controllers
             return await _context.salon.ToListAsync();
         }
 
-        // GET: api/Salones/5
-        [Route("api/GetSalon/{id}")]
+        /*
+         * GET: "api/GetSalon/idSalon"
+         * Obtiene solo el salon con el idsalon indicado
+         */
+        [Route("api/GetSalon/{idSalon}")]
         [HttpGet]
-        public async Task<ActionResult<Salon>> GetSalon(int id)
+        public async Task<ActionResult<Salon>> GetSalon(int idSalon)
         {
-            var salon = await _context.salon.FindAsync(id);
+            var salon = await _context.salon.FindAsync(idSalon);
 
             if (salon == null)
             {
@@ -43,7 +53,10 @@ namespace Hospital_TECNologico.Controllers
             return salon;
         }
 
-        // PUT: api/Salones/5
+        /*
+         * PUT: "api/PutSalon"
+         * Actualiza un salon con el idsalon que se indica en el Form.
+         */
         [Route("api/PutSalon")]
         [HttpPut]
         public async Task<IActionResult> PutSalon([FromForm] Salon salon)
@@ -53,7 +66,7 @@ namespace Hospital_TECNologico.Controllers
                 return BadRequest();
             }*/
 
-            _context.Entry(salon).State = EntityState.Modified;
+        _context.Entry(salon).State = EntityState.Modified;
 
             try
             {
@@ -74,7 +87,10 @@ namespace Hospital_TECNologico.Controllers
             return NoContent();
         }
 
-        // POST: api/Salones
+        /*
+         * POST: "api/PostSalon"
+         * Agregar un salon nuevo a la base de datos con la informacion que se indica en el Form.
+         */
         [Route("api/PostSalon")]
         [HttpPost]
         public async Task<ActionResult<Salon>> PostSalon([FromForm] Salon salon)
@@ -85,12 +101,15 @@ namespace Hospital_TECNologico.Controllers
             return CreatedAtAction("GetSalon", new { id = salon.numerosalon }, salon);
         }
 
-        // DELETE: api/Salones/5
-        [Route("api/DeleteSalon/{id}")]
+        /*
+         * DELETE: "api/DeleteSalon/{idsalon}"
+         * Elimina de la base de datos el salon con el idsalon indicado
+         */
+        [Route("api/DeleteSalon/{idSalon}")]
         [HttpDelete]
-        public async Task<ActionResult<Salon>> DeleteSalon(int id)
+        public async Task<ActionResult<Salon>> DeleteSalon(int idSalon)
         {
-            var salon = await _context.salon.FindAsync(id);
+            var salon = await _context.salon.FindAsync(idSalon);
             if (salon == null)
             {
                 return NotFound();
@@ -102,9 +121,9 @@ namespace Hospital_TECNologico.Controllers
             return salon;
         }
 
-        private bool SalonExists(int id)
+        private bool SalonExists(int idSalon)
         {
-            return _context.salon.Any(e => e.numerosalon == id);
+            return _context.salon.Any(e => e.numerosalon == idSalon);
         }
     }
 }

@@ -6,6 +6,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Hospital_TECNologico.Models
 {
+    /*
+     * Representa a los Salones del Hospital
+     * El Personal puede ingresar, modificar y eliminar salones.
+     */
     public class Salon
     {
         public Salon()
