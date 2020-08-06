@@ -1,7 +1,5 @@
 export class Encuesta {
-    aseo: number;
-    trato: number;
+    aseohospital: number;
+    tratopersonal: number;
     puntualidad: number;
-    comentario: string;
-
 }

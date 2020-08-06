@@ -1,8 +1,7 @@
 export class Historial {
-    idHistorial: number;
-    cedula: number;
-    procedimiento: number;
-    fechaProcedimiento: Date;
+    idhistorial: number;
+    procedimiento: string;
+    fecha: Date;
     tratamiento: string;
 
 }
