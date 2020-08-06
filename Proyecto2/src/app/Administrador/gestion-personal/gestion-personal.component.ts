@@ -41,10 +41,10 @@ export class GestionPersonalComponent implements OnInit {
     segundoapellido: '',
     cedula: 1,
     telefono: 1,
-    direccion: '',
+    iddireccion: '',
     fechanacimiento: new Date('Ene 01 2020'),
     fechaingreso: new Date('Ene 01 2020'),
-    puesto: '',
+    idpuesto: '',
     contrasena: ''
   };
 
@@ -60,10 +60,10 @@ export class GestionPersonalComponent implements OnInit {
     segundoapellido: '',
     cedula: 1,
     telefono: 1,
-    direccion: '',
+    iddireccion: '',
     fechanacimiento: new Date('Ene 01 2020'),
     fechaingreso: new Date('Ene 01 2020'),
-    puesto: '',
+    idpuesto: '',
     contrasena: ''
   };
 

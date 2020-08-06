@@ -31,7 +31,7 @@ export class EmpleadoManagementService {
       fechanacimiento: empleadoData.fechanacimiento,
       fechaingreso: empleadoData.fechaingreso,
       idpuesto: empleadoData.idpuesto,
-      constrasena: empleadoData.constrasena
+      constrasena: empleadoData.contrasena
     };
     this.http.post(this.constante.rutaURL + '/api/PostMedicamentos', body, httpOptions).toPromise();
 
@@ -54,7 +54,7 @@ export class EmpleadoManagementService {
       fechanacimiento: empleadoData.fechanacimiento,
       fechaingreso: empleadoData.fechaingreso,
       idpuesto: empleadoData.idpuesto,
-      constrasena: empleadoData.constrasena
+      constrasena: empleadoData.contrasena
     };
     this.http.put(this.constante.rutaURL + '/api/PutMedicamentos', body, httpOptions).toPromise();
   }

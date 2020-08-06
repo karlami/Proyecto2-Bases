@@ -4,9 +4,9 @@ export class Empleadop {
     segundoapellido: string;
     cedula: number;
     telefono: number;
-    direccion: string;
+    iddireccion: string;
     fechanacimiento: Date;
     fechaingreso: Date;
-    puesto: string;
+    idpuesto: string;
     contrasena: string;
 }
