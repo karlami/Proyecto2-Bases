@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Hospital_TECNologico.Data;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
@@ -12,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 namespace Hospital_TECNologico
 {
@@ -31,6 +33,9 @@ namespace Hospital_TECNologico
 
             //Llama a la función de inicializado
             InitializeStorage(services);
+
+            //Llama a la funcion para habilitar CORS
+            EnableCORS(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,6 +45,8 @@ namespace Hospital_TECNologico
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors("EnableCORS");
 
             app.UseHttpsRedirection();
 
@@ -64,6 +71,18 @@ namespace Hospital_TECNologico
 
             //SQLServer
 
+        }
+
+        //Metodo para habilitar CORS
+        private void EnableCORS(IServiceCollection services)
+        {
+            services.AddCors(options =>
+            {
+                options.AddPolicy("EnableCORS", builder =>
+                {
+                    builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod().AllowCredentials().Build();
+                });
+            });
         }
     }
 }
