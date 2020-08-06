@@ -10,6 +10,10 @@ using Hospital_TECNologico.Models;
 
 namespace Hospital_TECNologico.Controllers
 {
+    /*
+     * Controlador de Paciente_Patologia
+     * Recibe las solicitudes para Ingresar y Mostrar estos de la base de datos.
+     */
     [ApiController]
     public class Paciente_PatologiasController : ControllerBase
     {
@@ -20,26 +24,50 @@ namespace Hospital_TECNologico.Controllers
             _context = context;
         }
 
-        // GET: api/Paciente_Patologias
-        [Route("api/GetPaciente_Patologias")]
+        /*
+         * GET: "api/GetPacientes_Patologias"
+         * Obtiene todos los pacientes_patologias de todos los pacientes en la base de datos
+         */
+        [Route("api/GetPacientes_Patologias")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Paciente_Patologia>>> Getpaciente_patologia()
         {
+            //GET DE UN VIEW ESPECIFICO DE PACIENTES_PATOLOGIAS
+            //TODOS TODOS LOS (PACIENTES_PATOLOGIAS X PATOLOGIAS)
+
+            //FUNCIONA CON LA TABLA ESPECIFICA DE PACIENTES_PATOLOGIAS -> POR MIENTRAS
             return await _context.paciente_patologia.ToListAsync();
         }
 
         /*
-         * GETs de patologias de pacientes tienen que ser especificos a un solo paciente
-         * se necesita una vista para retornar todos los que son solo de un idpaciente especifico.
-         * Arreglar ambos GETs
+         * GET: "api/GetPaciente_Patologias/idPaciente"
+         * Obtiene todos los pacientes_patologias de UN SOLO PACIENTE con el idpaciente indicado
          */
-
-        // GET: api/Paciente_Patologias/5
-        [Route("api/GetPaciente_Patologia/{id}")]
+        [Route("api/GetPaciente_Patologias/{idpaciente}")]
         [HttpGet]
-        public async Task<ActionResult<Paciente_Patologia>> GetPaciente_Patologia(int id)
+        public async Task<ActionResult<IEnumerable<Paciente_Patologia>>> Getpaciente_patologia(int idpaciente)
         {
-            var paciente_Patologia = await _context.paciente_patologia.FindAsync(id);
+            //GET DE UN VIEW ESPECIFICO DE PACIENTES_PATOLOGIAS
+            //TODOS TODOS LOS (PACIENTES_PATOLOGIAS X PATOLOGIAS)
+            return await _context.paciente_patologia.ToListAsync();
+        }
+
+
+
+        /*
+         * GET: "api/GetPaciente_Patologia/idpacientepatologia"
+         * Obtiene solo el paciente_patologia con el idpacientepatologia indicado
+         *           //SOLO SI SE AGREGA IDPACIENTE_PATOLOGIA!!!
+         */
+        [Route("api/GetPaciente_Patologia/{idpacientepatologia}")]
+        [HttpGet]
+        public async Task<ActionResult<Paciente_Patologia>> GetPaciente_Patologia(int idpacientepatologia)
+        {
+            //SOLO SI SE AGREGA IDPACIENTE_PATOLOGIA!!!
+            //GET DE UN VIEW ESPECIFICO DE PACIENTES_PATOLOGIAS
+            //UN UNICO (PACIENTES_PATOLOGIAS X PATOLOGIAS)
+
+            var paciente_Patologia = await _context.paciente_patologia.FindAsync(idpacientepatologia);
 
             if (paciente_Patologia == null)
             {
@@ -49,7 +77,12 @@ namespace Hospital_TECNologico.Controllers
             return paciente_Patologia;
         }
 
-        // PUT: api/Paciente_Patologias/5
+        /*
+         * PUT: "api/PutPaciente_Patologia"
+         * Actualiza un paciente_patologia con el idpacientepatologia que se indica en el Form.
+         * No necesario por especificacion!
+         *            //SOLO SI SE AGREGA IDPACIENTE_PATOLOGIA!!!
+         */
         [Route("api/PutPaciente_Patologia")]
         [HttpPut]
         public async Task<IActionResult> PutPaciente_Patologia([FromForm] Paciente_Patologia paciente_Patologia)
@@ -58,6 +91,8 @@ namespace Hospital_TECNologico.Controllers
             {
                 return BadRequest();
             }*/
+
+            //SOLO SI SE AGREGA IDPACIENTE_PATOLOGIA!!!
 
             _context.Entry(paciente_Patologia).State = EntityState.Modified;
 
@@ -80,7 +115,10 @@ namespace Hospital_TECNologico.Controllers
             return NoContent();
         }
 
-        // POST: api/Paciente_Patologias
+        /*
+         * POST: "api/PostPaciente_Patologia"
+         * Agregar un paciente_patologia nuevo a la base de datos con la informacion que se indica en el Form.
+         */
         [Route("api/PostPaciente_Patologia")]
         [HttpPost]
         public async Task<ActionResult<Paciente_Patologia>> PostPaciente_Patologia([FromForm] Paciente_Patologia paciente_Patologia)
@@ -92,16 +130,18 @@ namespace Hospital_TECNologico.Controllers
         }
 
         /*
-         * DELETE no funcionaria tampoco sin un id especifico de la tabla
-         * o bien, con un delete con un where especifico del paciente y la patologia
+         * DELETE: "api/DeletePaciente_Patologia/idpacientepatologia"
+         * Elimina de la base de datos el paciente_patologia con el idpacientepatologia indicado
+         * No necesario por especificacion!
+         *            //SOLO SI SE AGREGA IDPACIENTE_PATOLOGIA!!!
          */
-
-        // DELETE: api/Paciente_Patologias/5
-        [Route("api/PostPaciente_Patologia/{id}")]
+        [Route("api/DeletePaciente_Patologia/{idpacientepatologia}")]
         [HttpDelete]
-        public async Task<ActionResult<Paciente_Patologia>> DeletePaciente_Patologia(int id)
+        public async Task<ActionResult<Paciente_Patologia>> DeletePaciente_Patologia(int idpacientepatologia)
         {
-            var paciente_Patologia = await _context.paciente_patologia.FindAsync(id);
+            //SOLO SI SE AGREGA IDPACIENTE_PATOLOGIA!!!
+
+            var paciente_Patologia = await _context.paciente_patologia.FindAsync(idpacientepatologia);
             if (paciente_Patologia == null)
             {
                 return NotFound();
@@ -113,9 +153,9 @@ namespace Hospital_TECNologico.Controllers
             return paciente_Patologia;
         }
 
-        private bool Paciente_PatologiaExists(int id)
+        private bool Paciente_PatologiaExists(int idpacientepatologia)
         {
-            return _context.paciente_patologia.Any(e => e.idpaciente == id);
+            return _context.paciente_patologia.Any(e => e.idpaciente == idpacientepatologia);
         }
     }
 }

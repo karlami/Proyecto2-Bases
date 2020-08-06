@@ -10,6 +10,10 @@ using Hospital_TECNologico.Models;
 
 namespace Hospital_TECNologico.Controllers
 {
+    /*
+     * Controlador de Paciente
+     * Recibe las solicitudes para Ingresary y Mostrar estos de la base de datos.
+     */
     [ApiController]
     public class PacientesController : ControllerBase
     {
@@ -20,20 +24,32 @@ namespace Hospital_TECNologico.Controllers
             _context = context;
         }
 
-        // GET: api/Pacientes
+        /*
+         * GET: "api/GetPacientes"
+         * Obtiene todos los pacientes en la base de datos
+         */
         [Route("api/GetPacientes")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Paciente>>> Getpaciente()
         {
+            //GET DE UN VIEW ESPECIFICO DE PACIENTES
+            //TODOS TODOS LOS (PACIENTES X PERSONAS)
+
             return await _context.paciente.ToListAsync();
         }
 
-        // GET: api/Pacientes/5
-        [Route("api/GetPaciente/{id}")]
+        /*
+         * GET: "api/GetPaciente/idPaciente"
+         * Obtiene solo el paciente con el idpaciente indicado
+         */
+        [Route("api/GetPaciente/{idpaciente}")]
         [HttpGet]
-        public async Task<ActionResult<Paciente>> GetPaciente(int id)
+        public async Task<ActionResult<Paciente>> GetPaciente(int idpaciente)
         {
-            var paciente = await _context.paciente.FindAsync(id);
+            //GET DE UN VIEW ESPECIFICO DE PACIENTES
+            //UN UNICO (PACIENTES X PERSONAS)
+
+            var paciente = await _context.paciente.FindAsync(idpaciente);
 
             if (paciente == null)
             {
@@ -43,7 +59,11 @@ namespace Hospital_TECNologico.Controllers
             return paciente;
         }
 
-        // PUT: api/Pacientes/5
+        /*
+         * PUT: "api/PutPaciente"
+         * Actualiza un paciente con el idpaciente que se indica en el Form.
+         * No necesario por especificacion!
+         */
         [Route("api/PutPaciente")]
         [HttpPut]
         public async Task<IActionResult> PutPaciente([FromForm] Paciente paciente)
@@ -52,6 +72,8 @@ namespace Hospital_TECNologico.Controllers
             {
                 return BadRequest();
             }*/
+
+            //PUT EN UPDATE DE STORED PROCEDURE DE PACIENTE
 
             _context.Entry(paciente).State = EntityState.Modified;
 
@@ -74,7 +96,10 @@ namespace Hospital_TECNologico.Controllers
             return NoContent();
         }
 
-        // POST: api/Pacientes
+        /*
+         * POST: "api/PostPaciente"
+         * Agregar un paciente nuevo a la base de datos con la informacion que se indica en el Form.
+         */
         [Route("api/PostPaciente")]
         [HttpPost]
         public async Task<ActionResult<Paciente>> PostPaciente([FromForm] Paciente paciente)
@@ -103,12 +128,18 @@ namespace Hospital_TECNologico.Controllers
             return paciente; //CreatedAtAction("GetPaciente", new { id = paciente.cedula }, paciente);
         }
 
-        // DELETE: api/Pacientes/5
-        [Route("api/DeletePaciente/{id}")]
+        /*
+         * DELETE: "api/DeletePaciente/idPaciente"
+         * Elimina de la base de datos el paciente con el idpaciente indicado
+         * No necesario por especificacion!
+         */
+        [Route("api/DeletePaciente/{idpaciente}")]
         [HttpDelete]
-        public async Task<ActionResult<Paciente>> DeletePaciente(int id)
+        public async Task<ActionResult<Paciente>> DeletePaciente(int idpaciente)
         {
-            var paciente = await _context.paciente.FindAsync(id);
+            //DELETE EN DELETE DE STORED PROCEDURE DE PACIENTE
+
+            var paciente = await _context.paciente.FindAsync(idpaciente);
             if (paciente == null)
             {
                 return NotFound();
@@ -120,9 +151,9 @@ namespace Hospital_TECNologico.Controllers
             return paciente;
         }
 
-        private bool PacienteExists(int id)
+        private bool PacienteExists(int idpaciente)
         {
-            return _context.paciente.Any(e => e.cedula == id);
+            return _context.paciente.Any(e => e.cedula == idpaciente);
         }
     }
 }

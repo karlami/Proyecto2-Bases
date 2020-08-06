@@ -27,7 +27,7 @@ namespace Hospital_TECNologico.Data
         public DbSet<Persona> persona { get; set; }
         public DbSet<Paciente> paciente { get; set; }
         public DbSet<Paciente_Patologia> paciente_patologia { get; set; }
-        //Patologia
+        //Patologia?
         //Reservacion
         public DbSet<Reservacion_Procedimiento> reservacion_procedimiento { get; set; }
         public DbSet<Procedimiento> procedimiento { get; set; }
@@ -35,7 +35,7 @@ namespace Hospital_TECNologico.Data
         public DbSet<Salon> salon { get; set; }
         public DbSet<Equipo> equipo { get; set; }
         public DbSet<Cama> cama { get; set; }
-        //Personal
+        public DbSet<Empleado> empleado { get; set; }
         
         
         

@@ -106,7 +106,7 @@ namespace Hospital_TECNologico.Controllers
         }
 
         /*
-         * DELETE: "api/DeleteEquipo/{idequipo}"
+         * DELETE: "api/DeleteEquipo/idEquipo"
          * Elimina de la base de datos el equipo medico con el idequipo indicado
          * No necesario por especificacion!
          */

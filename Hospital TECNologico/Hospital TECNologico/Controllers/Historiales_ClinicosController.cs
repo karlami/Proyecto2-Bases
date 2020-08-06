@@ -33,12 +33,12 @@ namespace Hospital_TECNologico.Controllers
         public async Task<ActionResult<IEnumerable<Historial_Clinico>>> Gethistorial_clinico()
         {
             //GET DE UN VIEW ESPECIFICO DE HISTORIAL_CLINICO
-            //TODOS TODOS LOS HISTORIALES CLINICOS
+            //TODOS TODOS LOS (HISTORIALES CLINICOS X PROCEDIMIENTOS X PACIENTES)
             return await _context.historial_clinico.ToListAsync();
         }
 
         /*
-         * GET: "api/GetHistoriales_Clinicos"
+         * GET: "api/GetHistoriales_Clinicos/idPaciente"
          * Obtiene todos los historiales clinicos de UN SOLO PACIENTE con el idpaciente indicado
          */
         [Route("api/GetHistoriales_Clinicos/{idpaciente}")]
@@ -46,17 +46,20 @@ namespace Hospital_TECNologico.Controllers
         public async Task<ActionResult<IEnumerable<Historial_Clinico>>> Gethistorial_clinico(int idpaciente)
         {
             //GET DE UN VIEW ESPECIFICO DE HISTORIAL_CLINICO
-            //TODOS LOS HISTORIALES CLINICOS DE UN PACIENTE ESPECIFICO
+            //TODOS LOS (HISTORIALES CLINICOS X PROCEDIMIENTOS X PACIENTES) DE UN PACIENTE ESPECIFICO
             return await _context.historial_clinico.ToListAsync();
         }
 
-        // GET: api/Historiales_Clinicos/5
+        /*
+         * GET: "api/GetHistorial_Clinico/idHistorial"
+         * Obtiene solo el historial clinico con el idhistorial indicado
+         */
         [Route("api/GetHistorial_Clinico/{idhistorial}")]
         [HttpGet]
         public async Task<ActionResult<Historial_Clinico>> GetHistorial_Clinico(int idhistorial)
         {
             //GET DE UN VIEW ESPECIFICO DE HISTORIAL_CLINICO
-            //UN UNICO HISTORIAL_CLINICO
+            //UN UNICO (HISTORIALES CLINICOS X PROCEDIMIENTOS X PACIENTES)
 
             var historial_Clinico = await _context.historial_clinico.FindAsync(idhistorial);
 
@@ -68,7 +71,10 @@ namespace Hospital_TECNologico.Controllers
             return historial_Clinico;
         }
 
-        // PUT: api/Historiales_Clinicos/5
+        /*
+         * PUT: "api/PutHistorial_Clinico"
+         * Actualiza un historial clinico con el idhistorial que se indica en el Form.
+         */
         [Route("api/PutHistorial_Clinico")]
         [HttpPut]
         public async Task<IActionResult> PutHistorial_Clinico([FromForm] Historial_Clinico historial_clinico)
@@ -99,7 +105,10 @@ namespace Hospital_TECNologico.Controllers
             return NoContent();
         }
 
-        // POST: api/Historiales_Clinicos
+        /*
+         * POST: "api/PostHistorial_Clinico"
+         * Agregar un historial clinico nuevo a la base de datos con la informacion que se indica en el Form.
+         */
         [Route("api/PostHistorial_Clinico")]
         [HttpPost]
         public async Task<ActionResult<Historial_Clinico>> PostHistorial_Clinico([FromForm] Historial_Clinico historial_clinico)
@@ -110,7 +119,11 @@ namespace Hospital_TECNologico.Controllers
             return CreatedAtAction("GetHistorial_Clinico", new { id = historial_clinico.idhistorial }, historial_clinico);
         }
 
-        // DELETE: api/Historiales_Clinicos/5
+        /*
+         * DELETE: "api/DeleteHistorial_Clinico/idHistorial"
+         * Elimina de la base de datos el historial clinico con el idhistorial indicado
+         * No necesario por especificacion!
+         */
         [Route("api/DeleteHistorial_Clinico/{idhistorial}")]
         [HttpDelete]
         public async Task<ActionResult<Historial_Clinico>> DeleteHistorial_Clinico(int idhistorial)
