@@ -159,31 +159,31 @@ INSERT INTO patologia(nombre, descripcion) VALUES
     ('Linfoma','Un linfoma es una proliferación maligna de linfocitos.');
 
 INSERT INTO persona VALUES
-    (100000000,'Cherish','Niesegen','Asquez',80000000,'1991-08-13 00:00:00','persona',1),
-    (100198769,'Amerigo','Biffen','Allmann',80006730,'1982-11-28 00:00:00','persona',2),
-    (100397538,'Reta','Colton','Ralls',80013460,'1979-06-29 00:00:00','persona',3),
-    (100795076,'Catharina','Abden','Drogan',80020190,'1977-06-15 00:00:00','persona',4),
-    (101192614,'Jena','Petracek','Breche',80026920,'2016-11-13 00:00:00','persona',5),
-    (101590152,'Parker','Ray','Dumphry',80033650,'2015-11-29 00:00:00','persona',6),
-    (101788921,'Fenelia','Bartlomieczak','Tuckie',80040380,'1946-07-13 00:00:00','persona',7),
-    (102186459,'Claudell','Simonds','Garrand',80047110,'1932-05-06 00:00:00','persona',8),
-    (102385228,'Neddie','Pyle','Fobidge',80053840,'1998-02-18 00:00:00','persona',9),
-    (102583997,'Marybeth','Larderot','Jardein',80060570,'1949-10-13 00:00:00','persona',10),
-    (102981535,'Aeriel','Stainsby','Martini',80067300,'1979-07-25 00:00:00','persona',11),
-    (103180304,'Daron','Scutter','Hawton',80074030,'1995-05-29 00:00:00','persona',12),
-    (103379073,'Chevy','Towson','Cerman',80080760,'2018-08-25 00:00:00','persona',13),
-    (103577842,'Buckie','Bony','Rennard',80087490,'1970-02-22 00:00:00','persona',14),
-    (103776611,'Yettie','Sprague','Wagner',80094220,'1947-10-19 00:00:00','persona',15),
-    (103975380,'Annetta','Yarr','Kaplin',80100950,'1984-04-25 00:00:00','persona',16),
-    (104174149,'Delbert','Roden','Huffa',80107680,'1968-01-19 00:00:00','persona',17),
-    (104372918,'Donavon','Vedyaev','Eglin',80114410,'2010-01-23 00:00:00','persona',18),
-    (104571687,'Beatrisa','Sumbler','Rumin',80121140,'2001-08-11 00:00:00','persona',19),
-    (104770456,'Tandie','Rupp','Edgin',80127870,'1971-12-05 00:00:00','persona',20),
-    (105167994,'Pail','Mitrikhin','Caldera',80134600,'1936-10-22 00:00:00','persona',21),
-    (105565532,'Vincenty','Belison','Abbis',80141330,'1982-03-05 00:00:00','persona',22),
-    (105764301,'Deb','Chestnut','Life',80148060,'1966-01-04 00:00:00','persona',23),
-    (105963070,'Maurice','Mecozzi','Gilks',80154790,'2002-06-04 00:00:00','persona',24),
-    (106161839,'Pablo','Pimlett','Scrancher',80161520,'1981-10-13 00:00:00','persona',25);
+    (100000000,'Jorge','Rodriguez','Asquez',80000000,'1991-08-13','persona',1),
+    (100198769,'Marco','Biffen','Allmann',80006730,'1982-11-28','persona',2),
+    (100397538,'Reta','Salas','Ralls',80013460,'1979-06-29','persona',3),
+    (100795076,'Catharina','Sanchez','Drogan',80020190,'1977-06-15','persona',4),
+    (101192614,'Ana','Petracek','Breche',80026920,'2016-11-13','persona',5),
+    (101590152,'Juan','Ray','Dumphry',80033650,'2015-11-29','persona',6),
+    (101788921,'Emilia','Martinez','Tuckie',80040380,'1946-07-13','persona',7),
+    (102186459,'Rosa','Simonds','Garrand',80047110,'1932-05-06','persona',8),
+    (102385228,'Neddie','Pyle','Fobidge',80053840,'1998-02-18','persona',9),
+    (102583997,'Marybeth','Larderot','Jardein',80060570,'1949-10-13','persona',10),
+    (102981535,'Aeriel','Stainsby','Martini',80067300,'1979-07-25','persona',11),
+    (103180304,'Jose','Scutter','Hawton',80074030,'1995-05-29','persona',12),
+    (103379073,'Chevy','Towson','Cerman',80080760,'2018-08-25','persona',13),
+    (103577842,'Martin','Bony','Rennard',80087490,'1970-02-22','persona',14),
+    (103776611,'Ligia','Sprague','Wagner',80094220,'1947-10-19','persona',15),
+    (103975380,'Ana','Yarr','Kaplin',80100950,'1984-04-25','persona',16),
+    (104174149,'Delbert','Roden','Huffa',80107680,'1968-01-19','persona',17),
+    (104372918,'Donavon','Vedyaev','Eglin',80114410,'2010-01-23','persona',18),
+    (104571687,'Beatrisa','Sumbler','Rumin',80121140,'2001-08-11','persona',19),
+    (104770456,'Tandie','Rupp','Edgin',80127870,'1971-12-05','persona',20),
+    (105167994,'Pail','Mitrikhin','Caldera',80134600,'1936-10-22','persona',21),
+    (105565532,'Vinicio','Belison','Abbis',80141330,'1982-03-05','persona',22),
+    (105764301,'Deb','Chestnut','Life',80148060,'1966-01-04','persona',23),
+    (105963070,'Maurice','Mecozzi','Gilks',80154790,'2002-06-04','persona',24),
+    (106161839,'Pablo','Pimlett','Scrancher',80161520,'1981-10-13','persona',25);
 
 INSERT INTO paciente(cedula) VALUES
     (100000000),
@@ -228,9 +228,26 @@ INSERT INTO procedimiento(nombre, diasrecuperacion) VALUES
     ('Análisis de orina',0),
     ('Palpación',2),
     ('Fluoroscopia',14),
-    ('Escintilografía',4);
+    ('Escintigrafía',4);
 
--- historial_clinico
+-- Datos de Historial clinico
+
+INSERT INTO historial_clinico(tratamiento, fecha, idpaciente, idprocedimiento) VALUES
+    ('Coma lo suficiente para evitar desmayos.','2020-08-16',1,15),
+    ('Tome mucha agua para que expluse el filtro inyectado cuando se le aplica el TAC.','2020-08-15',2,9),
+    ('Use lentes oscuros por 4 meses.','2020-08-13',3,3),
+    ('Repose por 40 días mínimos.','2020-08-17',4,4),
+    ('Evite el estrés y duerma lo suficiente.','2020-08-16',5,10),
+    ('No tiene ningún tratamiento en particular.','2020-08-10',6,17),
+    ('No se exponga al sol directamente para evitar infecciones en los ojos.','2020-08-09',7,3),
+    ('No use sostén con varillas.','2020-08-15',8,2),
+    ('Humecte bien su cuerpo en caso de sequedad.','2020-08-13',9,13),
+    ('Lave bien su cuerpo luego de la palpación.','2020-08-14',10,18),
+    ('Evite rascarse la piel en caso de picazón, puede sufrir descamación.','2020-08-07',1,13),
+    ('Coma bastante antes y después de la prueba de sangre.','2020-08-18',2,15),
+    ('El examen no es doloroso y no tiene efectos secundarios, no hay un tratamiento.','2020-08-09',2,20),
+    ('Permanecer en el hospital entre 1 y 2 horas para que el sedante se pueda disipar.','2020-08-18',3,11);
+
 
 INSERT INTO cama(uci) VALUES
     (true),
