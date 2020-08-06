@@ -25,7 +25,7 @@ export class ProcedimientoManagementService {
       nombre: procedimientoData.nombre,
       diasrecuperacion: procedimientoData.diasrecuperacion
     };
-    this.http.post(this.constante.rutaURL + '/api/PostMedicamentos', body, httpOptions).toPromise();
+    this.http.post(this.constante.rutaURL + '/api/PostProcedimiento', body, httpOptions).toPromise();
 
   }
 
@@ -40,17 +40,17 @@ export class ProcedimientoManagementService {
       nombre: procedimientoData.nombre,
       diasrecuperacion: procedimientoData.diasrecuperacion,
     };
-    this.http.put(this.constante.rutaURL + '/api/PutMedicamentos', body, httpOptions).toPromise();
+    this.http.put(this.constante.rutaURL + '/api/PutProcedimiento', body, httpOptions).toPromise();
   }
 
   getProcedimiento(idProcedimiento: number) {
-    this.http.get(this.constante.rutaURL + '/api/GetMedicamento/' + idProcedimiento ).
+    this.http.get(this.constante.rutaURL + '/api/GetProcedimiento/' + idProcedimiento ).
     toPromise().then(res => this.procedimiento = res as Procedimiento);
   }
   
   getProcedimientos() {
     //tslint:disable-next-line: no-string-literal
-    this.http.get(this.constante.rutaURL + '/api/GetMedicamentos').toPromise().then
+    this.http.get(this.constante.rutaURL + '/api/GetProcedimientos').toPromise().then
     (res => this.procedimientoList = res as Procedimiento[]);
   }
 

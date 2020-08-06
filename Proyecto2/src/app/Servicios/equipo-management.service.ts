@@ -27,7 +27,7 @@ export class EquipoManagementService {
       proveedor: equipoData.proveedor,
       cantidadequipo: equipoData.cantidadequipo
     };
-    this.http.post(this.constante.rutaURL + '/api/PostMedicamentos', body, httpOptions).toPromise();
+    this.http.post(this.constante.rutaURL + '/api/PostEquipo', body, httpOptions).toPromise();
 
   }
 
@@ -43,11 +43,11 @@ export class EquipoManagementService {
       proveedor: equipoData.proveedor,
       cantidadequipo: equipoData.cantidadequipo
     };
-    this.http.put(this.constante.rutaURL + '/api/PutMedicamentos', body, httpOptions).toPromise();
+    this.http.put(this.constante.rutaURL + '/api/PutEquipo', body, httpOptions).toPromise();
   }
 
   getEquipo(idEquipo: number) {
-    this.http.get(this.constante.rutaURL + '/api/GetMedicamento/' + idEquipo ).
+    this.http.get(this.constante.rutaURL + 'api/GetEquipo/' + idEquipo ).
     toPromise().then(res => this.equipo = res as Equipo);
   }
   
@@ -55,6 +55,17 @@ export class EquipoManagementService {
     //tslint:disable-next-line: no-string-literal
     this.http.get(this.constante.rutaURL + '/api/GetEquipos').toPromise().then
     (res => this.equipoList = res as Equipo[]);
+  }
+
+  deleteEmpleado(idequipo: number) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+    this.http.delete(this.constante.rutaURL + '/api/DeleteEquipo/' + idequipo ,
+    httpOptions).toPromise();
+
   }
 
 }

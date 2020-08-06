@@ -27,7 +27,7 @@ export class HistorialManagementService {
       fechaIngreso: historialData.fechaIngreso,
       tratamiento: historialData.tratamiento
     };
-    this.http.post(this.constante.rutaURL + '/api/PostMedicamentos', body, httpOptions).toPromise();
+    this.http.post(this.constante.rutaURL + '/api/PostHistorial_Clinico', body, httpOptions).toPromise();
 
   }
   putHistorial(historialData: Historial) {
@@ -43,11 +43,11 @@ export class HistorialManagementService {
       fechaIngreso: historialData.fechaIngreso,
       tratamiento: historialData.tratamiento
     };
-    this.http.put(this.constante.rutaURL + '/api/PutMedicamentos', body, httpOptions).toPromise();
+    this.http.put(this.constante.rutaURL + '/api/PutHistorial_Clinico', body, httpOptions).toPromise();
   }
 
   getHistorial(idPaciente: number) {
-    this.http.get(this.constante.rutaURL + '/api/GetMedicamento/' + idPaciente ).
+    this.http.get(this.constante.rutaURL + '/api/GetHistoriales_Clinicos/' + idPaciente ).
     toPromise().then(res => this.historialList = res as Historial[]);
   }
   
