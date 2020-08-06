@@ -142,14 +142,12 @@
       <th>Piso</th>
     </tr>
 
-
-<!-- 
-    <tr *ngFor="let Equipo of service.equipoList" >
-      <td>{{Salon.numero}}</td>
+    <tr *ngFor="let Salon of service.salonList" >
+      <td>{{Salon.numerosalon}}</td>
       <td>{{Salon.nombre}}</td>
-      <td>{{Salon.proveedor}}</td>
-      <td>{{Salon.tipomedicina}}</td>
-      <td>{{Salon.piso}}</td>
+      <td>{{Salon.cantidadcama}}</td>
+      <td>{{Salon.idtiposalon}}</td>
+      <td>{{Salon.numeropiso}}</td>
       <button type="button" class="btn btn-default" data-toggle="modal" data-target=" #updateForm" 
       (click)="selectId(Salon)">Ed</button>
       <td><button type="button" class="btn btn-danger" (click)="onDelete(Salon.numero)">
@@ -158,4 +156,3 @@
   </table>
 </div>
 
--->

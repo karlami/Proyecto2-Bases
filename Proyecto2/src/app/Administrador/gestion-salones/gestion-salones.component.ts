@@ -25,7 +25,7 @@ export class GestionSalonesComponent implements OnInit {
     private modalService: NgbModal) { }
 
   ngOnInit(): void {
-  // this.service.getSalones();
+  this.service.getSalones();
   this.generateFormU();
   this.generateForm();
   }
@@ -35,11 +35,11 @@ export class GestionSalonesComponent implements OnInit {
     salonForm.reset();
   }
   this.salonU = {
-  numero: 1,
+  numero: undefined,
   nombre: '',
-  capacidadcamas: 1,
+  capacidadcamas: undefined,
   tipomedicina: '',
-  piso: 1
+  piso: undefined
   };
 
   }
@@ -50,9 +50,9 @@ export class GestionSalonesComponent implements OnInit {
   }
   this.salonn = {
     nombre: '',
-    capacidadcamas: 1,
+    capacidadcamas: undefined,
     tipomedicina: '',
-    piso: 1
+    piso: undefined
   };
 
   }

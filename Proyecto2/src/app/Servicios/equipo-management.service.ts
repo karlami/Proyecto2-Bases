@@ -25,12 +25,12 @@ export class EquipoManagementService {
     const body = {
       nombre: equipoData.nombre,
       proveedor: equipoData.proveedor,
-      cantidadequipo: equipoData.cantidadequipo
+      cantidadequipo: equipoData.cantidad
     };
     this.http.post(this.constante.rutaURL + '/api/PostEquipo', body, httpOptions).toPromise();
 
   }
-
+  
   putEquipo(equipoData: Equipo) {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -41,7 +41,7 @@ export class EquipoManagementService {
       idequipo: equipoData.idequipo,
       nombre: equipoData.nombre,
       proveedor: equipoData.proveedor,
-      cantidadequipo: equipoData.cantidadequipo
+      cantidadequipo: equipoData.cantidad
     };
     this.http.put(this.constante.rutaURL + '/api/PutEquipo', body, httpOptions).toPromise();
   }
@@ -57,7 +57,7 @@ export class EquipoManagementService {
     (res => this.equipoList = res as Equipo[]);
   }
 
-  deleteEmpleado(idequipo: number) {
+  deleteEquipo(idequipo: number) {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
