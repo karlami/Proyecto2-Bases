@@ -205,6 +205,5 @@ CREATE TABLE IF NOT EXISTS Cama_Salon(
 
 CREATE TABLE IF NOT EXISTS Cama_Equipo(
     idCama INTEGER NOT NULL REFERENCES Cama(numeroCama),
-    idEquipo INTEGER NOT NULL REFERENCES Equipo(idEquipo),
-    cantidadDisponible INTEGER NOT NULL
+    idEquipo INTEGER NOT NULL REFERENCES Equipo(idEquipo)
 );
