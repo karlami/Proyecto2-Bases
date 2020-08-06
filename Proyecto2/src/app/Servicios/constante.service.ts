@@ -4,6 +4,6 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ConstanteService {
-  readonly rutaURL = 'https://localhost:44352';
+  readonly rutaURL = 'https://localhost:44346';
   constructor() { }
 }

@@ -53,7 +53,7 @@ export class EquipoManagementService {
   
   getEquipos() {
     //tslint:disable-next-line: no-string-literal
-    this.http.get(this.constante.rutaURL + '/api/GetMedicamentos').toPromise().then
+    this.http.get(this.constante.rutaURL + '/api/GetEquipos').toPromise().then
     (res => this.equipoList = res as Equipo[]);
   }
 

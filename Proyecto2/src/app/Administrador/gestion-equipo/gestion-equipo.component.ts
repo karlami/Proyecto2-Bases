@@ -24,7 +24,7 @@ export class GestionEquipoComponent implements OnInit {
     private modalService: NgbModal) { }
 
   ngOnInit(): void {
-  // this.service.getEquipos();
+  this.service.getEquipos();
   this.generateFormU();
   this.generateForm();
   }
