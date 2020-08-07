@@ -16,8 +16,10 @@
 
 /*
 Vista para Historial Clinico
-Obtiene la siguiente informaci�n de los Pacientes:
-Nombre Completo, C�dula, Edad, Nacionalidad, Regi�n, Patolog�as, Estado, Medicamentos, Internado y UCI.
+Obtiene la siguiente informaci�n del Historial Clinico de un Paciente:
+idHistorial, idPaciente, Nombre completo del paciente, nombre de cada procedimiento,
+nombre del tratamiento para el procedimiento en especifico, fecha del procedimiento y
+dias de recuperacion de cada procedimiento.
 */
 
 CREATE VIEW viewHistorial AS
@@ -33,8 +35,9 @@ CREATE VIEW viewHistorial AS
 		historial_clinico as hc
 		JOIN paciente as pa ON pa.idpaciente = hc.idpaciente
 		JOIN procedimiento as proc ON proc.idprocedimiento=hc.idprocedimiento;
-
+/*
 SELECT *
 FROM viewhistorial
 WHERE idpac = 2;
+ */
 
