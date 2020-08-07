@@ -22,6 +22,7 @@ export class EmpleadoManagementService {
       })
     };
     const body = {
+      idempleado: 0,
       nombre: empleadoData.nombre,
       primerapellido: empleadoData.primerapellido,
       segundoapellido: empleadoData.segundoapellido,
@@ -31,9 +32,10 @@ export class EmpleadoManagementService {
       fechanacimiento: empleadoData.fechanacimiento,
       fechaingreso: empleadoData.fechaingreso,
       idpuesto: empleadoData.idpuesto,
-      constrasena: empleadoData.contrasena
+      contrasena: empleadoData.contrasena
     };
-    this.http.post(this.constante.rutaURL + '/api/PostMedicamentos', body, httpOptions).toPromise();
+    console.log(body);
+    this.http.post(this.constante.rutaURL + '/api/PostEmpleado', body, httpOptions).toPromise();
 
   }
 

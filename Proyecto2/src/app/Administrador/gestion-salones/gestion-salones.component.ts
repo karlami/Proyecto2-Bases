@@ -102,6 +102,7 @@ export class GestionSalonesComponent implements OnInit {
   this.service.deleteSalon(numero);
   this.generateFormU();
   this.generateForm();
+  
   window.location.reload();
   }
 
@@ -120,7 +121,7 @@ export class GestionSalonesComponent implements OnInit {
       this.salonU.idtiposalon = 2;
     }else{
       this.salonn.idtiposalon = 3;
-      this.salonU.idtiposalon = 2;
+      this.salonU.idtiposalon = 3;
     }
   } 
 

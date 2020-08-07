@@ -5,9 +5,9 @@ export class Empleado {
     segundoapellido: string;
     cedula: number;
     telefono: number;
-    iddireccion: string;
+    iddireccion: number;
     fechanacimiento: Date;
     fechaingreso: Date;
-    idpuesto: string;
+    idpuesto: number;
     contrasena: string;
 }

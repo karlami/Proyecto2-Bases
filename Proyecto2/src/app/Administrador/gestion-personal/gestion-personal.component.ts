@@ -5,6 +5,7 @@ import { EmpleadoManagementService } from 'src/app/Servicios/empleado-management
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { NgForm } from '@angular/forms';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { IdPuesto } from 'src/app/Modelos/id-puesto.model';
 
 @Component({
   selector: 'app-gestion-personal',
@@ -20,6 +21,8 @@ export class GestionPersonalComponent implements OnInit {
   empleadoo: Empleadop;
   empleadoU: Empleado;
   closeResult = '';
+  puestoList: IdPuesto[] = [{idPuesto: 1, nombre: 'Administrativo'}, {idPuesto: 2, nombre: 'Doctor'}, {idPuesto: 3, nombre: 'Enfermero'}];
+  idPuestoSeleccionado: number
 
   constructor(public service: EmpleadoManagementService, private formBuilder: FormBuilder,
     private modalService: NgbModal) { }
@@ -41,10 +44,10 @@ export class GestionPersonalComponent implements OnInit {
     segundoapellido: '',
     cedula: 1,
     telefono: 1,
-    iddireccion: '',
+    iddireccion: undefined,
     fechanacimiento: new Date('Ene 01 2020'),
     fechaingreso: new Date('Ene 01 2020'),
-    idpuesto: '',
+    idpuesto: undefined,
     contrasena: ''
   };
 
@@ -55,15 +58,16 @@ export class GestionPersonalComponent implements OnInit {
   updateForm.reset();
   }
   this.empleadoo = {
+    idempleado: undefined,
     nombre: '',
     primerapellido: '',
     segundoapellido: '',
-    cedula: 1,
-    telefono: 1,
-    iddireccion: '',
+    cedula: undefined,
+    telefono: undefined,
+    iddireccion: undefined,
     fechanacimiento: new Date('Ene 01 2020'),
     fechaingreso: new Date('Ene 01 2020'),
-    idpuesto: '',
+    idpuesto: undefined,
     contrasena: ''
   };
 
@@ -89,8 +93,9 @@ export class GestionPersonalComponent implements OnInit {
 
   onSubmit(empeadoForm: NgForm) {
   console.log('Ingresado');
+  //console.log(this.empleadoo);
   // console.log(this.service.postEmpleados(this.empleadoo));
-  // this.service.postEmpleados(this.empleadoo);
+  this.service.postEmpleado(this.empleadoo);
   // this.service.getEmpleados();
   this.generateFormU();
   this.generateForm();
@@ -118,6 +123,19 @@ export class GestionPersonalComponent implements OnInit {
   console.log(this.empleadoU);
   console.log(this.empleadoU.idempleado);
   }
+  
+  obtenerIdpuesto(variable: any){
+    if(variable == 1){
+      this.empleadoU.idpuesto = 1;
+      this.empleadoo.idpuesto = 1;
+    }else if(variable == 2){
+      this.empleadoU.idpuesto = 2;
+      this.empleadoo.idpuesto = 2;
+    }else{
+      this.empleadoU.idpuesto = 3;
+      this.empleadoo.idpuesto = 3;
+    }
+  } 
 
 }
 

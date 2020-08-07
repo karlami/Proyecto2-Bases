@@ -48,7 +48,7 @@
 
           <div class="form-group">
             <label>Dirección</label>
-            <input name="direccion"  #Direccion="ngModel" [(ngModel)]="empleadoo.direccion" [ngModelOptions]="{standalone: true}" type= "text" class="form-control" required>
+            <input name="direccion"  #Direccion="ngModel" [(ngModel)]="empleadoo.iddireccion" [ngModelOptions]="{standalone: true}" type= "number" class="form-control" required>
           </div>
 
 
@@ -64,12 +64,9 @@
           </div>
 
           <div class="form-group">
-            <label for="puesto"> Puesto </label>
-            <select name="puesto"  #Internado="ngModel" [(ngModel)]="empleadoo.puesto" [ngModelOptions]="{standalone: true}" type= "text" class="form-control" required>
-              <option value="">Seleccionar</option>
-                <option value="Administrativo">Administrativo</option>
-                <option value="Doctor/Doctora">Doctor</option>
-                <option value="Enfermero/Enfermera">Enfermero</option>
+            <label for="tipomedicina"> Puesto </label>
+            <select name="tipomedicina"  #idPuesto="ngModel" (ngModelChange)= "obtenerIdpuesto($event)" [(ngModel)]="empleadoU.idpuesto" [ngModelOptions]="{standalone: true}" type= "number" class="form-control" required>
+              <option *ngFor= "let Puesto of puestoList" [value]="Puesto.idPuesto"> {{Puesto.nombre}} </option>
             </select>
           </div>
 

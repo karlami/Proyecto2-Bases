@@ -34,10 +34,10 @@ export class GestionEquipoComponent implements OnInit {
   equipoForm.reset();
   }
   this.equipoU = {
-  idequipo: 1,
+  idequipo: undefined,
   nombre: '',
   proveedor: '',
-  cantidad: 1
+  cantidad: undefined
   };
 
   }

@@ -1,12 +1,13 @@
 export class Empleadop {
+    idempleado:number;
     nombre: string;
     primerapellido: string;
     segundoapellido: string;
     cedula: number;
     telefono: number;
-    iddireccion: string;
+    iddireccion: number;
     fechanacimiento: Date;
     fechaingreso: Date;
-    idpuesto: string;
+    idpuesto: number;
     contrasena: string;
 }
