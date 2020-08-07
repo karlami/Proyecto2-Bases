@@ -21,7 +21,7 @@ namespace Hospital_TECNologico.Models
         [Key]
         public int numerocama { get; set; }
         public bool uci { get; set; }
-        public string idequipo { get; set; }
+        public int idequipo { get; set; }
         public int idsalon { get; set; }
     }
 }

@@ -71,31 +71,7 @@ namespace Hospital_TECNologico.Controllers
         [HttpPut]
         public async Task<ActionResult<Empleado>> /*Task<IActionResult>*/ PutEmpleado([FromBody] Empleado empleado)
         {
-            /*if (id != empleado.idempleado)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(empleado).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!EmpleadoExists(empleado.idempleado))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-            
-             return NoContent();*/
-
+            //Query para llamar al Stored Procedure de Empleado y Actualizar las tablas que necesita
             string query = "CALL modificarPersonal("
                 + empleado.idempleado.ToString() + ", "
                 + empleado.cedula.ToString() + ", '"

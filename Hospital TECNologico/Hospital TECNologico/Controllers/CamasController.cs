@@ -69,60 +69,42 @@ namespace Hospital_TECNologico.Controllers
          */
         [Route("api/PutCama")]
         [HttpPut]
-        public async Task<IActionResult> PutCama([FromBody] Cama cama)
+        public async Task<ActionResult<Cama>> PutCama([FromBody] Cama cama)
         {
-            /*if (id != cama.numerocama)
-            {
-                return BadRequest();
-            }*/
+            //Query para llamar al Stored Procedure de Empleado y Actualizar las tablas que necesita
+            string query = "CALL modificarCama("
+                + cama.numerocama.ToString() + ", "
+                + cama.uci.ToString() + ", "
+                + cama.idequipo.ToString() + ", "
+                + cama.idsalon.ToString() + ", "
+                + "'Update'" + "); ";
 
-            //PUT EN UPDATE DE STORED PROCEDURE DE CAMA
+            //Corre el query
+            await _context.Database.ExecuteSqlRawAsync(query);
 
-            _context.Entry(cama).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!CamaExists(cama.numerocama))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            return cama;
         }
 
         /*
          * POST: "api/PostCama"
-         * Agregar una cama nuevo a la base de datos con la informacion que se indica en el Form.
+         * Agregar una cama nueva a la base de datos con la informacion que se indica en el Form.
          */
         [Route("api/PostCama")]
         [HttpPost]
         public async Task<ActionResult<Cama>> PostCama([FromBody] Cama cama)
         {
-            /*_context.cama.Add(cama);
-            await _context.SaveChangesAsync();*/
+            //Query para llamar al Stored Procedure de Empleado e Insertar en las tablas que necesita
+            string query = "CALL modificarCama("
+                + cama.numerocama.ToString() + ", "
+                + cama.uci.ToString() + ", "
+                + cama.idequipo.ToString() + ", "
+                + cama.idsalon.ToString() + ", "
+                + "'Insert'" + "); ";
 
-            string query = "CALL agregarPaciente(";             //CAMBIAR QUERY POR EL STORED PROCEDURE DE CAMA
-            /*+ paciente.cedula.ToString() + ", '"
-            + paciente.nombre.ToString() + "', '"
-            + paciente.primerapellido.ToString() + "', '"
-            + paciente.segundoapellido.ToString() + "', "
-            + paciente.telefono.ToString() + ", '"
-            + paciente.fechanacimiento.ToString() + "', '"
-            + paciente.contrasena.ToString() + "', "
-            + paciente.iddireccion.ToString() + "); ";*/
+            //Corre el query
+            await _context.Database.ExecuteSqlRawAsync(query);
 
-            Console.WriteLine(query);
-
-            return CreatedAtAction("GetCama", new { id = cama.numerocama }, cama);
+            return cama;
         }
 
         /*
