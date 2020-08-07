@@ -28,22 +28,19 @@
 
         <div class="form-group">
           <label>Capacidad de camas</label>
-          <input name="capacidadcamas"  #CapacidadCamas="ngModel" [(ngModel)]="salonn.capacidadcamas" [ngModelOptions]="{standalone: true}" type= "number" class="form-control" required>
+          <input name="capacidadcamas"  #CapacidadCamas="ngModel" [(ngModel)]="salonn.cantidadcama" [ngModelOptions]="{standalone: true}" type= "number" class="form-control" required>
         </div>
         
         <div class="form-group">
-            <label for="tipomedicina"> Tipo de medicina </label>
-            <select name="tipomedicina"  #TipoMedicina="ngModel" [(ngModel)]="salonn.tipomedicina" [ngModelOptions]="{standalone: true}" type= "text" class="form-control" required>
-              <option value="">Seleccionar</option>
-                <option value="Niños">Niños</option>
-                <option value="Mujeres">Mujeres</option>
-                <option value="Hombres">Hombres</option>
-            </select>
-          </div>
+          <label for="tipomedicina"> Tipo de medicina </label>
+          <select name="tipomedicina"  #TipoMedicina="ngModel" (ngModelChange)= "obtenerTipo($event)" [(ngModel)]="salonU.idtiposalon" [ngModelOptions]="{standalone: true}" type= "text" class="form-control" required>
+            <option *ngFor= "let TipoMedicinaM of tipoList" [value]="TipoMedicinaM.id"> {{TipoMedicinaM.nombre}} </option>
+          </select>
+        </div>
 
         <div class="form-group">
             <label>Piso</label>
-            <input name="piso"  #Piso="ngModel" [(ngModel)]="salonn.piso" [ngModelOptions]="{standalone: true}" type= "number" class="form-control" required>
+            <input name="piso"  #Piso="ngModel" [(ngModel)]="salonn.numeropiso" [ngModelOptions]="{standalone: true}" type= "number" class="form-control" required>
           </div>
         
         <div class = "form-group">
@@ -81,7 +78,7 @@
 
         <div class="form-group">
             <label>Número</label>
-            <input name="numero"  #Numero="ngModel" [(ngModel)]="salonU.numero" [ngModelOptions]="{standalone: true}" type= "number" class="form-control" required>
+            <input name="numero"  #Numero="ngModel" [(ngModel)]="salonU.numerosalon" [ngModelOptions]="{standalone: true}" type= "number" class="form-control" required>
           </div>
   
           <div class="form-group">
@@ -91,22 +88,19 @@
   
           <div class="form-group">
             <label>Capacidad de camas</label>
-            <input name="capacidadcamas"  #CapacidadCamas="ngModel" [(ngModel)]="salonU.capacidadcamas" [ngModelOptions]="{standalone: true}" type= "number" class="form-control" required>
+            <input name="capacidadcamas"  #CapacidadCamas="ngModel" [(ngModel)]="salonU.cantidadcama" [ngModelOptions]="{standalone: true}" type= "number" class="form-control" required>
           </div>
           
           <div class="form-group">
-              <label for="tipomedicina"> Tipo de medicina </label>
-              <select name="tipomedicina"  #TipoMedicina="ngModel" [(ngModel)]="salonU.tipomedicina" [ngModelOptions]="{standalone: true}" type= "text" class="form-control" required>
-                <option value="">Seleccionar</option>
-                  <option value="Niños">Niños</option>
-                  <option value="Mujeres">Mujeres</option>
-                  <option value="Hombres">Hombres</option>
-              </select>
-            </div>
+            <label for="tipomedicina"> Tipo de medicina </label>
+            <select name="tipomedicina"  #TipoMedicina="ngModel" (ngModelChange)= "obtenerTipo($event)" [(ngModel)]="salonn.idtiposalon" [ngModelOptions]="{standalone: true}" type= "text" class="form-control" required>
+              <option *ngFor= "let TipoMedicinaM of tipoList" [value]="TipoMedicinaM.id"> {{TipoMedicinaM.nombre}} </option>
+            </select>
+          </div>
   
           <div class="form-group">
               <label>Piso</label>
-              <input name="piso"  #Piso="ngModel" [(ngModel)]="salonU.piso" [ngModelOptions]="{standalone: true}" type= "number" class="form-control" required>
+              <input name="piso"  #Piso="ngModel" [(ngModel)]="salonU.numeropiso" [ngModelOptions]="{standalone: true}" type= "number" class="form-control" required>
             </div>
 
         
@@ -150,7 +144,7 @@
       <td>{{Salon.numeropiso}}</td>
       <button type="button" class="btn btn-default" data-toggle="modal" data-target=" #updateForm" 
       (click)="selectId(Salon)">Ed</button>
-      <td><button type="button" class="btn btn-danger" (click)="onDelete(Salon.numero)">
+      <td><button type="button" class="btn btn-danger" (click)="onDelete(Salon.numerosalon)">
       X<span class="glyphicon glyphicon-trash" ></span></button></td>
     </tr>
   </table>

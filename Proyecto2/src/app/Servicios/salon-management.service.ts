@@ -24,9 +24,9 @@ export class SalonManagementService {
     };
     const body = {
       nombre: salonData.nombre,
-      capacidadcamas: salonData.capacidadcamas,
-      tipomedicina: salonData.tipomedicina,
-      piso: salonData.piso
+      cantidadcama: salonData.cantidadcama,
+      idtiposalon: salonData.idtiposalon,
+      numeropiso: salonData.numeropiso
     };
     this.http.post(this.constante.rutaURL + '/api/PostSalon', body, httpOptions).toPromise();
 
@@ -39,11 +39,11 @@ export class SalonManagementService {
       })
     };
     const body = {
-      numero: salonData.numero,
+      numerosalon: salonData.numerosalon,
       nombre: salonData.nombre,
-      capacidadcamas: salonData.capacidadcamas,
-      tipomedicina: salonData.tipomedicina,
-      piso: salonData.piso
+      cantidadcama: salonData.cantidadcama,
+      idtiposalon: salonData.idtiposalon,
+      numeropiso: salonData.numeropiso
     };
     this.http.put(this.constante.rutaURL + '/api/PutSalon', body, httpOptions).toPromise();
   }
@@ -59,13 +59,13 @@ export class SalonManagementService {
     (res => this.salonList = res as Salon[]);
   }
 
-  deleteEmpleado(idequipo: number) {
+  deleteSalon(idSalon: number) {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     };
-    this.http.delete(this.constante.rutaURL + '/api/DeleteSalon/' + idequipo ,
+    this.http.delete(this.constante.rutaURL + '/api/DeleteSalon/' + idSalon ,
     httpOptions).toPromise();
 
   }

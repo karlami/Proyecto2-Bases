@@ -25,7 +25,7 @@ export class GestionProcedimientosComponent implements OnInit {
     private modalService: NgbModal) { }
 
   ngOnInit(): void {
-  // this.service.getProcedimientos();
+  this.service.getProcedimientos();
   this.generateFormU();
   this.generateForm();
   }
@@ -73,26 +73,16 @@ export class GestionProcedimientosComponent implements OnInit {
 
   onSubmit(equipoForm: NgForm) {
   console.log('Ingresado');
-  // console.log(this.service.postProcedimientos(this.procedimientoo));
-  // this.service.postProcedimientos(this.procedimientoo);
-  // this.service.getProcedimientos();
+  this.service.postProcedimiento(this.procedimientoo);
   this.generateFormU();
   this.generateForm();
+  window.location.reload();
   }
 
   onUpdate(updateForm: NgForm) {
   console.log('Actualizado');
   console.log(this.procedimientoU);
-  // this.service.putProcedimientos(this.procedimientoU);
-  // this.service.getProcedimientos();
-  this.generateFormU();
-  this.generateForm();
-  }
-
-  onDelete(idprocedimiento: number) {
-  console.log('Deleted');
-  // this.service.deleteProcedimientos(idprocedimiento);
-  // this.service.getProcedimientos();
+  this.service.putProcedimiento(this.procedimientoU);
   this.generateFormU();
   this.generateForm();
   }

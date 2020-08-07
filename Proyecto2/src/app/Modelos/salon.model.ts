@@ -1,8 +1,8 @@
 export class Salon {
-    numero: number;
+    numerosalon: number;
     nombre: string;
-    capacidadcamas: number;
-    tipomedicina: string;
-    piso: number;
+    cantidadcama: number;
+    idtiposalon: number;
+    numeropiso: number;
 
 }

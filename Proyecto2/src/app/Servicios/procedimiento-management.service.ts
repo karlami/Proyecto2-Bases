@@ -15,7 +15,7 @@ export class ProcedimientoManagementService {
 
   constructor(private http: HttpClient, private constante: ConstanteService) { }
 
-  postProcedimiento(procedimientoData: Procedimiento) {
+  postProcedimiento(procedimientoData: Procedimientop) {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json'

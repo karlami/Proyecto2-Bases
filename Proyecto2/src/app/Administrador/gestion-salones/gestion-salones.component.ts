@@ -5,6 +5,7 @@ import { SalonManagementService } from 'src/app/Servicios/salon-management.servi
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { NgForm } from '@angular/forms';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { TipoMedicinaM } from 'src/app/Modelos/tipo-medicina-m.model';
 
 @Component({
   selector: 'app-gestion-salones',
@@ -20,6 +21,8 @@ export class GestionSalonesComponent implements OnInit {
   salonn: Salonp;
   salonU: Salon;
   closeResult = '';
+  tipoList: TipoMedicinaM[] = [{id: 1, nombre: 'Mujeres'}, {id: 2, nombre: 'Hombres'}, {id: 3, nombre: 'Niños'}];
+  tipoSeleccionado: number
 
   constructor(public service: SalonManagementService, private formBuilder: FormBuilder,
     private modalService: NgbModal) { }
@@ -35,11 +38,11 @@ export class GestionSalonesComponent implements OnInit {
     salonForm.reset();
   }
   this.salonU = {
-  numero: undefined,
+  numerosalon: undefined,
   nombre: '',
-  capacidadcamas: undefined,
-  tipomedicina: '',
-  piso: undefined
+  cantidadcama: undefined,
+  idtiposalon: 1,
+  numeropiso: undefined
   };
 
   }
@@ -50,9 +53,9 @@ export class GestionSalonesComponent implements OnInit {
   }
   this.salonn = {
     nombre: '',
-    capacidadcamas: undefined,
-    tipomedicina: '',
-    piso: undefined
+    cantidadcama: undefined,
+    idtiposalon: undefined,
+    numeropiso: undefined
   };
 
   }
@@ -77,35 +80,49 @@ export class GestionSalonesComponent implements OnInit {
 
   onSubmit(salonForm: NgForm) {
   console.log('Ingresado');
-  // console.log(this.service.postSalones(this.salonn));
-  // this.service.postSalones(this.salonn);
-  // this.service.getSalones();
+  console.log(this.salonn);
+  this.service.postSalon(this.salonn);
   this.generateFormU();
   this.generateForm();
+  window.location.reload();
   }
 
   onUpdate(updateForm: NgForm) {
   console.log('Actualizado');
   console.log(this.salonU);
-  // this.service.putSalones(this.salonU);
-  // this.service.getSalones();
+  this.service.putSalon(this.salonU);
   this.generateFormU();
   this.generateForm();
+  window.location.reload();
   }
 
   onDelete(numero: number) {
   console.log('Deleted');
-  // this.service.deleteSalones(numero);
-  // this.service.getSalones();
+  console.log(numero);
+  this.service.deleteSalon(numero);
   this.generateFormU();
   this.generateForm();
+  window.location.reload();
   }
 
   selectId(salon: Salon) {
   this.salonU = salon;
   console.log(this.salonU);
-  console.log(this.salonU.numero);
+  console.log(this.salonU.numerosalon);
   }
+
+  obtenerTipo(variable: any){
+    if(variable == 1){
+      this.salonn.idtiposalon = 1;
+      this.salonU.idtiposalon = 1;
+    }else if(variable == 2){
+      this.salonn.idtiposalon = 2;
+      this.salonU.idtiposalon = 2;
+    }else{
+      this.salonn.idtiposalon = 3;
+      this.salonU.idtiposalon = 2;
+    }
+  } 
 
 }
 
