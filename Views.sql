@@ -15,29 +15,26 @@
 
 
 /*
-Vista para Paciente
+Vista para Historial Clinico
 Obtiene la siguiente informaci�n de los Pacientes:
 Nombre Completo, C�dula, Edad, Nacionalidad, Regi�n, Patolog�as, Estado, Medicamentos, Internado y UCI.
 */
-/*
-CREATE VIEW viewPaciente AS
-	SELECT
-		dbo.getNombreCompleto(pr.cedula) AS NombreCompleto,
-		pr.cedula AS Cedula,
-		dbo.getEdad(fechaNacimiento) AS Edad,
-		nacionalidad AS Nacionalidad,
-		region AS Region,
-		dbo.getPatologias(pr.cedula) AS Patologias,
-		estado as Estado,
-		idCentroHospitalario as CentroHospitalario,
-		dbo.getMedicamentos(pa.idPaciente) as Medicamentos,
-		internado as Internado,
-		uci as UCI,
-		pa.idPaciente as IdPaciente
-	FROM
-		Persona as pr
-		JOIN Paciente as pa ON pa.cedula = pr.cedula
-		JOIN Ubicacion as u ON pr.idUbicacion=u.idUbicacion
-		JOIN EstadoPaciente as ep ON pa.idEstadoPaciente=ep.idEstadoPaciente;
 
-*/
+CREATE VIEW viewHistorial AS
+	SELECT
+	    hc.idhistorial AS idhistorial,
+	    pa.idpaciente AS idpac,
+		getNombreCompleto(pa.cedula) AS nombrepaciente,
+		proc.nombre AS procedimiento,
+	    hc.tratamiento AS tratam,
+	    hc.fecha AS fechaProc,
+	    proc.diasrecuperacion AS dias
+	FROM
+		historial_clinico as hc
+		JOIN paciente as pa ON pa.idpaciente = hc.idpaciente
+		JOIN procedimiento as proc ON proc.idprocedimiento=hc.idprocedimiento;
+
+SELECT *
+FROM viewhistorial
+WHERE idpac = 2;
+
