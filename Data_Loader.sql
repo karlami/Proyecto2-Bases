@@ -11,6 +11,7 @@
 -- Hospital_TECNológico - Data Loader
 --------------------------------------------------------------------
 
+-- Datos de las 7 provincias de Costa Rica
 INSERT INTO provincia VALUES
     (1,'San Jose'),
     (2,'Cartago'),
@@ -20,6 +21,7 @@ INSERT INTO provincia VALUES
     (6,'Alajuela'),
     (7,'Puntarenas');
 
+-- Datos de 4 cantones por cada provincia de Costa Rica
 INSERT INTO canton VALUES
     (1,'San Jose',1),
     (2,'Escazu',1),
@@ -50,6 +52,7 @@ INSERT INTO canton VALUES
     (27,'Buenos Aires',7),
     (28,'Montes de Oro',7);
 
+-- Datos de 3 distritos para los cantones ingresados de Costa Rica
 INSERT INTO direccion VALUES
     (1,'Carmen',1),
     (2,'Merced',1),
@@ -136,6 +139,7 @@ INSERT INTO direccion VALUES
     (83,'La Union',28),
     (84,'San Isidro',28);
 
+-- Datos de Patologias
 INSERT INTO patologia(nombre, descripcion) VALUES
     ('Alergia','Las alergias, también llamadas reacciones de hipersensibilidad.'),
     ('Bronquitis','La bronquitis es el resultado de la inflamación de los conductos que transportan el aire al interior de los pulmones.'),
@@ -158,6 +162,7 @@ INSERT INTO patologia(nombre, descripcion) VALUES
     ('Faringitis','Es la inflamación de la garganta o faringe a menudo causada por una infección bacteriana o vírica.'),
     ('Linfoma','Un linfoma es una proliferación maligna de linfocitos.');
 
+-- Datos de Personas
 INSERT INTO persona VALUES
     (200765074,'Cherish','Niesegen','Asquez',80000000,'1991-08-13','persona',1),
     (500198769,'Amerigo','Biffen','Allmann',80006730,'1982-11-28','persona',2),
@@ -185,7 +190,7 @@ INSERT INTO persona VALUES
     (505963070,'Maurice','Mecozzi','Gilks',80154790,'2002-06-04','persona',24),
     (606161839,'Pablo','Pimlett','Scrancher',80161520,'1981-10-13','persona',25);
 
--- Datos de paciente
+-- Datos de Paciente
 INSERT INTO paciente(cedula) VALUES
     (200765074),
     (500198769),
@@ -198,6 +203,7 @@ INSERT INTO paciente(cedula) VALUES
     (102385228),
     (402583997);
 
+-- Datos de la relacion paciente_patologia
 INSERT INTO paciente_patologia VALUES
     (1,17,'Tomar paracetamol para aliviar la fiebre producida por el dengue.'),
     (2,1,'Tomar pastillas y comprar aerosoles nasales o gotas para los ojos.'),
@@ -209,6 +215,7 @@ INSERT INTO paciente_patologia VALUES
     (8,9,'Limpiar los párpados con un paño húmedo.'),
     (3,10,'Tomar mucha leche y alimentos altos en calcio.');
 
+-- Datos de procedimientos
 INSERT INTO procedimiento(nombre, diasrecuperacion) VALUES
     ('Apendicectomía',8),
     ('Biopsia de mama',30),
@@ -232,7 +239,6 @@ INSERT INTO procedimiento(nombre, diasrecuperacion) VALUES
     ('Escintigrafía',4);
 
 -- Datos de Historial clinico
-
 INSERT INTO historial_clinico(tratamiento, fecha, idpaciente, idprocedimiento) VALUES
     ('Coma lo suficiente para evitar desmayos.','2020-08-16',1,15),
     ('Tome mucha agua para que expluse el filtro inyectado cuando se le aplica el TAC.','2020-08-15',2,9),
@@ -352,10 +358,37 @@ INSERT INTO cama(uci) VALUES
     ('false'),
     ('true');
 
--- reservacion
+-- Datos de Reservacion
+INSERT INTO reservacion(fechaingreso, fechasalida, idpaciente, idcama) VALUES
+    ('2020-08-18','2020-09-13',4,70),
+    ('2020-07-25','2020-09-01',9,96),
+    ('2020-07-17','2020-08-02',10,18),
+    ('2020-08-06','2020-08-17',3,55),
+    ('2020-08-12','2020-08-23',1,34),
+    ('2020-08-09','2020-08-16',1,54),
+    ('2020-08-24','2020-08-24',8,44),
+    ('2020-07-16','2020-08-25',1,81),
+    ('2020-08-21','2020-08-28',9,63),
+    ('2020-07-14','2020-07-15',8,39);
 
--- reservacion_procedimiento
+-- Datos de relacion reservacion_procedimiento
+INSERT INTO reservacion_procedimiento VALUES
+    (1,19),
+    (2,2),
+    (3,10),
+    (4,5),
+    (5,7),
+    (6,3),
+    (7,17),
+    (8,4),
+    (9,3),
+    (10,15),
+    (2,1),
+    (3,6),
+    (1,15),
+    (1,5);
 
+-- Datos de Equipo
 INSERT INTO equipo(nombre, proveedor, cantidad) VALUES
     ('Luz quirurjica','ELEINMSA',60),
     ('Ultrasonido','Philips',40),
@@ -372,6 +405,7 @@ INSERT INTO equipo(nombre, proveedor, cantidad) VALUES
     ('Glucometro','Baxter',100),
     ('Esfigmomanometro de mercurio','Avante',40);
 
+-- Datos de los 3 puestos
 INSERT INTO puesto(nombre) VALUES
     ('Personal Administrativo'),
     ('Doctor/Doctora'),
@@ -395,11 +429,13 @@ INSERT INTO empleado(fechaingreso, cedula, idpuesto) VALUES
     ('2013-07-24',505963070,3),
     ('2014-10-13',606161839,2);
 
+-- Datos de los 3 tipos de salon
 INSERT INTO tiposalon(tipo) VALUES
     ('Medicina de mujer'),
     ('Medicina de hombre'),
     ('Medicina de niño');
 
+-- Datos de Salones
 INSERT INTO salon(nombre, cantidadcama, numeropiso, idtiposalon) VALUES
     ('Cirugia P1',1,1,1),
     ('Recuperacion P2',10,2,2),
