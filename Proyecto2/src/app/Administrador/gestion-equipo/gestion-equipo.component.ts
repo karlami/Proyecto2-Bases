@@ -91,14 +91,6 @@ export class GestionEquipoComponent implements OnInit {
   window.location.reload();
   }
 
-  onDelete(idequipo: number) {
-  console.log('Deleted');
-  this.service.deleteEquipo(idequipo);
-  this.generateFormU();
-  this.generateForm();
-  window.location.reload();
-  }
-
   selectId(equipo: Equipo) {
   this.equipoU = equipo;
   console.log(this.equipoU);

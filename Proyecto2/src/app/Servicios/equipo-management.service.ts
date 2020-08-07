@@ -57,15 +57,5 @@ export class EquipoManagementService {
     (res => this.equipoList = res as Equipo[]);
   }
 
-  deleteEquipo(idequipo: number) {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    };
-    this.http.delete(this.constante.rutaURL + '/api/DeleteEquipo/' + idequipo ,
-    httpOptions).toPromise();
-
-  }
 
 }

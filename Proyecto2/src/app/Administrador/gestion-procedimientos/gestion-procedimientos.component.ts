@@ -35,9 +35,9 @@ export class GestionProcedimientosComponent implements OnInit {
     procedimientoForm.reset();
   }
   this.procedimientoU = {
-  idprocedimiento: 1,
+  idprocedimiento: undefined,
   nombre: '',
-  diasrecuperacion: 1
+  diasrecuperacion: undefined
   };
 
   }
@@ -48,7 +48,7 @@ export class GestionProcedimientosComponent implements OnInit {
   }
   this.procedimientoo = {
     nombre: '',
-  diasrecuperacion: 1
+  diasrecuperacion: undefined
   };
 
   }
