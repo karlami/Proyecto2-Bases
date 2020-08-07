@@ -75,42 +75,19 @@ namespace Hospital_TECNologico.Controllers
          */
         [Route("api/GetHistorial_Clinico/{idhistorial}")]
         [HttpGet]
-        public async Task<ActionResult<Historial_Clinico>> GetHistorial_Clinico(int idhistorial)
+        public async Task<ActionResult<IEnumerable<vHistorial_Clinico>>> GetHistorial_Clinico(int idhistorial)
         {
-            //GET DE UN VIEW ESPECIFICO DE HISTORIAL_CLINICO
-            //UN UNICO (HISTORIALES CLINICOS X PROCEDIMIENTOS X PACIENTES)
-
-
-
-
-            /*
+            //Query de SELECT de un View para obtener los datos necesarios para mostrar un historial clinico (idhistorial)
             string query =
                 "SELECT "
-                + "idhistorial," + "idpac, " + "nombrepaciente, " + "procedimiento, " + "tratam, " + "fechaProc, " + "dias"
+                + "idhistorial, " + "idpac, " + "nombrepaciente, " + "procedimiento, " + "tratam, " + "fechaProc, " + "dias "
                 + "FROM "
-                + "viewhistorial"
+                + "viewhistorial "
                 + "WHERE"
-                + "idpac = " + ";";
+                + " idhistorial = " + idhistorial.ToString() + ";";
 
-            Console.WriteLine(query);
-
-            await _context.Database.ExecuteSqlRawAsync(query);
-
-            return historial_clinico;*/
-
-
-
-
-
-
-            var historial_Clinico = await _context.historial_clinico.FindAsync(idhistorial);
-
-            if (historial_Clinico == null)
-            {
-                return NotFound();
-            }
-
-            return historial_Clinico;
+            //Retorna todos los objetos obtenidos del view de historial_clinico
+            return await _context.vhistorial_clinico.FromSqlRaw(query).ToListAsync();
         }
 
         /*
