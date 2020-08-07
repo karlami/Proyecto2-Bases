@@ -17,8 +17,12 @@ namespace Hospital_TECNologico.Controllers
     [ApiController]
     public class PacientesController : ControllerBase
     {
+        //DbContext
         private readonly HospitalTECNologicoContext _context;
 
+        /*
+         * Constructor de PacientesController
+         */
         public PacientesController(HospitalTECNologicoContext context)
         {
             _context = context;

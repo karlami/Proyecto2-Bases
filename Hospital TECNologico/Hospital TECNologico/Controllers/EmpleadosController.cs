@@ -17,8 +17,12 @@ namespace Hospital_TECNologico.Controllers
     [ApiController]
     public class EmpleadosController : ControllerBase
     {
+        //DbContext
         private readonly HospitalTECNologicoContext _context;
 
+        /*
+         * Constructor de EmpleadosController
+         */
         public EmpleadosController(HospitalTECNologicoContext context)
         {
             _context = context;
@@ -33,7 +37,7 @@ namespace Hospital_TECNologico.Controllers
         public async Task<ActionResult<IEnumerable<Empleado>>> Getempleado()
         {
             //GET DE UN VIEW ESPECIFICO DE EMPLEADOS
-            //TODOS TODOS LOS (EMPLEADOS X PERSONAS) 
+            //TODOS TODOS LOS (EMPLEADOS X PERSONAS)
 
             return await _context.empleado.ToListAsync();
         }
@@ -65,14 +69,12 @@ namespace Hospital_TECNologico.Controllers
          */
         [Route("api/PutEmpleado")]
         [HttpPut]
-        public async Task<IActionResult> PutEmpleado([FromBody] Empleado empleado)
+        public async Task<ActionResult<Empleado>> /*Task<IActionResult>*/ PutEmpleado([FromBody] Empleado empleado)
         {
             /*if (id != empleado.idempleado)
             {
                 return BadRequest();
-            }*/
-
-            //PUT EN UPDATE DE STORED PROCEDURE DE EMPLEADO
+            }
 
             _context.Entry(empleado).State = EntityState.Modified;
 
@@ -91,8 +93,28 @@ namespace Hospital_TECNologico.Controllers
                     throw;
                 }
             }
+            
+             return NoContent();*/
 
-            return NoContent();
+            string query = "CALL modificarPersonal("
+                + empleado.idempleado.ToString() + ", "
+                + empleado.cedula.ToString() + ", '"
+                + empleado.nombre.ToString() + "', '"
+                + empleado.primerapellido.ToString() + "', '"
+                + empleado.segundoapellido.ToString() + "', "
+                + empleado.telefono.ToString() + ", '"
+                + empleado.fechanacimiento.ToString() + "', '"
+                + empleado.contrasena.ToString() + "', "
+                + empleado.iddireccion.ToString() + ", '"
+                + empleado.fechaingreso.ToString() + "', "
+                + empleado.idpuesto.ToString() + ", "
+                + "'Update'" + "); ";
+
+            Console.WriteLine(query);
+
+            await _context.Database.ExecuteSqlRawAsync(query);
+
+            return empleado;
         }
 
         /*
@@ -106,19 +128,27 @@ namespace Hospital_TECNologico.Controllers
             /*_context.empleado.Add(empleado);
             await _context.SaveChangesAsync();*/
 
-            string query = "CALL agregarPaciente(";             //CAMBIAR QUERY POR EL STORED PROCEDURE DE EMPLEADO
-                /*+ paciente.cedula.ToString() + ", '"
-                + paciente.nombre.ToString() + "', '"
-                + paciente.primerapellido.ToString() + "', '"
-                + paciente.segundoapellido.ToString() + "', "
-                + paciente.telefono.ToString() + ", '"
-                + paciente.fechanacimiento.ToString() + "', '"
-                + paciente.contrasena.ToString() + "', "
-                + paciente.iddireccion.ToString() + "); ";*/
+            string query = "CALL modificarPersonal("
+                + empleado.idempleado.ToString() + ", "
+                + empleado.cedula.ToString() + ", '"
+                + empleado.nombre.ToString() + "', '"
+                + empleado.primerapellido.ToString() + "', '"
+                + empleado.segundoapellido.ToString() + "', "
+                + empleado.telefono.ToString() + ", '"
+                + empleado.fechanacimiento.ToString() + "', '"
+                + empleado.contrasena.ToString() + "', "
+                + empleado.iddireccion.ToString() + ", '"
+                + empleado.fechaingreso.ToString() + "', "
+                + empleado.idpuesto.ToString() + ", "
+                + "'Insert'" + "); ";
 
             Console.WriteLine(query);
 
-            return CreatedAtAction("GetEmpleado", new { id = empleado.idempleado }, empleado);
+            await _context.Database.ExecuteSqlRawAsync(query);
+
+            return empleado;
+
+            //return CreatedAtAction("GetEmpleado", new { id = empleado.idempleado }, empleado);
         }
 
         /*
@@ -127,11 +157,11 @@ namespace Hospital_TECNologico.Controllers
          */
         [Route("api/DeleteEmpleado/{idempleado}")]
         [HttpDelete]
-        public async Task<ActionResult<Empleado>> DeleteEmpleado(int idempleado)
+        public async Task<ActionResult/*<Empleado>*/> DeleteEmpleado(int idempleado)
         {
             //DELETE EN DELETE DE STORED PROCEDURE DE EMPLEADO
 
-            var empleado = await _context.empleado.FindAsync(idempleado);
+            /*var empleado = await _context.empleado.FindAsync(idempleado);
             if (empleado == null)
             {
                 return NotFound();
@@ -140,7 +170,29 @@ namespace Hospital_TECNologico.Controllers
             _context.empleado.Remove(empleado);
             await _context.SaveChangesAsync();
 
-            return empleado;
+            return empleado;*/
+
+            string query = "CALL modificarPersonal("
+                + idempleado.ToString() + ", "
+                + "0" + ", '"
+                + "empleado.nombre.ToString()" + "', '"
+                + "empleado.primerapellido.ToString()" + "', '"
+                + "empleado.segundoapellido.ToString()" + "', "
+                + "0" + ", '"
+                + "1-1-1" + "', '"
+                + "empleado.contrasena.ToString()" + "', "
+                + "0" + ", '"
+                + "1-1-1" + "', "
+                + "0" + ", "
+                + "'Delete'" + "); ";
+
+            Console.WriteLine(query);
+
+            await _context.Database.ExecuteSqlRawAsync(query);
+
+            //return empleado;
+
+            return Ok("Se ha borrado el empleado con idempleado: " + idempleado.ToString());
         }
 
         private bool EmpleadoExists(int idempleado)

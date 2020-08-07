@@ -17,8 +17,12 @@ namespace Hospital_TECNologico.Controllers
     [ApiController]
     public class Historiales_ClinicosController : ControllerBase
     {
+        //DbContext
         private readonly HospitalTECNologicoContext _context;
 
+        /*
+         * Constructor de Historiales_ClinicosController
+         */
         public Historiales_ClinicosController(HospitalTECNologicoContext context)
         {
             _context = context;
@@ -30,11 +34,18 @@ namespace Hospital_TECNologico.Controllers
          */
         [Route("api/GetHistoriales_Clinicos")]
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Historial_Clinico>>> Gethistorial_clinico()
+        public async Task<ActionResult<IEnumerable<vHistorial_Clinico>>> Gethistorial_clinico()
         {
-            //GET DE UN VIEW ESPECIFICO DE HISTORIAL_CLINICO
-            //TODOS TODOS LOS (HISTORIALES CLINICOS X PROCEDIMIENTOS X PACIENTES)
-            return await _context.historial_clinico.ToListAsync();
+            //Query de SELECT de un View para obtener los datos necesarios para mostrar TODOS los historiales clinicos
+            string query =
+                "SELECT "
+                + "idhistorial, " + "idpac, " + "nombrepaciente, " + "procedimiento, " + "tratam, " + "fechaProc, " + "dias "
+                + "FROM "
+                + "viewhistorial"
+                + ";";
+
+            //Retorna todos los objetos obtenidos del view de historial_clinico
+            return await _context.vhistorial_clinico.FromSqlRaw(query).ToListAsync();
         }
 
         /*
@@ -43,11 +54,19 @@ namespace Hospital_TECNologico.Controllers
          */
         [Route("api/GetHistoriales_Clinicos/{idpaciente}")]
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Historial_Clinico>>> Gethistorial_clinico(int idpaciente)
+        public async Task<ActionResult<IEnumerable<vHistorial_Clinico>>> Gethistorial_clinico(int idpaciente)
         {
-            //GET DE UN VIEW ESPECIFICO DE HISTORIAL_CLINICO
-            //TODOS LOS (HISTORIALES CLINICOS X PROCEDIMIENTOS X PACIENTES) DE UN PACIENTE ESPECIFICO
-            return await _context.historial_clinico.ToListAsync();
+            //Query de SELECT de un View para obtener los datos necesarios para mostrar los historiales clinicos de un solo Paciente (idpaciente)
+            string query =
+                "SELECT "
+                + "idhistorial, " + "idpac, " + "nombrepaciente, " + "procedimiento, " + "tratam, " + "fechaProc, " + "dias "
+                + "FROM "
+                + "viewhistorial "
+                + "WHERE"
+                + " idpac = " + idpaciente.ToString() + ";";
+
+            //Retorna todos los objetos obtenidos del view de historial_clinico
+            return await _context.vhistorial_clinico.FromSqlRaw(query).ToListAsync();
         }
 
         /*
@@ -60,6 +79,29 @@ namespace Hospital_TECNologico.Controllers
         {
             //GET DE UN VIEW ESPECIFICO DE HISTORIAL_CLINICO
             //UN UNICO (HISTORIALES CLINICOS X PROCEDIMIENTOS X PACIENTES)
+
+
+
+
+            /*
+            string query =
+                "SELECT "
+                + "idhistorial," + "idpac, " + "nombrepaciente, " + "procedimiento, " + "tratam, " + "fechaProc, " + "dias"
+                + "FROM "
+                + "viewhistorial"
+                + "WHERE"
+                + "idpac = " + ";";
+
+            Console.WriteLine(query);
+
+            await _context.Database.ExecuteSqlRawAsync(query);
+
+            return historial_clinico;*/
+
+
+
+
+
 
             var historial_Clinico = await _context.historial_clinico.FindAsync(idhistorial);
 
@@ -113,6 +155,7 @@ namespace Hospital_TECNologico.Controllers
         [HttpPost]
         public async Task<ActionResult<Historial_Clinico>> PostHistorial_Clinico([FromBody] Historial_Clinico historial_clinico)
         {
+
             _context.historial_clinico.Add(historial_clinico);
             await _context.SaveChangesAsync();
 

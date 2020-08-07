@@ -24,6 +24,7 @@ namespace Hospital_TECNologico.Data
             return base.SaveChanges();
         }
 
+        //Tables
         public DbSet<Persona> persona { get; set; }
         public DbSet<Paciente> paciente { get; set; }
         public DbSet<Paciente_Patologia> paciente_patologia { get; set; }
@@ -36,9 +37,10 @@ namespace Hospital_TECNologico.Data
         public DbSet<Cama> cama { get; set; }
         public DbSet<Empleado> empleado { get; set; }
         
-        
-        
-        
-        
+        //Views
+        public DbSet<vHistorial_Clinico> vhistorial_clinico { get; set; }
+
+
+
     }
 }
