@@ -1,7 +1,6 @@
 export class Cama {
-    idcama: number;
     numerocama: number;
-    equipomedico: string;
+    idequipo: number;
     idsalon: number;
     uci: boolean;
 }

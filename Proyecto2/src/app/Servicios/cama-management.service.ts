@@ -23,11 +23,12 @@ export class CamaManagementService {
       })
     };
     const body = {
-      idequipo: camaData.equipomedico,
+      numerocama: camaData.numerocama,
+      idequipo: camaData.idequipo,
       idsalon: camaData.idsalon,
       uci: camaData.uci
     };
-    this.http.post(this.constante.rutaURL + '/api/PostMedicamentos', body, httpOptions).toPromise();
+    this.http.post(this.constante.rutaURL + '/api/PostCama', body, httpOptions).toPromise();
 
   }
   putCama(camaData: Cama) {
@@ -38,7 +39,7 @@ export class CamaManagementService {
     };
     const body = {
       numerocama: camaData.numerocama,
-      idequipo: camaData.equipomedico,
+      idequipo: camaData.idequipo,
       idsalon: camaData.idsalon,
       uci: camaData.uci
     };

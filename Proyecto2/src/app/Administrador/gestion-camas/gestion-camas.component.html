@@ -20,17 +20,12 @@
       
       <form #camaForm = "ngForm" (ngSubmit)="onSubmit(camaForm)">
 
-        <div class="form-group">
-          <label>Número Cama</label>
-          <input name="numerocama"  #NumeroCama="ngModel" [(ngModel)]="camaa.numerocama" [ngModelOptions]="{standalone: true}" type= "number" class="form-control" required>
-        </div>
-
         <!-- -------------------------------------------------------------------- -->
         <!--Arreglar equipo medico-->
         <!-- -------------------------------------------------------------------- -->
         <div class="form-group">
           <label>Equipo Médico</label>
-          <input name="equipo"  #Equipo="ngModel" [(ngModel)]="camaa.equipomedico" [ngModelOptions]="{standalone: true}" type= "text" class="form-control" required>
+          <input name="equipo"  #Equipo="ngModel" [(ngModel)]="camaa.idequipo" [ngModelOptions]="{standalone: true}" type= "number" class="form-control" required>
         </div>
         
         <div class="form-group">
