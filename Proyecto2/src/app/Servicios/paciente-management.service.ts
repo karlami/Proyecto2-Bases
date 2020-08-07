@@ -15,7 +15,7 @@ export class PacienteManagementService {
 
   constructor(private http: HttpClient, private constante: ConstanteService) { }
 
-  postPaciente(pacienteData: Paciente) {
+  postPaciente(pacienteData: Pacientep) {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json'
@@ -31,7 +31,7 @@ export class PacienteManagementService {
       contrasena: pacienteData.contrasena,
       iddireccion: pacienteData.iddireccion
     };
-    this.http.post(this.constante.rutaURL + '/api/PostMedicamentos', body, httpOptions).toPromise();
+    this.http.post(this.constante.rutaURL + '/api/PostPaciente', body, httpOptions).toPromise();
 
   }
 

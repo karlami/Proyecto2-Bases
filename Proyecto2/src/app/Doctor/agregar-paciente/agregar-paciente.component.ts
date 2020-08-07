@@ -42,10 +42,10 @@ export class AgregarPacienteComponent implements OnInit {
         nombre: '',
         primerapellido: '',
         segundoapellido: '',
-        cedula: 1,
-        telefono: 1,
-        iddireccion: 1,
-        fechanacimiento: new Date('Ene 01 2020'),
+        cedula: undefined,
+        telefono: undefined,
+        iddireccion: undefined,
+        fechanacimiento: undefined,
         contrasena: ''
     };
 
@@ -57,8 +57,8 @@ export class AgregarPacienteComponent implements OnInit {
       patologiaForm.reset();
     }
     this.patologiaa = {
-        idpaciente: 1,
-        idpatologia: 1,
+        idpaciente: undefined,
+        idpatologia: undefined,
         tratamiento: ''
     };
 
@@ -85,11 +85,10 @@ export class AgregarPacienteComponent implements OnInit {
     }
 
   onSubmit(pacienteForm: NgForm) {
-    console.log('Ingresado');
-    // console.log(this.service.postPacientes(this.pacientee));
-    // this.service.postPacientes(this.pacientee);
+    console.log(this.pacientee);
+    console.log(this.service.postPaciente(this.pacientee));
     this.generateForm();
-    console.log(this.pacientee.cedula);
+    //window.location.reload();
   }
 
 

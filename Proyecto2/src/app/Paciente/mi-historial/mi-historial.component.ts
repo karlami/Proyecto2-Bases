@@ -14,7 +14,7 @@ export class MiHistorialComponent implements OnInit {
   constructor(public service: HistorialManagementService) { }
 
   ngOnInit(): void {
-    // this.service.getHistorial();
+    this.service.getHistorial(1);
   }
 
 }

@@ -10,18 +10,21 @@
     <table class="table table-hover">
       <tr>
         <th>Id</th>
+        <th>Nombre del Paciente</th>
         <th>Procedimiento</th>
-        <th>Fecha del procedimiento</th>
         <th>Tratamiento</th>
+        <th>Fecha del procedimiento</th>
+        <th>Días de Recuperación</th>
       </tr>
+      nombrepaciente
   
-   <!--
-      <tr *ngFor="let Histoail of service.historialList" >
-        <td>{{Cama.idhistorial}}</td>
-        <td>{{Cama.procedimiento}}</td>
-        <td>{{Cama.fecha}}</td>
-        <td>{{Cama.tratamiento}}</td>
+      <tr *ngFor="let Historial of service.historialList" >
+        <td>{{Historial.idhistorial}}</td>
+        <td>{{Historial.nombrepaciente}}</td>
+        <td>{{Historial.procedimiento}}</td>
+        <td>{{Historial.tratam}}</td>
+        <td>{{Historial.fechaProc}}</td>
+        <td>{{Historial.dias}}</td>
       </tr>
     </table>
   </div>
-  -->
