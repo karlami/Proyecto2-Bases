@@ -105,18 +105,65 @@ begin
 
     commit;
 end;$$;
-/*
---Para ejecutar modificarPersonal:
 
-CALL agregarPaciente(
--- Atributos de Persona
-11,
-'Karla',
-'Rivera',
-'Sanchez',
-85766410,
-'1997-10-24',
-'23df',
-3);
+/*
+Proceso para agregar y modificar datos de Cama
+*/
+
+CREATE PROCEDURE modificarCama(
+      _numerocama INTEGER, _uci BOOLEAN, _idequipo INTEGER, _idsalon INTEGER,
+	-- Atributo para tipo de declaracion
+	   tipoOperacion VARCHAR(20))
+language plpgsql
+as $$
+    DECLARE v_id INTEGER;
+begin
+
+	IF tipoOperacion = 'Insert' THEN
+			--Genera una Cama
+			INSERT INTO cama(uci)
+			VALUES (_uci) RETURNING numerocama INTO v_id;
+			--SELECT MAX(id) FROM cama;
+            --Genera una relacion de Cama y Equipo
+            INSERT INTO cama_equipo(idcama, idequipo)
+			VALUES (v_id, _idequipo);
+            --Genera una relacion de Cama y Salon
+            INSERT INTO cama_salon(idcama, idsalon)
+			VALUES (v_id, _idsalon);
+
+	ELSIF tipoOperacion = 'Update' THEN
+			--Actualiza una Cama con numero de cama en especifico
+			UPDATE cama
+            SET uci = _uci
+            WHERE numerocama = _numerocama;
+
+			--Actualiza el equipo de esa cama
+			UPDATE cama_equipo
+            SET idequipo = _idequipo
+            WHERE idcama = _numerocama;
+
+            --Actualiza el salon donde se encuentra esa cama
+			UPDATE cama_salon
+            SET idsalon = _idsalon
+            WHERE idcama = _numerocama;
+
+	ELSE
+		raise notice 'Error en modificarCama';
+
+	END IF;
+
+    commit;
+end;$$;
+
+
+
+/*
+--Para ejecutar modificarCama:
+
+CALL modificarCama(0, true, 3, 2, 'Insert');
 
 */
+
+
+
+
