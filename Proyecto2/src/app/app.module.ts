@@ -25,6 +25,7 @@ import { EncuestaComponent } from './Paciente/encuesta/encuesta.component';
 import { AgregarPacienteComponent } from './Doctor/agregar-paciente/agregar-paciente.component';
 import { RegistrarseComponent } from './Paciente/registrarse/registrarse.component';
 import { MiHistorialComponent } from './Paciente/mi-historial/mi-historial.component';
+import { LoginPacienteComponent } from './Paciente/login-paciente/login-paciente.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { MiHistorialComponent } from './Paciente/mi-historial/mi-historial.compo
     EncuestaComponent,
     AgregarPacienteComponent,
     RegistrarseComponent,
-    MiHistorialComponent
+    MiHistorialComponent,
+    LoginPacienteComponent
   ],
   imports: [
     BrowserModule,

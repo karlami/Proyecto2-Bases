@@ -102,7 +102,6 @@ export class GestionSalonesComponent implements OnInit {
   this.service.deleteSalon(numero);
   this.generateFormU();
   this.generateForm();
-  
   window.location.reload();
   }
 
@@ -113,17 +112,17 @@ export class GestionSalonesComponent implements OnInit {
   }
 
   obtenerTipo(variable: any){
-    if(variable == 1){
+    if (variable == 1){
       this.salonn.idtiposalon = 1;
       this.salonU.idtiposalon = 1;
-    }else if(variable == 2){
+    }else if (variable == 2){
       this.salonn.idtiposalon = 2;
       this.salonU.idtiposalon = 2;
     }else{
       this.salonn.idtiposalon = 3;
       this.salonU.idtiposalon = 3;
     }
-  } 
+  }
 
 }
 
