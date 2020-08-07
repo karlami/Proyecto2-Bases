@@ -48,7 +48,7 @@ namespace Hospital_TECNologico.Controllers
         public async Task<ActionResult<IEnumerable<Paciente_Patologia>>> Getpaciente_patologia(int idpaciente)
         {
             //GET DE UN VIEW ESPECIFICO DE PACIENTES_PATOLOGIAS
-            //TODOS TODOS LOS (PACIENTES_PATOLOGIAS X PATOLOGIAS)
+            //TODOS TODOS LOS (PACIENTES_PATOLOGIAS X PATOLOGIAS) DE UN PACIENTE ESPECIFICO
             return await _context.paciente_patologia.ToListAsync();
         }
 

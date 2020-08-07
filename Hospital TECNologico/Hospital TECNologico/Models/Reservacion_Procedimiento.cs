@@ -6,6 +6,12 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Hospital_TECNologico.Models
 {
+    /*
+     * Representa a los procedimientos que el Paciente
+     * hara un reservacion para que se le lleven a cabo.
+     * El Paciente puede ingresar, mostrar, modificar y eliminar 
+     * los procedimientos de las reservaciones.
+     */
     public class Reservacion_Procedimiento
     {
         public Reservacion_Procedimiento()
@@ -13,8 +19,8 @@ namespace Hospital_TECNologico.Models
         }
 
         [Key]
-        public int idreservacionprocedimiento { get; set; } //AGREGAR A BASE DE DATOS ??
+        //public int idreservacionprocedimiento { get; set; } //AGREGAR A BASE DE DATOS ??
         public int idreservacion { get; set; }
-        public int idprocedimiento { get; set; }       
+        public int idprocedimiento { get; set; }
     }
 }

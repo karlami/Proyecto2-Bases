@@ -32,6 +32,9 @@ namespace Hospital_TECNologico.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Salon>>> GetSalon()
         {
+            //GET DE UN VIEW ESPECIFICO DE SALONES
+            //TODOS TODOS LOS (SALONES X TIPO_SALONES) 
+
             return await _context.salon.ToListAsync();
         }
 
@@ -43,6 +46,9 @@ namespace Hospital_TECNologico.Controllers
         [HttpGet]
         public async Task<ActionResult<Salon>> GetSalon(int idSalon)
         {
+            //GET DE UN VIEW ESPECIFICO DE SALONES
+            //UN SOLO (SALONES X TIPO_SALONES) 
+
             var salon = await _context.salon.FindAsync(idSalon);
 
             if (salon == null)

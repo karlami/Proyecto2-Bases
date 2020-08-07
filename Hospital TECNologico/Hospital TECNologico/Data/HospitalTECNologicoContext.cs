@@ -27,8 +27,7 @@ namespace Hospital_TECNologico.Data
         public DbSet<Persona> persona { get; set; }
         public DbSet<Paciente> paciente { get; set; }
         public DbSet<Paciente_Patologia> paciente_patologia { get; set; }
-        //Patologia?
-        //Reservacion
+        public DbSet<Reservacion> reservacion { get; set; }
         public DbSet<Reservacion_Procedimiento> reservacion_procedimiento { get; set; }
         public DbSet<Procedimiento> procedimiento { get; set; }
         public DbSet<Historial_Clinico> historial_clinico { get; set; }
