@@ -34,7 +34,7 @@ const routes: Routes = [
     ]
 },
 
-{ path: 'HospitalTECnologico', pathMatch: 'prefix',
+{ path: 'HospitalTECnologico/Login', pathMatch: 'prefix',
     children: [
       { path: 'Inicio', component: WelcomeLoginPacienteComponent},
       { path: 'Registrase', component: RegistrarseComponent},
