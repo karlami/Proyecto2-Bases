@@ -40,7 +40,8 @@ namespace Hospital_TECNologico.Controllers
             //Query de SELECT del view VIEWPACIENTE para obtener los datos necesarios para mostrar todos los pacientes
             string query =
                 "SELECT "
-                + "idpaciente, " + "cedula, " + "nombrepaciente, " + "telefono, " + "direccion, " + "fechanacimiento, " + "contrasena, " + "patologia, " + "tratamiento "
+                + "idpaciente, " + "cedula, " + "nombrepaciente, " + "telefono, " + "direccion, " + "iddireccion, " 
+                + "fechanacimiento, " + "contrasena, " + "patologia, " + "tratamiento "
                 + "FROM "
                 + "viewPaciente"
                 + ";";
@@ -60,9 +61,10 @@ namespace Hospital_TECNologico.Controllers
             //Query de SELECT del view VIEWPACIENTE para obtener los datos necesarios para mostrar todos los pacientes
             string query =
                 "SELECT "
-                + "idpaciente, " + "cedula, " + "nombrepaciente, " + "telefono, " + "direccion, " + "fechanacimiento, " + "contrasena, " + "patologia, " + "tratamiento "
+                + "idpaciente, " + "cedula, " + "nombrepaciente, " + "telefono, " + "direccion, " + "iddireccion, "
+                + "fechanacimiento, " + "contrasena, " + "patologia, " + "tratamiento "
                 + "FROM "
-                + "viewPaciente " 
+                + "viewPaciente "
                 + "WHERE "
                 + "cedula = " + cedula.ToString()
                 + ";";
@@ -82,7 +84,8 @@ namespace Hospital_TECNologico.Controllers
             //Query de SELECT del view VIEWPACIENTE para obtener los datos necesarios para mostrar todos los pacientes
             string query =
                 "SELECT "
-                + "idpaciente, " + "cedula, " + "nombrepaciente, " + "telefono, " + "direccion, " + "fechanacimiento, " + "contrasena, " + "patologia, " + "tratamiento "
+                + "idpaciente, " + "cedula, " + "nombrepaciente, " + "telefono, " + "direccion, " + "iddireccion, "
+                + "fechanacimiento, " + "contrasena, " + "patologia, " + "tratamiento "
                 + "FROM "
                 + "viewPaciente "
                 + "WHERE "
