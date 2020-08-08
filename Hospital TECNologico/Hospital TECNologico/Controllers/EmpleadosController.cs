@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Hospital_TECNologico.Data;
 using Hospital_TECNologico.Models;
+using Hospital_TECNologico.Models.Views;
 
 namespace Hospital_TECNologico.Controllers
 {
@@ -34,34 +35,18 @@ namespace Hospital_TECNologico.Controllers
          */
         [Route("api/GetEmpleados")]
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Empleado>>> Getempleado()
+        public async Task<ActionResult<IEnumerable<vEmpleado>>> Getempleado()
         {
-            //GET DE UN VIEW ESPECIFICO DE EMPLEADOS
-            //TODOS TODOS LOS (EMPLEADOS X PERSONAS)
-
-
-
-
-
-            /*
-            //Query de SELECT del view VIEWPACIENTE para obtener los datos necesarios para mostrar todos los pacientes
+            //Query de SELECT de viewPersonal para obtener los datos necesarios para mostrar todos los empleados
             string query =
                 "SELECT "
-                + "idreservacion, " + "fechaingreso, " + "fechasalida, " + "idpaciente, " + "idcama "
+                + "idempleado, " + "cedula, " + "nombre, " + "primerapellido, " + "segundoapellido, " + "telefono, " + "fechanacimiento, " 
+                + "contrasena, " + "direccion, " + "iddireccion, " + "fechaingreso, " + "idpuesto, " + "nombrepuesto "
                 + "FROM "
-                + "reservacion " + ";";
+                + "viewPersonal " + ";";
 
             //Retorna todos los objetos obtenidos del view de historial_clinico
-            return await _context.vpaciente.FromSqlRaw(query).ToListAsync();
-            */
-
-
-
-
-
-
-
-            return await _context.empleado.ToListAsync();
+            return await _context.vempleado.FromSqlRaw(query).ToListAsync();
         }
 
         /*
@@ -70,41 +55,21 @@ namespace Hospital_TECNologico.Controllers
          */
         [Route("api/GetEmpleadoC/{cedula}")]
         [HttpGet]
-        public async Task<ActionResult<Empleado>> GetEmpleadoC(int cedula)
+        public async Task<ActionResult<IEnumerable<vEmpleado>>> GetEmpleadoC(int cedula)
         {
-            //GET DE UN VIEW ESPECIFICO DE EMPLEADOS
-            //UN UNICO (EMPLEADOS X PERSONAS)
-
-
-
-
-
-            /*
-            //Query de SELECT del view VIEWPACIENTE para obtener los datos necesarios para mostrar todos los pacientes
+            //Query de SELECT de viewPersonal para obtener los datos necesarios para mostrar todos los empleados
             string query =
                 "SELECT "
-                + "idreservacion, " + "fechaingreso, " + "fechasalida, " + "idpaciente, " + "idcama "
+                + "idempleado, " + "cedula, " + "nombre, " + "primerapellido, " + "segundoapellido, " + "telefono, " + "fechanacimiento, "
+                + "contrasena, " + "direccion, " + "iddireccion, " + "fechaingreso, " + "idpuesto, " + "nombrepuesto "
                 + "FROM "
-                + "reservacion " + ";";
+                + "viewPersonal "
+                + "WHERE "
+                + "cedula = " + cedula.ToString()
+                + ";";
 
             //Retorna todos los objetos obtenidos del view de historial_clinico
-            return await _context.vpaciente.FromSqlRaw(query).ToListAsync();
-            */
-
-
-
-
-
-
-
-            var empleado = await _context.empleado.FindAsync(cedula);
-
-            if (empleado == null)
-            {
-                return NotFound();
-            }
-
-            return empleado;
+            return await _context.vempleado.FromSqlRaw(query).ToListAsync();
         }
 
         /*
@@ -113,41 +78,21 @@ namespace Hospital_TECNologico.Controllers
          */
         [Route("api/GetEmpleado/{idempelado}")]
         [HttpGet]
-        public async Task<ActionResult<Empleado>> GetEmpleado(int idempelado)
+        public async Task<ActionResult<IEnumerable<vEmpleado>>> GetEmpleado(int idempelado)
         {
-            //GET DE UN VIEW ESPECIFICO DE EMPELADOS
-            //UN UNICO (EMPLEADOS X PERSONAS)
-
-
-
-
-
-            /*
-            //Query de SELECT del view VIEWPACIENTE para obtener los datos necesarios para mostrar todos los pacientes
+            //Query de SELECT de viewPersonal para obtener los datos necesarios para mostrar todos los empleados
             string query =
                 "SELECT "
-                + "idreservacion, " + "fechaingreso, " + "fechasalida, " + "idpaciente, " + "idcama "
+                + "idempleado, " + "cedula, " + "nombre, " + "primerapellido, " + "segundoapellido, " + "telefono, " + "fechanacimiento, "
+                + "contrasena, " + "direccion, " + "iddireccion, " + "fechaingreso, " + "idpuesto, " + "nombrepuesto "
                 + "FROM "
-                + "reservacion " + ";";
+                + "viewPersonal "
+                + "WHERE "
+                + "idempleado = " + idempelado.ToString()
+                + ";";
 
             //Retorna todos los objetos obtenidos del view de historial_clinico
-            return await _context.vpaciente.FromSqlRaw(query).ToListAsync();
-            */
-
-
-
-
-
-
-
-            var empleado = await _context.empleado.FindAsync(idempelado);
-
-            if (empleado == null)
-            {
-                return NotFound();
-            }
-
-            return empleado;
+            return await _context.vempleado.FromSqlRaw(query).ToListAsync();
         }
 
         /*

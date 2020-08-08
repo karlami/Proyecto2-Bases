@@ -37,7 +37,6 @@ namespace Hospital_TECNologico.Data
         public DbSet<Equipo> equipo { get; set; }
         public DbSet<Cama> cama { get; set; }
         public DbSet<Empleado> empleado { get; set; }
-
         public DbSet<Direccion> direccion { get; set; }
         
         //Views
@@ -46,8 +45,6 @@ namespace Hospital_TECNologico.Data
         public DbSet<vReservacion_Procedimiento> vreservacion_procedimiento { get; set; }
         public DbSet<vSalon> vsalon { get; set; }
         public DbSet<vCama> vcama { get; set; }
-
-
-
+        public DbSet<vEmpleado> vempleado { get; set; }
     }
 }
