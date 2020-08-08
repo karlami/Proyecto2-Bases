@@ -69,7 +69,7 @@ namespace Hospital_TECNologico
             services.AddDbContext<HospitalTECNologicoContext>(options => options.UseNpgsql(postgreSQLConnectionString));
 
             //MongoDB
-            MongoClient mongoDBClient = new MongoClient("localhost:27017/?readPreference=primary&appname=MongoDB%20Compass%20Community&ssl=false");
+            //MongoClient mongoDBClient = new MongoClient("localhost:27017/?readPreference=primary&appname=MongoDB%20Compass%20Community&ssl=false");
 
 
             //SQLServer
