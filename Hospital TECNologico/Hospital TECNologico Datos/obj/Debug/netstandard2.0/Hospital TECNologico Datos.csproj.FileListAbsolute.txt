@@ -1,0 +1,9 @@
+D:\Desktop - HDD\Proyecto_2\API\Hospital TECNologico\Hospital TECNologico Datos\bin\Debug\netstandard2.0\Hospital TECNologico Datos.deps.json
+D:\Desktop - HDD\Proyecto_2\API\Hospital TECNologico\Hospital TECNologico Datos\bin\Debug\netstandard2.0\Hospital TECNologico Datos.dll
+D:\Desktop - HDD\Proyecto_2\API\Hospital TECNologico\Hospital TECNologico Datos\obj\Debug\netstandard2.0\Hospital TECNologico Datos.csprojAssemblyReference.cache
+D:\Desktop - HDD\Proyecto_2\API\Hospital TECNologico\Hospital TECNologico Datos\obj\Debug\netstandard2.0\Hospital TECNologico Datos.AssemblyInfoInputs.cache
+D:\Desktop - HDD\Proyecto_2\API\Hospital TECNologico\Hospital TECNologico Datos\obj\Debug\netstandard2.0\Hospital TECNologico Datos.AssemblyInfo.cs
+D:\Desktop - HDD\Proyecto_2\API\Hospital TECNologico\Hospital TECNologico Datos\bin\Debug\netstandard2.0\Hospital TECNologico Datos.pdb
+D:\Desktop - HDD\Proyecto_2\API\Hospital TECNologico\Hospital TECNologico Datos\obj\Debug\netstandard2.0\Hospital TECNologico Datos.csproj.CoreCompileInputs.cache
+D:\Desktop - HDD\Proyecto_2\API\Hospital TECNologico\Hospital TECNologico Datos\obj\Debug\netstandard2.0\Hospital TECNologico Datos.dll
+D:\Desktop - HDD\Proyecto_2\API\Hospital TECNologico\Hospital TECNologico Datos\obj\Debug\netstandard2.0\Hospital TECNologico Datos.pdb
