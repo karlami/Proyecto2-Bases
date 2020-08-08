@@ -20,18 +20,26 @@ Corresponden a los primeros 8 id's.
 */
 CREATE FUNCTION procedimiento_default() RETURNS trigger AS $procedimiento_default$
     BEGIN
-        IF OLD.idprocedimiento >= 1 AND OLD.idprocedimiento < 8 THEN
-            RAISE EXCEPTION 'No se puede actualizar, es un valor default';
+        IF NEW.idprocedimiento >= 1 AND NEW.idprocedimiento <= 8 THEN
+            RAISE EXCEPTION 'No se puede eliminar, es un valor default';
 		ELSE
-			RETURN OLD;
+			RETURN NEW;
 		END IF;
 
     END;
 $procedimiento_default$ LANGUAGE plpgsql;
 
+
+
 CREATE TRIGGER procedimiento_default BEFORE UPDATE ON procedimiento
     FOR EACH ROW EXECUTE PROCEDURE procedimiento_default();
 
+UPDATE procedimiento
+            SET diasrecuperacion = 7
+            WHERE idprocedimiento = 9;
+
+SELECT *
+FROM procedimiento;
 /*
 Trigger Equipos Predefinidos
 No permite que se actualicen los equipos predefinidos de las camas
@@ -39,8 +47,8 @@ Corresponden a los primeros 7 id's.
 */
 CREATE FUNCTION equipo_default() RETURNS trigger AS $equipo_default$
     BEGIN
-        IF OLD.idequipo >= 1 AND OLD.idequipo < 7 THEN
-            RAISE EXCEPTION 'No se puede actualizar, es un valor default';
+        IF OLD.idequipo >= 1 AND OLD.idequipo <= 7 THEN
+            RAISE EXCEPTION 'No se puede eliminar, es un valor default';
 		ELSE
 			RETURN OLD;
 		END IF;

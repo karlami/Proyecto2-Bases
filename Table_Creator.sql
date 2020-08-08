@@ -206,6 +206,7 @@ CREATE TABLE IF NOT EXISTS Cama_Salon(
 -- referencias a Cama y Equipo
 
 CREATE TABLE IF NOT EXISTS Cama_Equipo(
+    idcama_equipo INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     idCama INTEGER NOT NULL REFERENCES Cama(numeroCama),
     idEquipo INTEGER NOT NULL REFERENCES Equipo(idEquipo)
 );
