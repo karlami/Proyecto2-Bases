@@ -1,0 +1,154 @@
+<app-nav-bar-admin></app-nav-bar-admin>
+
+<br><br><br><br><br><br>
+
+<div class="container">
+  <h1 style="color:#54CA8F">Gestión de Camas </h1>
+</div>
+
+<br><br>
+
+<!-- -------------------------------------------------------------------- -->
+<!------------------- Modal para ingresar camas ------------------------- -->
+<!-- ------------- numerocama, idequipo, idsalon y uci ------------------ -->
+<!-- -------------------------------------------------------------------- -->
+<div class="container">
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Ingresar nueva cama</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      
+      <form #camaForm = "ngForm" (ngSubmit)="onSubmit(camaForm)">
+
+        <div class="form-group">
+          <label for="tipomedicina"> Equipo </label>
+          <select name="tipomedicina"  #Equipo="ngModel"  [(ngModel)]="camaa.idequipo" [ngModelOptions]="{standalone: true}" type= "number" class="form-control" required>
+            <option *ngFor= "let equipo of equipoService.equipoList" [value]="equipo.idequipo"> {{equipo.nombre}} </option>
+          </select>
+        </div>
+        
+                
+        <div class="form-group">
+          <label for="tipomedicina"> Salon </label>
+          <select name="tipomedicina"  #Equipo="ngModel"  [(ngModel)]="camaa.idsalon" [ngModelOptions]="{standalone: true}" type= "number" class="form-control" required>
+            <option *ngFor= "let salon of SalonService.salonList" [value]="salon.numerosalon"> {{salon.nombre}} </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>UCI</label>
+          <input name="uci"  #UCI="ngModel" [(ngModel)]="camaa.uci" [ngModelOptions]="{standalone: true}" type= "checkbox" class="form-control" required>
+        </div>
+        
+        <div class = "form-group">
+          <div class = "col-md-4 col-md-offset-3">
+            <input class = "btn btn-primary" type = "submit" value = "Agregar" />
+          </div>
+        </div>
+      
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Salir</button>
+    </div>
+  </ng-template>
+
+  <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Ingresar</button>
+
+
+  <pre>{{ closeResult }}</pre>
+
+</div>
+
+
+<!-- -------------------------------------------------------------------- -->
+<!------------------- Modal para actualizar camas ----------------------- -->
+<!-- --- idCama, numerocama, idequipo, idsalon y uci -------------------- -->
+<!-- -------------------------------------------------------------------- -->
+<div class="container">
+  <ng-template #content1 let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Actualizar cama</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      
+      <form #updateForm = "ngForm" (ngSubmit)="onUpdate(updateForm)">
+
+        <div class="form-group">
+            <label>Número Cama</label>
+            <input name="numerocama"  #NumeroCama="ngModel" [(ngModel)]="camaU.numerocama" [ngModelOptions]="{standalone: true}" type= "number" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+          <label for="tipomedicina"> Equipo </label>
+          <select name="tipomedicina"  #Equipo="ngModel"  [(ngModel)]="camaU.idequipo" [ngModelOptions]="{standalone: true}" type= "number" class="form-control" required>
+            <option *ngFor= "let equipo of equipoService.equipoList" [value]="equipo.idequipo"> {{equipo.nombre}} </option>
+          </select>
+        </div>
+        
+        
+        <div class="form-group">
+          <label for="tipomedicina"> Salon </label>
+          <select name="tipomedicina"  #Equipo="ngModel"  [(ngModel)]="camaU.idsalon" [ngModelOptions]="{standalone: true}" type= "number" class="form-control" required>
+            <option *ngFor= "let salon of SalonService.salonList" [value]="salon.numerosalon"> {{salon.nombre}} </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+            <label>UCI</label>
+            <input name="uci"  #UCI="ngModel" [(ngModel)]="camaU.uci" [ngModelOptions]="{standalone: true}" type= "checkbox" class="form-control" required>
+        </div>
+
+        
+        <div class = "form-group">
+          <div class = "col-md-4 col-md-offset-3">
+            <input class = "btn btn-primary" type = "submit" value = "Actualizar" />
+          </div>
+        </div>
+      
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Salir</button>
+    </div>
+  </ng-template>
+
+  <button class="btn btn-lg btn-outline-primary" (click)="open(content1)">Actualizar</button>
+
+
+  <pre>{{ closeResult }}</pre>
+
+</div>
+
+
+<!-- -------------------------------------------------------------------- -->
+<!-- --------------- idCama, numeroCama, equipo, salon y uci ------------ -->
+<!-- -------------------------------------------------------------------- -->
+<div class="table-responsive">
+  <table class="table table-hover">
+    <tr>
+      <th>Número</th>
+      <th>Equipo Médico</th>
+      <th>Salón</th>
+      <th>UCI</th>
+    </tr>
+
+
+    <tr *ngFor="let Cama of service.camaList" >
+      <td>{{Cama.numerocama}}</td>
+      <td>{{Cama.nombreequipo}}</td>
+      <td>{{Cama.nombresalon}}</td>
+      <td>{{Cama.uci}}</td>
+      <button type="button" class="btn btn-default" data-toggle="modal" data-target=" #updateForm" 
+      (click)="selectId(Cama)">Ed</button>
+    </tr>
+  </table>
+</div>
+

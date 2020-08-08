@@ -1,0 +1,88 @@
+<app-nav-bar-paciente></app-nav-bar-paciente>
+
+<br><br><br><br><br><br>
+
+<div class="container">
+  <h1 style="color:#54CA8F">Gestión de Reservaciones </h1>
+</div>
+
+<br><br>
+
+<!-- -------------------------------------------------------------------- -->
+<!-------------------- Modal para ingresar salones ---------------------- -->
+<!-- ------------ nombre, cantidadcama, tipomedicina y numerosalon ------ -->
+<!-- -------------------------------------------------------------------- -->
+
+<div class="container">
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Ingresar nueva reservación</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      
+      <form #reservacionForm = "ngForm" (ngSubmit)="onSubmit(reservacionForm)">
+
+        <div class="form-group">
+          <label>Fecha Ingreso</label>
+          <input name="nombre"  #Nombre="ngModel" [(ngModel)]="reservacionn.fechaingreso" [ngModelOptions]="{standalone: true}" type= "date" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+          <label>Id Paciente</label>
+          <input name="capacidadcamas"  #CapacidadCamas="ngModel" [(ngModel)]="reservacionn.idpaciente" [ngModelOptions]="{standalone: true}" type= "number" class="form-control" required>
+        </div>
+
+      
+        <div class = "form-group">
+          <div class = "col-md-4 col-md-offset-3">
+            <input class = "btn btn-primary" type = "submit" value = "Agregar" />
+          </div>
+        </div>
+      
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Salir</button>
+    </div>
+  </ng-template>
+
+  <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Ingresar</button>
+
+
+  <pre>{{ closeResult }}</pre>
+
+</div>
+
+
+
+<!-- -------------------------------------------------------------------- -->
+<!-------------------- Tabla -------------------------------------------- -->
+<!---- Id, fechaingreso, fechasalida, idpaciente y idcama ---- -->
+<!-- -------------------------------------------------------------------- -->
+
+<div class="table-responsive">
+  <table class="table table-hover">
+    <tr>
+      <th>Id</th>
+      <th>Fecha Ingreso</th>
+      <th>Fecha Salida</th>
+      <th>IdPaciente</th>
+      <th>IdCama</th>
+    </tr>
+
+    <tr *ngFor="let Reservacion of service.reservacionList" >
+      <td>{{Reservacion.idreservacion}}</td>
+      <td>{{Reservacion.fechaingreso}}</td>
+      <td>{{Reservacion.fechasalida}}</td>
+      <td>{{Reservacion.idpaciente}}</td>
+      <td>{{Reservacion.idcama}}</td>
+      <button type="button" class="btn btn-default" data-toggle="modal" data-target=" #updateForm" 
+      (click)="selectId(Reservacion)">Ed</button>
+      <td><button type="button" class="btn btn-danger" (click)="onDelete(Reservacion.idreservacion)">
+      X<span class="glyphicon glyphicon-trash" ></span></button></td>
+    </tr>
+  </table>
+</div>

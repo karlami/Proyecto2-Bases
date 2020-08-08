@@ -1,0 +1,34 @@
+<app-nav-bar-paciente></app-nav-bar-paciente>
+
+<br><br><br><br><br><br>
+
+<div class="container">
+  <h1 style="color:#54CA8F">Mi Historial Clínico </h1>
+</div>
+
+
+<!-- ----------------------------------------------------------------------------------- -->
+<!---------------- Tabla para ver el historial cada paciente --------------------------- -->
+<!-- idhistorial, nombrepaciente, procedimiento, tratamiento, fechaingreso y dias ------ -->
+<!-- ----------------------------------------------------------------------------------- -->
+<div class="table-responsive">
+    <table class="table table-hover">
+      <tr>
+        <th>Id</th>
+        <th>Nombre del Paciente</th>
+        <th>Procedimiento</th>
+        <th>Tratamiento</th>
+        <th>Fecha del procedimiento</th>
+        <th>Días de Recuperación</th>
+      </tr>
+  
+      <tr *ngFor="let Historial of service.historialList" >
+        <td>{{Historial.idhistorial}}</td>
+        <td>{{Historial.nombrepaciente}}</td>
+        <td>{{Historial.procedimiento}}</td>
+        <td>{{Historial.tratam}}</td>
+        <td>{{Historial.fechaProc}}</td>
+        <td>{{Historial.dias}}</td>
+      </tr>
+    </table>
+  </div>
