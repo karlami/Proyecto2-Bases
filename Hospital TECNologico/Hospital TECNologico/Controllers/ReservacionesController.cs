@@ -61,7 +61,7 @@ namespace Hospital_TECNologico.Controllers
         }
 
         /*
-         * GET: "api/GetReservacion/idpacientepatologia"
+         * GET: "api/GetReservacion/idreservacion"
          * Obtiene solo la reservacion con el idreservacion indicado
          */
         [Route("api/GetReservacion/{idreservacion}")]

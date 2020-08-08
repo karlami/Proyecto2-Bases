@@ -156,7 +156,7 @@ namespace Hospital_TECNologico.Controllers
          */
         [Route("api/PutEmpleado")]
         [HttpPut]
-        public async Task<ActionResult<Empleado>> /*Task<IActionResult>*/ PutEmpleado([FromBody] Empleado empleado)
+        public async Task<ActionResult<Empleado>> PutEmpleado([FromBody] Empleado empleado)
         {
             //Query para llamar al Stored Procedure de Empleado y Actualizar las tablas que necesita
             string query = "CALL modificarPersonal("

@@ -18,6 +18,7 @@ namespace Hospital_TECNologico.Models.Views
         public string nombrepaciente { get; set; }
         public int telefono { get; set; }
         public string direccion { get; set; }
+        public int iddireccion { get; set; }
         public DateTime fechanacimiento { get; set; }
         public string contrasena { get; set; }
         public string patologia { get; set; } 

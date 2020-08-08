@@ -18,6 +18,6 @@ namespace Hospital_TECNologico.Models
 
         [Key]
         public int iddireccion { get; set; }
-        public bool direccion { get; set; }
+        public string direccion { get; set; }
     }
 }

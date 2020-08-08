@@ -37,6 +37,8 @@ namespace Hospital_TECNologico.Data
         public DbSet<Equipo> equipo { get; set; }
         public DbSet<Cama> cama { get; set; }
         public DbSet<Empleado> empleado { get; set; }
+
+        public DbSet<Direccion> direccion { get; set; }
         
         //Views
         public DbSet<vHistorial_Clinico> vhistorial_clinico { get; set; }
