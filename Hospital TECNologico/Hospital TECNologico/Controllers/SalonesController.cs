@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Hospital_TECNologico.Data;
 using Hospital_TECNologico.Models;
+using Hospital_TECNologico.Models.Views;
 
 namespace Hospital_TECNologico.Controllers
 {
@@ -34,33 +35,40 @@ namespace Hospital_TECNologico.Controllers
          */
         [Route("api/GetSalones")]
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Salon>>> GetSalon()
+        public async Task<ActionResult<IEnumerable<vSalon>>> GetSalon()
         {
-            //GET DE UN VIEW ESPECIFICO DE SALONES
-            //TODOS TODOS LOS (SALONES X TIPO_SALONES) 
+            //Query de SELECT de un View para obtener los datos necesarios para mostrar TODOS los salones
+            string query =
+                "SELECT "
+                + "numerosalon, " + "nombre, " + "cantidadcama, " + "numeropiso, " + "tipo "
+                + "FROM "
+                + "viewSalon"
+                + ";";
 
-            return await _context.salon.ToListAsync();
+            //Retorna todos los objetos obtenidos de viewSalon
+            return await _context.vsalon.FromSqlRaw(query).ToListAsync();
         }
 
         /*
-         * GET: "api/GetSalon/idSalon"
-         * Obtiene solo el salon con el idsalon indicado
+         * GET: "api/GetSalon/numerosalon"
+         * Obtiene solo el salon con el numerosalon indicado
          */
-        [Route("api/GetSalon/{idSalon}")]
+        [Route("api/GetSalon/{numerosalon}")]
         [HttpGet]
-        public async Task<ActionResult<Salon>> GetSalon(int idSalon)
+        public async Task<ActionResult<IEnumerable<vSalon>>> GetSalon(int numerosalon)
         {
-            //GET DE UN VIEW ESPECIFICO DE SALONES
-            //UN SOLO (SALONES X TIPO_SALONES) 
+            //Query de SELECT de un View para obtener los datos necesarios para mostrar TODOS los salones
+            string query =
+                "SELECT "
+                + "numerosalon, " + "nombre, " + "cantidadcama, " + "numeropiso, " + "tipo "
+                + "FROM "
+                + "viewSalon "
+                + "WHERE "
+                + "numerosalon = " + numerosalon.ToString()
+                + ";";
 
-            var salon = await _context.salon.FindAsync(idSalon);
-
-            if (salon == null)
-            {
-                return NotFound();
-            }
-
-            return salon;
+            //Retorna todos los objetos obtenidos de viewSalon
+            return await _context.vsalon.FromSqlRaw(query).ToListAsync();
         }
 
         /*
@@ -115,11 +123,11 @@ namespace Hospital_TECNologico.Controllers
          * DELETE: "api/DeleteSalon/{idsalon}"
          * Elimina de la base de datos el salon con el idsalon indicado
          */
-        [Route("api/DeleteSalon/{idSalon}")]
+        [Route("api/DeleteSalon/{numerosalon}")]
         [HttpDelete]
-        public async Task<ActionResult<Salon>> DeleteSalon(int idSalon)
+        public async Task<ActionResult<Salon>> DeleteSalon(int numerosalon)
         {
-            var salon = await _context.salon.FindAsync(idSalon);
+            var salon = await _context.salon.FindAsync(numerosalon);
             if (salon == null)
             {
                 return NotFound();
@@ -131,9 +139,9 @@ namespace Hospital_TECNologico.Controllers
             return salon;
         }
 
-        private bool SalonExists(int idSalon)
+        private bool SalonExists(int numerosalon)
         {
-            return _context.salon.Any(e => e.numerosalon == idSalon);
+            return _context.salon.Any(e => e.numerosalon == numerosalon);
         }
     }
 }

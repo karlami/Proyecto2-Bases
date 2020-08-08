@@ -139,7 +139,7 @@ namespace Hospital_TECNologico.Controllers
          */
         [Route("api/PostPaciente")]
         [HttpPost]
-        public async Task<ActionResult<Paciente>> PostPaciente([FromBody] Paciente paciente)
+        public async Task<ActionResult<IEnumerable<vPaciente>>> PostPaciente([FromBody] Paciente paciente)
         {
             /*_context.paciente.Add(paciente);
             await _context.SaveChangesAsync();*/
@@ -156,8 +156,9 @@ namespace Hospital_TECNologico.Controllers
 
             await _context.Database.ExecuteSqlRawAsync(query);
 
+            Task<ActionResult<IEnumerable<vPaciente>>> paciente_wid = GetPacienteC(paciente.cedula);
 
-            return paciente; //CreatedAtAction("GetPaciente", new { id = paciente.cedula }, paciente);
+            return await paciente_wid; //CreatedAtAction("GetPaciente", new { id = paciente.cedula }, paciente);
         }
 
         /*

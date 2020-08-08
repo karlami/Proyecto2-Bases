@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Hospital_TECNologico.Data;
 using Hospital_TECNologico.Models;
+using Hospital_TECNologico.Models.Views;
 
 namespace Hospital_TECNologico.Controllers
 {
@@ -34,34 +35,18 @@ namespace Hospital_TECNologico.Controllers
          */
         [Route("api/GetCamas")]
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Cama>>> Getcama()
+        public async Task<ActionResult<IEnumerable<vCama>>> Getcama()
         {
-            //GET DE UN VIEW ESPECIFICO DE CAMAS
-            //TODOS TODOS LOS (CAMAS X EQUIPOS X SALONES) 
-
-
-
-
-
-            /*
-            //Query de SELECT del view VIEWPACIENTE para obtener los datos necesarios para mostrar todos los pacientes
+            //Query de SELECT de un View para obtener los datos necesarios para mostrar TODAS las camas
             string query =
                 "SELECT "
-                + "idreservacion, " + "fechaingreso, " + "fechasalida, " + "idpaciente, " + "idcama "
+                + "numerocama, " + "nombreequipo, " + "nombresalon, " + "uci "
                 + "FROM "
-                + "reservacion " + ";";
+                + "viewCama"
+                + ";";
 
-            //Retorna todos los objetos obtenidos del view de historial_clinico
-            return await _context.vpaciente.FromSqlRaw(query).ToListAsync();
-            */
-
-
-
-
-
-
-
-            return await _context.cama.ToListAsync();
+            //Retorna todos los objetos obtenidos de viewCama
+            return await _context.vcama.FromSqlRaw(query).ToListAsync();
         }
 
         /*
@@ -70,41 +55,20 @@ namespace Hospital_TECNologico.Controllers
          */
         [Route("api/GetCama/{numerocama}")]
         [HttpGet]
-        public async Task<ActionResult<Cama>> GetCama(int numerocama)
+        public async Task<ActionResult<IEnumerable<vCama>>> GetCama(int numerocama)
         {
-            //GET DE UN VIEW ESPECIFICO DE CAMAS
-            //UNA UNICA (CAMAS X EQUIPOS X SALONES)
-
-
-
-
-
-
-            /*
-            //Query de SELECT del view VIEWPACIENTE para obtener los datos necesarios para mostrar todos los pacientes
+            //Query de SELECT de un View para obtener los datos necesarios para mostrar una sola cama
             string query =
                 "SELECT "
-                + "idreservacion, " + "fechaingreso, " + "fechasalida, " + "idpaciente, " + "idcama "
+                + "numerocama, " + "nombreequipo, " + "nombresalon, " + "uci "
                 + "FROM "
-                + "reservacion " + ";";
+                + "viewCama "
+                + "WHERE "
+                + "numerocama = " + numerocama.ToString()
+                + ";";
 
-            //Retorna todos los objetos obtenidos del view de historial_clinico
-            return await _context.vpaciente.FromSqlRaw(query).ToListAsync();
-            */
-
-
-
-
-
-
-            var cama = await _context.cama.FindAsync(numerocama);
-
-            if (cama == null)
-            {
-                return NotFound();
-            }
-
-            return cama;
+            //Retorna todos los objetos obtenidos de viewCama
+            return await _context.vcama.FromSqlRaw(query).ToListAsync();
         }
 
         /*

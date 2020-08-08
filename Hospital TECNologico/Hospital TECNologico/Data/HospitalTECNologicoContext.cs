@@ -44,6 +44,8 @@ namespace Hospital_TECNologico.Data
         public DbSet<vHistorial_Clinico> vhistorial_clinico { get; set; }
         public DbSet<vPaciente> vpaciente { get; set; }
         public DbSet<vReservacion_Procedimiento> vreservacion_procedimiento { get; set; }
+        public DbSet<vSalon> vsalon { get; set; }
+        public DbSet<vCama> vcama { get; set; }
 
 
 
