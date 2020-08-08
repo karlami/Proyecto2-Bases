@@ -105,3 +105,24 @@ END; $$
 LANGUAGE 'plpgsql';
 
 -- SELECT getUbicacion(73);
+
+/*
+Obtiene el nombre completo de una persona al ingresar su cedula.
+param: _cedula INTEGER
+return: nombre completo concatenado
+*/
+
+CREATE OR REPLACE FUNCTION getidpaciente(_cedula INTEGER)
+RETURNS INTEGER
+AS $$
+DECLARE idpaciente INTEGER;
+BEGIN
+    SELECT
+        (SELECT paciente.idpaciente
+        from paciente
+        where paciente.cedula = _cedula) INTO idpaciente;
+	RETURN idpaciente;
+END; $$
+LANGUAGE 'plpgsql';
+
+-- SELECT getidpaciente(501192614);

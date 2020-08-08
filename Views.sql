@@ -143,6 +143,7 @@ numero de cama, equipo medico que posee cada cama, salón en el que se encuentra
 */
 CREATE VIEW viewCama AS
 	SELECT
+	    cae.idcama_equipo as idcama_equipo,
 	    ca.numerocama as numerocama,
         e.nombre as nombreequipo,
 	    sal.nombre as nombresalon,

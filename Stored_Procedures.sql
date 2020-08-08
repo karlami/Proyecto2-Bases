@@ -162,6 +162,31 @@ CALL modificarCama(0, true, 3, 2, 'Insert');
 
 */
 
+/*
+Proceso para modificar datos de CentroHospitalario
+*/
+
+CREATE PROCEDURE agregarPaciente_Patologia(
+        _cedula INTEGER, _idpatologia INTEGER, _tratamiento VARCHAR(255))
+language plpgsql
+as $$
+begin
+    INSERT INTO paciente_patologia(idpaciente, idpatologia, tratamiento)
+    VALUES (getidpaciente(_cedula), _idpatologia, _tratamiento);
+    commit;
+end;$$;
+
+/*
+--Para ejecutar agregarPaciente:
+
+CALL agregarPaciente_Patologia(
+-- Atributos de Persona
+200765074,
+16, 'Tomar agua');
+*/
+
+
+
 
 
 
