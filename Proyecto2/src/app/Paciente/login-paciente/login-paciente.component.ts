@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Login } from 'src/app/Modelos/login.model';
+import { ViewPaciente } from 'src/app/Modelos/view-paciente.model';
 import { LoginManagementService } from 'src/app/Servicios/login-management.service';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login-paciente',
@@ -16,8 +19,10 @@ export class LoginPacienteComponent implements OnInit {
   submitted = false;
   loginn: Login;
   closeResult = '';
+  PacienteLog:ViewPaciente;
+  contrasena:string;
 
-  constructor(public service: LoginManagementService, private formBuilder: FormBuilder) { }
+  constructor(private toastr: ToastrService, public service: LoginManagementService, private formBuilder: FormBuilder, private _router: Router) { }
 
   ngOnInit(): void {
     this.generateForm();
@@ -36,9 +41,21 @@ export class LoginPacienteComponent implements OnInit {
 
   onSubmit(loginForm: NgForm) {
     console.log('Ingresado');
-    // console.log(this.service.postEncuesta(this.encuestaa));
-    // this.service.postLogin(this.encuestaa);
-    this.generateForm();
+    this.service.getCredencialesPaciente(this.loginn.cedula);
+    console.log(this.service.PacienteLog);
+    this.comprobarLogin();
   }
+  comprobarLogin(){
+    if(this.service.PacienteLog[0] != undefined){
+      if(this.service.PacienteLog[0].contrasena == this.loginn.contrasena){
+        localStorage.setItem('idPaciente', this.service.PacienteLog[0].idpaciente);
+        this._router.navigateByUrl('/HospitalTECnologico/Paciente');
+      }else{
+        this.toastr.error('Error', 'La información ingresada no es válida.');
+      }
+    }else{
+      this.toastr.error('Error', 'La información ingresada no es válida.');
+    }
 
+  }
 }
