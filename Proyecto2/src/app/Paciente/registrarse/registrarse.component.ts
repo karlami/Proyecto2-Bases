@@ -34,7 +34,7 @@ export class RegistrarseComponent implements OnInit {
     this.generateFormPat();
   }
 
-
+  // metodo para generar el formulario de paciente
   generateForm(pacienteForm?: NgForm) {
     if (pacienteForm != null) {
       pacienteForm.reset();
@@ -52,7 +52,7 @@ export class RegistrarseComponent implements OnInit {
 
   }
 
-
+  // metodo para generar el formulario de patologia
   generateFormPat(patologiaForm?: NgForm) {
     if (patologiaForm != null) {
       patologiaForm.reset();
@@ -85,6 +85,7 @@ export class RegistrarseComponent implements OnInit {
     }
     }
 
+  //metodo para el post
   onSubmit(pacienteForm: NgForm) {
     console.log('Ingresado');
     // console.log(this.service.postPacientes(this.pacientee));
@@ -93,7 +94,7 @@ export class RegistrarseComponent implements OnInit {
     console.log(this.pacientee.cedula);
   }
 
-
+  // metodo para insertar patologias
   onInsertPat(patologiaForm: NgForm) {
     console.log('Ingresado');
     // console.log(this.servicepat.postPatologias(this.patologiaa));

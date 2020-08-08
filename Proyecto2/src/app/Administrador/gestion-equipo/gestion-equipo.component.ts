@@ -29,6 +29,7 @@ export class GestionEquipoComponent implements OnInit {
   this.generateForm();
   }
 
+  // metodo para crear el formulario para el put
   generateFormU(equipoForm?: NgForm) {
   if (equipoForm != null) {
   equipoForm.reset();
@@ -42,6 +43,7 @@ export class GestionEquipoComponent implements OnInit {
 
   }
 
+  // metodo para crear el formulario para el post
   generateForm(updateForm?: NgForm) {
   if (updateForm != null) {
   updateForm.reset();
@@ -72,6 +74,7 @@ export class GestionEquipoComponent implements OnInit {
   }
   }
 
+  // metodo para el post
   onSubmit(equipoForm: NgForm) {
   console.log('Ingresado');
   console.log(this.equipoo);
@@ -82,6 +85,7 @@ export class GestionEquipoComponent implements OnInit {
   window.location.reload();
   }
 
+  // metodo para el put
   onUpdate(updateForm: NgForm) {
   console.log('Actualizado');
   console.log(this.equipoU);
@@ -91,6 +95,7 @@ export class GestionEquipoComponent implements OnInit {
   window.location.reload();
   }
 
+  // metodo para seleccionar un unico equipo
   selectId(equipo: Equipo) {
   this.equipoU = equipo;
   console.log(this.equipoU);

@@ -8,8 +8,10 @@
 
 <br><br>
 
-<!-- Modal para ingresar procedimiento 
-Contiene el nombre: text y los diasrecuperacion: number -->
+<!-- -------------------------------------------------------------------- -->
+<!-------------------- Modal para ingresar procedimientos --------------- -->
+<!-- --------------------- nombre y diasrecuperacion -------------------- -->
+<!-- -------------------------------------------------------------------- -->
 
 <div class="container">
   <ng-template #content let-modal>
@@ -54,7 +56,11 @@ Contiene el nombre: text y los diasrecuperacion: number -->
 
 </div>
 
-<!-- Modal para actualizar procedimiento -->
+<!-- -------------------------------------------------------------------- -->
+<!-------------------- Modal para ingresar procedimientos --------------- -->
+<!-- ------------ idprocedimiento, nombre y diasrecuperacion ------------ -->
+<!-- -------------------------------------------------------------------- -->
+
 <div class="container">
   <ng-template #content1 let-modal>
     <div class="modal-header">
@@ -67,7 +73,7 @@ Contiene el nombre: text y los diasrecuperacion: number -->
       
       <form #updateForm = "ngForm" (ngSubmit)="onUpdate(updateForm)">
 
-        <div class="form-group">
+          <div class="form-group">
             <label>IdProcedimiento</label>
             <input name="idprocedimiento"  #IdProcedimiento="ngModel" [(ngModel)]="procedimientoU.idprocedimiento" [ngModelOptions]="{standalone: true}" type= "number" class="form-control" required>
           </div>
@@ -104,6 +110,10 @@ Contiene el nombre: text y los diasrecuperacion: number -->
 </div>
 
 
+<!-- -------------------------------------------------------------------- -->
+<!-------------------------------- Tabla -------------------------------- -->
+<!-- ------------ idprocedimiento, nombre y diasrecuperacion ------------ -->
+<!-- -------------------------------------------------------------------- -->
 
 <div class="table-responsive">
   <table class="table table-hover">

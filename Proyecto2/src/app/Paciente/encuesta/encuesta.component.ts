@@ -23,6 +23,7 @@ export class EncuestaComponent implements OnInit {
     this.generateForm();
   }
 
+  // metodo para generar el formulario
   generateForm(updateForm?: NgForm) {
     if (updateForm != null) {
       updateForm.reset();
@@ -36,6 +37,7 @@ export class EncuestaComponent implements OnInit {
   }
 
 
+  // metodo para hacer el post
   onSubmit(encuestaForm: NgForm) {
     console.log('Ingresado');
     // console.log(this.service.postEncuesta(this.encuestaa));

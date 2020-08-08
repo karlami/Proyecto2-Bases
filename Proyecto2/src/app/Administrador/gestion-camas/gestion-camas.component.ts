@@ -31,6 +31,7 @@ export class GestionCamasComponent implements OnInit {
     this.generateForm();
   }
 
+  // metodo para generar el formulario para el put
   generateFormU(camaForm?: NgForm) {
     if (camaForm != null) {
       camaForm.reset();
@@ -44,12 +45,12 @@ export class GestionCamasComponent implements OnInit {
 
   }
 
+  // metodo para generar el formulario para el post
   generateForm(updateForm?: NgForm) {
     if (updateForm != null) {
       updateForm.reset();
     }
     this.camaa = {
-        numerocama: undefined,
         idequipo: undefined,
         idsalon: undefined,
         uci: false
@@ -75,6 +76,7 @@ export class GestionCamasComponent implements OnInit {
     }
   }
 
+  // metodo para el post
   onSubmit(camaForm: NgForm) {
     console.log(this.camaa);
     this.service.postCama(this.camaa);
@@ -83,7 +85,7 @@ export class GestionCamasComponent implements OnInit {
     window.location.reload();
   }
 
-
+  // metodo para el put
   onUpdate(updateForm: NgForm) {
     console.log('Actualizado');
     console.log(this.camaU);
@@ -93,6 +95,7 @@ export class GestionCamasComponent implements OnInit {
     this.generateForm();
   }
 
+  // metodo para delete
   onDelete(idcama: number) {
     console.log('Deleted');
     // this.service.deleteCamas(idcama);
@@ -101,6 +104,7 @@ export class GestionCamasComponent implements OnInit {
     this.generateForm();
    }
 
+   // metodo para seleccionar una sola cama
   selectId(cama: Cama) {
     this.camaU = cama;
     console.log(this.camaU);

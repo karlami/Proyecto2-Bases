@@ -33,6 +33,7 @@ export class GestionPersonalComponent implements OnInit {
   this.generateForm();
   }
 
+  // metodo para crear el formulario para el put
   generateFormU(empleadoForm?: NgForm) {
   if (empleadoForm != null) {
   empleadoForm.reset();
@@ -53,6 +54,7 @@ export class GestionPersonalComponent implements OnInit {
 
   }
 
+  // metodo para crear el formulario para el post
   generateForm(updateForm?: NgForm) {
   if (updateForm != null) {
   updateForm.reset();
@@ -91,6 +93,7 @@ export class GestionPersonalComponent implements OnInit {
   }
   }
 
+  // metodo para hacer el post
   onSubmit(empeadoForm: NgForm) {
   console.log('Ingresado');
   //console.log(this.empleadoo);
@@ -101,6 +104,7 @@ export class GestionPersonalComponent implements OnInit {
   this.generateForm();
   }
 
+  // metodo para hacer el put
   onUpdate(updateForm: NgForm) {
   console.log('Actualizado');
   console.log(this.empleadoU);
@@ -110,6 +114,7 @@ export class GestionPersonalComponent implements OnInit {
   this.generateForm();
   }
 
+  // metodo para hacer el delete
   onDelete(idequipo: number) {
   console.log('Deleted');
   // this.service.deleteEmpleados(idempleado);
@@ -118,12 +123,14 @@ export class GestionPersonalComponent implements OnInit {
   this.generateForm();
   }
 
+  // metodo para seleccionar un unico personal
   selectId(empleado: Empleado) {
   this.empleadoU = empleado;
   console.log(this.empleadoU);
   console.log(this.empleadoU.idempleado);
   }
-  
+
+  // metodo para obtener el id del puesto del empleado
   obtenerIdpuesto(variable: any){
     if(variable == 1){
       this.empleadoU.idpuesto = 1;
@@ -135,7 +142,6 @@ export class GestionPersonalComponent implements OnInit {
       this.empleadoU.idpuesto = 3;
       this.empleadoo.idpuesto = 3;
     }
-  } 
+  }
 
 }
-

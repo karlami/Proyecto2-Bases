@@ -33,6 +33,7 @@ export class GestionSalonesComponent implements OnInit {
   this.generateForm();
   }
 
+  // metodo para crear el formulario para el put
   generateFormU(salonForm?: NgForm) {
   if (salonForm != null) {
     salonForm.reset();
@@ -47,6 +48,7 @@ export class GestionSalonesComponent implements OnInit {
 
   }
 
+  // metodo para crear el formulario para el post
   generateForm(updateForm?: NgForm) {
   if (updateForm != null) {
   updateForm.reset();
@@ -78,6 +80,7 @@ export class GestionSalonesComponent implements OnInit {
   }
   }
 
+  // metodo para el post
   onSubmit(salonForm: NgForm) {
   console.log('Ingresado');
   console.log(this.salonn);
@@ -87,6 +90,7 @@ export class GestionSalonesComponent implements OnInit {
   window.location.reload();
   }
 
+  // metodo para el put
   onUpdate(updateForm: NgForm) {
   console.log('Actualizado');
   console.log(this.salonU);
@@ -96,6 +100,7 @@ export class GestionSalonesComponent implements OnInit {
   window.location.reload();
   }
 
+  // metodo para el delete
   onDelete(numero: number) {
   console.log('Deleted');
   console.log(numero);
@@ -105,12 +110,14 @@ export class GestionSalonesComponent implements OnInit {
   window.location.reload();
   }
 
+  // metodo para seleciionar un unico salon
   selectId(salon: Salon) {
   this.salonU = salon;
   console.log(this.salonU);
   console.log(this.salonU.numerosalon);
   }
 
+  // metodo para obtener el id del tipo de salon 
   obtenerTipo(variable: any){
     if (variable == 1){
       this.salonn.idtiposalon = 1;

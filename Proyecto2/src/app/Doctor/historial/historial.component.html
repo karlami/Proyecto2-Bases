@@ -1,1 +1,59 @@
-<p>historial works!</p>
+<app-nav-bar-doctor></app-nav-bar-doctor>
+<br><br><br><br><br><br>
+
+<div class="container">
+  <h1 style="color:#54CA8F">Agregar un historial médico a un paciente: </h1>
+</div>
+ 
+<!-- -------------------------------------------------------------------------------- -->
+<!---------------- Formulario para ingresar un historial a un paciente -------------- -->
+<!-- ------------------ cedula, procedimiento, tratamiento y fechaingreso ----------- -->
+<!-- -------------------------------------------------------------------------------- -->
+  <div class="container">
+    
+        <div class="starter-template">
+    
+          <div class="row">       
+    
+            <div class="col-md-12 mt-5">
+    
+        
+              <form #historialForm = "ngForm" (ngSubmit)="onSubmit(historialForm)">
+  
+                <div class="form-group">
+                    <label>Cédula</label>
+                    <input name="cedula"  #Cedula="ngModel" [(ngModel)]="historiall.cedula" [ngModelOptions]="{standalone: true}" type= "number" class="form-control" required>
+                </div>
+  
+                <div class="form-group">
+                    <label>Procedimiento</label>
+                    <input name="procedimiento"  #Procedimiento="ngModel" [(ngModel)]="historiall.idprocedimiento" [ngModelOptions]="{standalone: true}" type= "number" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Tratamiento</label>
+                    <input name="tratamiento"  #Tratamiento="ngModel" [(ngModel)]="historiall.tratamiento" [ngModelOptions]="{standalone: true}" type= "text" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Fecha del procedimiento</label>
+                    <input name="fechaingreso"  #FechaIngreso="ngModel" [(ngModel)]="historiall.fechaingreso" [ngModelOptions]="{standalone: true}" type= "date" class="form-control" required>
+                </div>
+  
+                <div class = "form-group">
+                    <div class = "col-md-4 col-md-offset-3">
+                        <input class = "btn btn-primary" type = "submit" value = "Agregar historial" />
+                    </div>
+                </div>
+                    
+    
+            </form>
+    
+        </div>
+    
+    
+      </div>
+    
+    </div>
+    
+</div>

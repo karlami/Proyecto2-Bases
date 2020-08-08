@@ -8,7 +8,11 @@
 
 <br><br>
 
-<!-- Modal para ingresar personal -->
+<!-- -------------------------------------------------------------------- -->
+<!------------------ Modal para ingresar personal --------------------- ---->
+<!-- ---- nombre, primerapellido, segundoapellido, cedula, telefono, -- -----
+  ------- direccion, fechanacimiento, fechaingreso, puesto y contrasena   -->
+<!-- -------------------------------------------------------------------- -->
 <div class="container">
   <ng-template #content let-modal>
     <div class="modal-header">
@@ -51,8 +55,6 @@
             <input name="direccion"  #Direccion="ngModel" [(ngModel)]="empleadoo.iddireccion" [ngModelOptions]="{standalone: true}" type= "number" class="form-control" required>
           </div>
 
-
-          <!-- Poner calendarios -->
           <div class="form-group">
             <label>Fecha Nacimiento</label>
             <input name="fechanacimiento"  #FechaNacimiento="ngModel" [(ngModel)]="empleadoo.fechanacimiento" [ngModelOptions]="{standalone: true}" type= "date" class="form-control" required>
@@ -95,7 +97,11 @@
 
 </div>
 
-<!-- Modal para actualizar personal -->
+<!-- -------------------------------------------------------------------------------- -->
+<!---------------------------- Modal para actualizar personal --------------------- ---->
+<!-- ---- idempleado, nombre, primerapellido, segundoapellido, cedula, telefono, -- -----
+  ------- direccion, fechanacimiento, fechaingreso, puesto y contrasena ------------- -->
+<!-- -------------------------------------------------------------------------------- -->
 <div class="container">
   <ng-template #content1 let-modal>
     <div class="modal-header">
@@ -192,7 +198,11 @@
 </div>
 
 
-
+<!-- -------------------------------------------------------------------------------- -->
+<!---------------------------- Tabla ---------------------------------------------- ---->
+<!-- ---- idempleado, nombre, primerapellido, segundoapellido, cedula, telefono, -- -----
+  ------- direccion, fechanacimiento, fechaingreso, puesto y contrasena ------------- -->
+<!-- -------------------------------------------------------------------------------- -->
 <div class="table-responsive">
   <table class="table table-hover">
     <tr>
@@ -206,6 +216,7 @@
       <th>Fecha Nacimiento</th>
       <th>Fecha Ingreso</th>
       <th>Puesto</th>
+      <td>Contraseña</td>>
     </tr>
 
 
@@ -221,6 +232,7 @@
       <td>{{Equipo.fechanacimiento}}</td>
       <td>{{Equipo.fechaingreso}}</td>
       <td>{{Equipo.puesto}}</td>
+      <td>{{Equipo.contrasena}}</td>
       <button type="button" class="btn btn-default" data-toggle="modal" data-target=" #updateForm" 
       (click)="selectId(Empleado)">Ed</button>
       <td><button type="button" class="btn btn-danger" (click)="onDelete(Empleado.idempleado)">

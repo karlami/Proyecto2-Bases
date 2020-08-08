@@ -30,6 +30,7 @@ export class GestionProcedimientosComponent implements OnInit {
   this.generateForm();
   }
 
+  // metodo para crear el formulario para el put
   generateFormU(procedimientoForm?: NgForm) {
   if (procedimientoForm != null) {
     procedimientoForm.reset();
@@ -42,6 +43,7 @@ export class GestionProcedimientosComponent implements OnInit {
 
   }
 
+  // metodo para crear el formulario para el post
   generateForm(updateForm?: NgForm) {
   if (updateForm != null) {
   updateForm.reset();
@@ -71,6 +73,7 @@ export class GestionProcedimientosComponent implements OnInit {
   }
   }
 
+  // metodo para el post
   onSubmit(equipoForm: NgForm) {
   console.log('Ingresado');
   this.service.postProcedimiento(this.procedimientoo);
@@ -79,6 +82,7 @@ export class GestionProcedimientosComponent implements OnInit {
   window.location.reload();
   }
 
+  // metodo para el put
   onUpdate(updateForm: NgForm) {
   console.log('Actualizado');
   console.log(this.procedimientoU);
@@ -87,6 +91,7 @@ export class GestionProcedimientosComponent implements OnInit {
   this.generateForm();
   }
 
+  // metodo para seleccionar un unico procedimiento
   selectId(procedimiento: Procedimiento) {
   this.procedimientoU = procedimiento;
   console.log(this.procedimientoU);

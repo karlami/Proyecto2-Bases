@@ -33,7 +33,7 @@ export class AgregarPacienteComponent implements OnInit {
     this.generateFormPat();
   }
 
-
+  // metodo para generar el formulario del put
   generateForm(pacienteForm?: NgForm) {
     if (pacienteForm != null) {
       pacienteForm.reset();
@@ -51,7 +51,7 @@ export class AgregarPacienteComponent implements OnInit {
 
   }
 
-
+  // metodo para generar el formulario del post
   generateFormPat(patologiaForm?: NgForm) {
     if (patologiaForm != null) {
       patologiaForm.reset();
@@ -84,6 +84,7 @@ export class AgregarPacienteComponent implements OnInit {
     }
     }
 
+  // metodo para insertar paciente
   onSubmit(pacienteForm: NgForm) {
     console.log(this.pacientee);
     console.log(this.service.postPaciente(this.pacientee));
@@ -91,7 +92,7 @@ export class AgregarPacienteComponent implements OnInit {
     //window.location.reload();
   }
 
-
+  // metodo para insertar patologias
   onInsertPat(patologiaForm: NgForm) {
     console.log('Ingresado');
     // console.log(this.servicepat.postPatologias(this.patologiaa));

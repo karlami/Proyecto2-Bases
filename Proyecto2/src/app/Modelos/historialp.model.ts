@@ -1,6 +1,6 @@
 export class Historialp {
     cedula: number;
     idprocedimiento: number;
-    fechaIngreso: Date;
+    fechaingreso: Date;
     tratamiento: string;
 }
