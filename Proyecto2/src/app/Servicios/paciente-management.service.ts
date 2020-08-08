@@ -5,6 +5,7 @@ import { HttpHeaders } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
 import { Paciente } from '../Modelos/paciente.model';
 import { Pacientep } from '../Modelos/pacientep.model';
+import { ViewPaciente } from '../Modelos/view-paciente.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ import { Pacientep } from '../Modelos/pacientep.model';
 export class PacienteManagementService {
 
   paciente: Paciente;
+  pacienteC: ViewPaciente;
 
   constructor(private http: HttpClient, private constante: ConstanteService) { }
 
@@ -33,6 +35,10 @@ export class PacienteManagementService {
     };
     this.http.post(this.constante.rutaURL + '/api/PostPaciente', body, httpOptions).toPromise();
 
+  }
+  getCredencialesPaciente(cedula: number) {
+    this.http.get(this.constante.rutaURL + '/api/GetPacienteC/' + cedula ).
+    toPromise().then(res => this.pacienteC[0] = res as ViewPaciente);
   }
 
   getPaciente(idPaciente: number) {

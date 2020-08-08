@@ -23,6 +23,8 @@ export class AgregarPacienteComponent implements OnInit {
   pacientee: Pacientep;
   patologiaa: Patologia;
   closeResult = '';
+  idPaciente:number;
+  pacienteActual: any;
 
   constructor(public service: PacienteManagementService,public servicepat: PatologiaManagementService, 
     private formBuilder: FormBuilder, private modalService: NgbModal) { }
@@ -86,8 +88,20 @@ export class AgregarPacienteComponent implements OnInit {
 
   // metodo para insertar paciente
   onSubmit(pacienteForm: NgForm) {
-    console.log(this.pacientee);
-    console.log(this.service.postPaciente(this.pacientee));
+    this.service.addPacienteC(this.pacientee).subscribe(
+      res => {
+        
+        this.pacienteActual= res;
+        
+       },
+       error => {
+         console.error(error);
+         alert(error.error);
+       }
+    );
+    console.log(this.pacienteActual);
+    //this.pacienteActual = this.service.addPacienteC(this.pacientee);
+    //console.log(this.pacienteActual);
     this.generateForm();
     //window.location.reload();
   }
