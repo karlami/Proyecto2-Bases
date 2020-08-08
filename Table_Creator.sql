@@ -73,10 +73,11 @@ CREATE TABLE IF NOT EXISTS Paciente(
 );
 
 -- Tabla Cruz Paciente
--- Atributos: referencia a Paciente, referencia a Patolofia
+-- Atributos: idPaciente_patologia, referencia a Paciente, referencia a Patolofia
 -- y tratamiento para el paciente, segun la patologia
 
 CREATE TABLE IF NOT EXISTS Paciente_Patologia(
+    idPaciente_patologia INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     idPaciente INTEGER REFERENCES Paciente(idPaciente),
     idPatologia INTEGER REFERENCES Patologia(idPatologia),
     tratamiento VARCHAR(100) NOT NULL

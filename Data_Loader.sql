@@ -204,7 +204,7 @@ INSERT INTO paciente(cedula) VALUES
     (402583997);
 
 -- Datos de la relacion paciente_patologia
-INSERT INTO paciente_patologia VALUES
+INSERT INTO paciente_patologia(idpaciente, idpatologia, tratamiento) VALUES
     (1,17,'Tomar paracetamol para aliviar la fiebre producida por el dengue.'),
     (2,1,'Tomar pastillas y comprar aerosoles nasales o gotas para los ojos.'),
     (4,2,'Tomar mucho líquido y ácido acetilsalicílico.'),

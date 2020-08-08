@@ -59,7 +59,8 @@ CREATE VIEW viewPaciente AS
 	    pe.fechanacimiento AS fechanacimiento,
 	    pe.contrasena AS contrasena,
 	    pat.nombre AS patologia,
-        pacpat.tratamiento AS tratamiento
+        pacpat.tratamiento AS tratamiento,
+	    pacpat.idpaciente_patologia as idpaciente_patologia
 	FROM
 		paciente as pa
 		JOIN persona as pe ON pa.cedula = pe.cedula
@@ -100,7 +101,7 @@ CREATE VIEW viewReservacion_procedimiento AS
 	    rp.idreservacion AS idreservacion,
 	    rp.idprocedimiento AS idprocedimiento,
 	    p.nombre AS nombre,
-	    p.diasrecuperacion
+	    p.diasrecuperacion as diasrecuperacion
 	FROM
 		reservacion_procedimiento as rp
 		JOIN procedimiento as p ON rp.idprocedimiento = p.idprocedimiento;
@@ -114,9 +115,30 @@ WHERE idreservacion = 2;
 Vista para Salones
 Obtiene la siguiente informacion del Salon:
 numero del salon, nombre del salon, capacidad en camas, nombre del tipo de
-medicina al que pertenece el salon,
-nombre del tratamiento para el procedimiento en especifico, fecha del procedimiento y
-dias de recuperacion de cada procedimiento.
+medicina al que pertenece el salon y numero de piso donde se ubica.
+*/
+
+CREATE VIEW viewSalon AS
+	SELECT
+        sal.numerosalon as numerosalon,
+	    sal.nombre as nombre,
+	    sal.cantidadcama as cantidadcama,
+	    tsal.tipo as tipo,
+	    sal.numeropiso as numeropiso
+	FROM
+		salon as sal
+		JOIN tiposalon as tsal ON sal.idtiposalon = tsal.idtiposalon;
+/*
+SELECT *
+FROM viewSalon
+WHERE numerosalon = 1;
+*/
+
+ /*
+Vista para Camas
+Obtiene la siguiente informacion del Salon:
+numero de cama, nombre del salon, capacidad en camas, nombre del tipo de
+medicina al que pertenece el salon y numero de piso donde se ubica.
 */
 
 CREATE VIEW viewSalon AS
