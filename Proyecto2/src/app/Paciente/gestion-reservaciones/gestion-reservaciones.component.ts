@@ -7,6 +7,7 @@ import { NgForm } from '@angular/forms';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 
+
 @Component({
   selector: 'app-gestion-reservaciones',
   templateUrl: './gestion-reservaciones.component.html',
@@ -20,13 +21,15 @@ export class GestionReservacionesComponent implements OnInit {
   reservacionn: Reservacionp;
   reservacion: Reservacion;
   closeResult = '';
+  PacienteActual:any;
 
   constructor( public service: ReservacionManagementService, private formBuilder: FormBuilder,
-              private modalService: NgbModal) { }
+    private modalService: NgbModal) { }
 
   ngOnInit(): void {
-    this.service.getReservacion();
-    this.generateFormU();
+    this.PacienteActual = localStorage.getItem("idPaciente");
+    this.service.getReservacion(this.PacienteActual);
+    console.log(this.service.reservacionList);
   }
 
   // metodo para generar el formulario para el put
@@ -35,10 +38,9 @@ export class GestionReservacionesComponent implements OnInit {
       reservacionForm.reset();
     }
     this.reservacionn = {
-        numerocama: undefined,
-        idequipo: undefined,
-        idsalon: undefined,
-        uci: false
+      idpaciente : this.PacienteActual,
+      fechaingreso : undefined
+
     };
 
   }
@@ -50,7 +52,7 @@ export class GestionReservacionesComponent implements OnInit {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
   }
-
+  
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
