@@ -132,6 +132,7 @@ CREATE TABLE IF NOT EXISTS Reservacion(
 -- Atributos: Referencia a Paciente y referencia a Procedimiento
 
 CREATE TABLE IF NOT EXISTS Reservacion_Procedimiento(
+    idReservacion_Procedimiento INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     idReservacion INTEGER NOT NULL REFERENCES Reservacion(idReservacion),
     idProcedimiento INTEGER NOT NULL REFERENCES Procedimiento(idProcedimiento)
 );

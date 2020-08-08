@@ -41,3 +41,35 @@ FROM viewhistorial
 WHERE idpac = 2;
  */
 
+ /*
+Vista para Paciente
+Obtiene la siguiente informacion del Paciente:
+idPaciente, idPaciente, Nombre completo del paciente, nombre de cada procedimiento,
+nombre del tratamiento para el procedimiento en especifico, fecha del procedimiento y
+dias de recuperacion de cada procedimiento.
+*/
+
+CREATE VIEW viewPaciente AS
+	SELECT
+	    pa.idpaciente AS idpaciente,
+	    pe.cedula AS cedula,
+		getNombreCompleto(pa.cedula) AS nombrepaciente,
+		pe.telefono AS telefono,
+	    getubicacion(pe.iddireccion) as direccion,
+	    pe.fechanacimiento AS fechanacimiento,
+	    pat.nombre AS patologia,
+        pacpat.tratamiento AS tratamiento
+	FROM
+		paciente as pa
+		JOIN persona as pe ON pa.cedula = pe.cedula
+		JOIN paciente_patologia as pacpat ON pa.idpaciente = pacpat.idpaciente
+		JOIN patologia as pat ON pat.idpatologia=pacpat.idpatologia;
+
+ /*
+SELECT *
+FROM viewPaciente
+WHERE idpaciente = 2;
+*/
+
+
+
