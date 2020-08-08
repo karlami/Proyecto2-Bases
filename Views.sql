@@ -71,5 +71,19 @@ FROM viewPaciente
 WHERE idpaciente = 2;
 */
 
+ /*
+Vista para Direccion
+Obtiene la direccion concatenada dado el idDireccion:
+*/
+
+CREATE VIEW viewDireccion AS
+	SELECT
+        getubicacion(direccion.iddireccion) AS ubicacion
+    FROM direccion;
+
+/*
+SELECT *
+FROM viewDireccion;
+*/
 
 
