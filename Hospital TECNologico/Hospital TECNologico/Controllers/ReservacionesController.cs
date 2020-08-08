@@ -47,10 +47,17 @@ namespace Hospital_TECNologico.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Reservacion>>> Getreservacion(int idpaciente)
         {
-            //TODAS LAS RESERVACIONES DE UN PACIENTE ESPECIFICO
-            //SELECT DE LA TABLA WHERE idpaciente
-             
-            return await _context.reservacion.ToListAsync();
+            //Query de SELECT de la tabla reervaciones para obtener los datos necesarios para mostrar las reservaciones de un solo Paciente (idpaciente)
+            string query =
+                "SELECT "
+                + "idreservacion, " + "fechaingreso, " + "fechasalida, " + "idpaciente, " + "idcama "
+                + "FROM "
+                + "reservacion "
+                + "WHERE"
+                + " idpaciente = " + idpaciente.ToString() + ";";
+
+            //Retorna todos los objetos obtenidos del view de historial_clinico
+            return await _context.reservacion.FromSqlRaw(query).ToListAsync();
         }
 
         /*

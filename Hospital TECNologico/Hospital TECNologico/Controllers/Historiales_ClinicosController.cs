@@ -144,7 +144,7 @@ namespace Hospital_TECNologico.Controllers
          * Elimina de la base de datos el historial clinico con el idhistorial indicado
          * No necesario por especificacion!
          */
-        [Route("api/DeleteHistorial_Clinico/{idhistorial}")]
+        /*[Route("api/DeleteHistorial_Clinico/{idhistorial}")]
         [HttpDelete]
         public async Task<ActionResult<Historial_Clinico>> DeleteHistorial_Clinico(int idhistorial)
         {
@@ -158,7 +158,7 @@ namespace Hospital_TECNologico.Controllers
             await _context.SaveChangesAsync();
 
             return historial_Clinico;
-        }
+        }*/
 
         private bool Historial_ClinicoExists(int idhistorial)
         {

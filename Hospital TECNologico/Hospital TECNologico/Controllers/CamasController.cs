@@ -39,6 +39,28 @@ namespace Hospital_TECNologico.Controllers
             //GET DE UN VIEW ESPECIFICO DE CAMAS
             //TODOS TODOS LOS (CAMAS X EQUIPOS X SALONES) 
 
+
+
+
+
+            /*
+            //Query de SELECT del view VIEWPACIENTE para obtener los datos necesarios para mostrar todos los pacientes
+            string query =
+                "SELECT "
+                + "idreservacion, " + "fechaingreso, " + "fechasalida, " + "idpaciente, " + "idcama "
+                + "FROM "
+                + "reservacion " + ";";
+
+            //Retorna todos los objetos obtenidos del view de historial_clinico
+            return await _context.vpaciente.FromSqlRaw(query).ToListAsync();
+            */
+
+
+
+
+
+
+
             return await _context.cama.ToListAsync();
         }
 
@@ -52,6 +74,28 @@ namespace Hospital_TECNologico.Controllers
         {
             //GET DE UN VIEW ESPECIFICO DE CAMAS
             //UNA UNICA (CAMAS X EQUIPOS X SALONES)
+
+
+
+
+
+
+            /*
+            //Query de SELECT del view VIEWPACIENTE para obtener los datos necesarios para mostrar todos los pacientes
+            string query =
+                "SELECT "
+                + "idreservacion, " + "fechaingreso, " + "fechasalida, " + "idpaciente, " + "idcama "
+                + "FROM "
+                + "reservacion " + ";";
+
+            //Retorna todos los objetos obtenidos del view de historial_clinico
+            return await _context.vpaciente.FromSqlRaw(query).ToListAsync();
+            */
+
+
+
+
+
 
             var cama = await _context.cama.FindAsync(numerocama);
 
@@ -112,7 +156,7 @@ namespace Hospital_TECNologico.Controllers
          * Elimina de la base de datos la cama con el numerocama indicado
          * No necesario por especificacion!
          */
-        [Route("api/DeleteCama/{numerocama}")]
+        /*[Route("api/DeleteCama/{numerocama}")]
         [HttpDelete]
         public async Task<ActionResult<Cama>> DeleteCama(int numerocama)
         {
@@ -128,7 +172,7 @@ namespace Hospital_TECNologico.Controllers
             await _context.SaveChangesAsync();
 
             return cama;
-        }
+        }*/
 
         private bool CamaExists(int numerocama)
         {

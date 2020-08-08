@@ -19,7 +19,7 @@ namespace Hospital_TECNologico.Models
         }
 
         [Key]
-        //public int idreservacionprocedimiento { get; set; } //AGREGAR A BASE DE DATOS ??
+        public int idreservacionprocedimiento { get; set; } //AGREGAR A BASE DE DATOS
         public int idreservacion { get; set; }
         public int idprocedimiento { get; set; }
     }

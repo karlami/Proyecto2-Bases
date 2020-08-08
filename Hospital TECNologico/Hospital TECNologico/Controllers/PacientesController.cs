@@ -39,7 +39,73 @@ namespace Hospital_TECNologico.Controllers
             //GET DE UN VIEW ESPECIFICO DE PACIENTES
             //TODOS TODOS LOS (PACIENTES X PERSONAS)
 
+
+
+
+
+            /*
+            //Query de SELECT del view VIEWPACIENTE para obtener los datos necesarios para mostrar todos los pacientes
+            string query =
+                "SELECT "
+                + "idreservacion, " + "fechaingreso, " + "fechasalida, " + "idpaciente, " + "idcama "
+                + "FROM "
+                + "reservacion " + ";";
+
+            //Retorna todos los objetos obtenidos del view de historial_clinico
+            return await _context.vpaciente.FromSqlRaw(query).ToListAsync();
+            */
+
+
+
+
             return await _context.paciente.ToListAsync();
+        }
+
+        /*
+         * GET: "api/GetPacienteC/cedula"
+         * Obtiene solo el paciente con la cedula indicado
+         */
+        [Route("api/GetPacienteC/{cedula}")]
+        [HttpGet]
+        public async Task<ActionResult<Paciente>> GetPacienteC(int cedula)
+        {
+            //GET DE UN VIEW ESPECIFICO DE PACIENTES
+            //UN UNICO (PACIENTES X PERSONAS)
+
+
+
+
+
+
+
+
+            /*
+            //Query de SELECT del view VIEWPACIENTE para obtener los datos necesarios para mostrar todos los pacientes
+            string query =
+                "SELECT "
+                + "idreservacion, " + "fechaingreso, " + "fechasalida, " + "idpaciente, " + "idcama "
+                + "FROM "
+                + "reservacion " + ";";
+
+            //Retorna todos los objetos obtenidos del view de historial_clinico
+            return await _context.vpaciente.FromSqlRaw(query).ToListAsync();
+            */
+
+
+
+
+
+
+
+
+            var paciente = await _context.paciente.FindAsync(cedula);
+
+            if (paciente == null)
+            {
+                return NotFound();
+            }
+
+            return paciente;
         }
 
         /*
@@ -52,6 +118,32 @@ namespace Hospital_TECNologico.Controllers
         {
             //GET DE UN VIEW ESPECIFICO DE PACIENTES
             //UN UNICO (PACIENTES X PERSONAS)
+
+
+
+
+
+
+
+
+            /*
+            //Query de SELECT del view VIEWPACIENTE para obtener los datos necesarios para mostrar todos los pacientes
+            string query =
+                "SELECT "
+                + "idreservacion, " + "fechaingreso, " + "fechasalida, " + "idpaciente, " + "idcama "
+                + "FROM "
+                + "reservacion " + ";";
+
+            //Retorna todos los objetos obtenidos del view de historial_clinico
+            return await _context.vpaciente.FromSqlRaw(query).ToListAsync();
+            */
+
+
+
+
+
+
+
 
             var paciente = await _context.paciente.FindAsync(idpaciente);
 
@@ -68,14 +160,14 @@ namespace Hospital_TECNologico.Controllers
          * Actualiza un paciente con el idpaciente que se indica en el Form.
          * No necesario por especificacion!
          */
-        [Route("api/PutPaciente")]
+        /*[Route("api/PutPaciente")]
         [HttpPut]
         public async Task<IActionResult> PutPaciente([FromBody] Paciente paciente)
         {
-            /*if (id != paciente.cedula)
+            if (id != paciente.cedula)
             {
                 return BadRequest();
-            }*/
+            }
 
             //PUT EN UPDATE DE STORED PROCEDURE DE PACIENTE
 
@@ -98,7 +190,7 @@ namespace Hospital_TECNologico.Controllers
             }
 
             return NoContent();
-        }
+        }*/
 
         /*
          * POST: "api/PostPaciente"
@@ -121,11 +213,6 @@ namespace Hospital_TECNologico.Controllers
                 + paciente.contrasena.ToString() + "', "
                 + paciente.iddireccion.ToString() + "); ";
 
-            Console.WriteLine(query);
-
-            //var nPaciente = await _context.paciente.Update();
-            //var mpaciente = await _context.paciente.FindAsync(id);
-
             await _context.Database.ExecuteSqlRawAsync(query);
 
 
@@ -137,7 +224,7 @@ namespace Hospital_TECNologico.Controllers
          * Elimina de la base de datos el paciente con el idpaciente indicado
          * No necesario por especificacion!
          */
-        [Route("api/DeletePaciente/{idpaciente}")]
+        /*[Route("api/DeletePaciente/{idpaciente}")]
         [HttpDelete]
         public async Task<ActionResult<Paciente>> DeletePaciente(int idpaciente)
         {
@@ -153,8 +240,8 @@ namespace Hospital_TECNologico.Controllers
             await _context.SaveChangesAsync();
 
             return paciente;
-        }
-
+        }*/
+        
         private bool PacienteExists(int idpaciente)
         {
             return _context.paciente.Any(e => e.cedula == idpaciente);

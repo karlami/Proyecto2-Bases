@@ -110,7 +110,7 @@ namespace Hospital_TECNologico.Controllers
          * Elimina de la base de datos el procedimiento con el idprocedimiento indicado
          * No necesario por especificacion!
          */
-        [Route("api/DeleteProcedimiento/{idprocedimiento}")]
+        /*[Route("api/DeleteProcedimiento/{idprocedimiento}")]
         [HttpDelete]
         public async Task<ActionResult<Procedimiento>> DeleteProcedimiento(int idprocedimiento)
         {
@@ -124,7 +124,7 @@ namespace Hospital_TECNologico.Controllers
             await _context.SaveChangesAsync();
 
             return procedimiento;
-        }
+        }*/
 
         private bool ProcedimientoExists(int idprocedimiento)
         {

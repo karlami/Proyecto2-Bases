@@ -36,10 +36,6 @@ namespace Hospital_TECNologico.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Equipo>>> GetEquipo()
         {
-            /* (GET CON QUERY -> SELECT)
-            string query = "select * from \"salon\"";
-            await _context.Database.BeginTransactionAsync();
-            return await _context.salon.FromSqlRaw(query).ToListAsync();*/
             return await _context.equipo.ToListAsync();
         }
 
@@ -114,7 +110,7 @@ namespace Hospital_TECNologico.Controllers
          * Elimina de la base de datos el equipo medico con el idequipo indicado
          * No necesario por especificacion!
          */
-        [Route("api/DeleteEquipo/{idEquipo}")]
+        /*[Route("api/DeleteEquipo/{idEquipo}")]
         [HttpDelete]
         public async Task<ActionResult<Equipo>> DeleteEquipo(int idEquipo)
         {
@@ -128,7 +124,7 @@ namespace Hospital_TECNologico.Controllers
             await _context.SaveChangesAsync();
 
             return equipo;
-        }
+        }*/
 
         private bool EquipoExists(int idEquipo)
         {

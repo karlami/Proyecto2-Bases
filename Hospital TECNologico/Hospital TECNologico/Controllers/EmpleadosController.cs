@@ -39,7 +39,72 @@ namespace Hospital_TECNologico.Controllers
             //GET DE UN VIEW ESPECIFICO DE EMPLEADOS
             //TODOS TODOS LOS (EMPLEADOS X PERSONAS)
 
+
+
+
+
+            /*
+            //Query de SELECT del view VIEWPACIENTE para obtener los datos necesarios para mostrar todos los pacientes
+            string query =
+                "SELECT "
+                + "idreservacion, " + "fechaingreso, " + "fechasalida, " + "idpaciente, " + "idcama "
+                + "FROM "
+                + "reservacion " + ";";
+
+            //Retorna todos los objetos obtenidos del view de historial_clinico
+            return await _context.vpaciente.FromSqlRaw(query).ToListAsync();
+            */
+
+
+
+
+
+
+
             return await _context.empleado.ToListAsync();
+        }
+
+        /*
+         * GET: "api/GetEmpleadoC/cedula"
+         * Obtiene solo el empelado con la cedula indicada
+         */
+        [Route("api/GetEmpleadoC/{cedula}")]
+        [HttpGet]
+        public async Task<ActionResult<Empleado>> GetEmpleadoC(int cedula)
+        {
+            //GET DE UN VIEW ESPECIFICO DE EMPLEADOS
+            //UN UNICO (EMPLEADOS X PERSONAS)
+
+
+
+
+
+            /*
+            //Query de SELECT del view VIEWPACIENTE para obtener los datos necesarios para mostrar todos los pacientes
+            string query =
+                "SELECT "
+                + "idreservacion, " + "fechaingreso, " + "fechasalida, " + "idpaciente, " + "idcama "
+                + "FROM "
+                + "reservacion " + ";";
+
+            //Retorna todos los objetos obtenidos del view de historial_clinico
+            return await _context.vpaciente.FromSqlRaw(query).ToListAsync();
+            */
+
+
+
+
+
+
+
+            var empleado = await _context.empleado.FindAsync(cedula);
+
+            if (empleado == null)
+            {
+                return NotFound();
+            }
+
+            return empleado;
         }
 
         /*
@@ -52,6 +117,28 @@ namespace Hospital_TECNologico.Controllers
         {
             //GET DE UN VIEW ESPECIFICO DE EMPELADOS
             //UN UNICO (EMPLEADOS X PERSONAS)
+
+
+
+
+
+            /*
+            //Query de SELECT del view VIEWPACIENTE para obtener los datos necesarios para mostrar todos los pacientes
+            string query =
+                "SELECT "
+                + "idreservacion, " + "fechaingreso, " + "fechasalida, " + "idpaciente, " + "idcama "
+                + "FROM "
+                + "reservacion " + ";";
+
+            //Retorna todos los objetos obtenidos del view de historial_clinico
+            return await _context.vpaciente.FromSqlRaw(query).ToListAsync();
+            */
+
+
+
+
+
+
 
             var empleado = await _context.empleado.FindAsync(idempelado);
 
@@ -135,19 +222,6 @@ namespace Hospital_TECNologico.Controllers
         [HttpDelete]
         public async Task<ActionResult/*<Empleado>*/> DeleteEmpleado(int idempleado)
         {
-            //DELETE EN DELETE DE STORED PROCEDURE DE EMPLEADO
-
-            /*var empleado = await _context.empleado.FindAsync(idempleado);
-            if (empleado == null)
-            {
-                return NotFound();
-            }
-
-            _context.empleado.Remove(empleado);
-            await _context.SaveChangesAsync();
-
-            return empleado;*/
-
             string query = "CALL modificarPersonal("
                 + idempleado.ToString() + ", "
                 + "0" + ", '"
@@ -162,11 +236,8 @@ namespace Hospital_TECNologico.Controllers
                 + "0" + ", "
                 + "'Delete'" + "); ";
 
-            Console.WriteLine(query);
-
+            //Corre el Query
             await _context.Database.ExecuteSqlRawAsync(query);
-
-            //return empleado;
 
             return Ok("Se ha borrado el empleado con idempleado: " + idempleado.ToString());
         }

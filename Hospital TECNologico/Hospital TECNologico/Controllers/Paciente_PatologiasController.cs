@@ -39,6 +39,27 @@ namespace Hospital_TECNologico.Controllers
             //GET DE UN VIEW ESPECIFICO DE PACIENTES_PATOLOGIAS
             //TODOS TODOS LOS (PACIENTES_PATOLOGIAS X PATOLOGIAS)
 
+
+
+
+
+            /*
+            //Query de SELECT del view VIEWPACIENTE para obtener los datos necesarios para mostrar todos los pacientes
+            string query =
+                "SELECT "
+                + "idreservacion, " + "fechaingreso, " + "fechasalida, " + "idpaciente, " + "idcama "
+                + "FROM "
+                + "reservacion " + ";";
+
+            //Retorna todos los objetos obtenidos del view de historial_clinico
+            return await _context.vpaciente.FromSqlRaw(query).ToListAsync();
+            */
+
+
+
+
+
+
             //FUNCIONA CON LA TABLA ESPECIFICA DE PACIENTES_PATOLOGIAS -> POR MIENTRAS
             return await _context.paciente_patologia.ToListAsync();
         }
@@ -53,6 +74,27 @@ namespace Hospital_TECNologico.Controllers
         {
             //GET DE UN VIEW ESPECIFICO DE PACIENTES_PATOLOGIAS
             //TODOS TODOS LOS (PACIENTES_PATOLOGIAS X PATOLOGIAS) DE UN PACIENTE ESPECIFICO
+
+
+
+
+
+            /*
+            //Query de SELECT del view VIEWPACIENTE para obtener los datos necesarios para mostrar todos los pacientes
+            string query =
+                "SELECT "
+                + "idreservacion, " + "fechaingreso, " + "fechasalida, " + "idpaciente, " + "idcama "
+                + "FROM "
+                + "reservacion " + ";";
+
+            //Retorna todos los objetos obtenidos del view de historial_clinico
+            return await _context.vpaciente.FromSqlRaw(query).ToListAsync();
+            */
+
+
+
+
+
             return await _context.paciente_patologia.ToListAsync();
         }
 
@@ -71,6 +113,30 @@ namespace Hospital_TECNologico.Controllers
             //GET DE UN VIEW ESPECIFICO DE PACIENTES_PATOLOGIAS
             //UN UNICO (PACIENTES_PATOLOGIAS X PATOLOGIAS)
 
+
+
+
+
+
+
+            /*
+            //Query de SELECT del view VIEWPACIENTE para obtener los datos necesarios para mostrar todos los pacientes
+            string query =
+                "SELECT "
+                + "idreservacion, " + "fechaingreso, " + "fechasalida, " + "idpaciente, " + "idcama "
+                + "FROM "
+                + "reservacion " + ";";
+
+            //Retorna todos los objetos obtenidos del view de historial_clinico
+            return await _context.vpaciente.FromSqlRaw(query).ToListAsync();
+            */
+
+
+
+
+
+
+
             var paciente_Patologia = await _context.paciente_patologia.FindAsync(idpacientepatologia);
 
             if (paciente_Patologia == null)
@@ -85,22 +151,21 @@ namespace Hospital_TECNologico.Controllers
          * PUT: "api/PutPaciente_Patologia"
          * Actualiza un paciente_patologia con el idpacientepatologia que se indica en el Form.
          * No necesario por especificacion!
-         *            //SOLO SI SE AGREGA IDPACIENTE_PATOLOGIA!!!
          */
-        [Route("api/PutPaciente_Patologia")]
+        /*[Route("api/PutPaciente_Patologia")]
         [HttpPut]
         public async Task<IActionResult> PutPaciente_Patologia([FromBody] Paciente_Patologia paciente_Patologia)
         {
-            /*if (id != paciente_Patologia.idpaciente)
+            if (id != paciente_Patologia.idpaciente)
             {
                 return BadRequest();
-            }*/
+            }
 
             //SOLO SI SE AGREGA IDPACIENTE_PATOLOGIA!!!
 
             _context.Entry(paciente_Patologia).State = EntityState.Modified;
 
-            /*try
+            try
             {
                 await _context.SaveChangesAsync();
             }
@@ -114,10 +179,10 @@ namespace Hospital_TECNologico.Controllers
                 {
                     throw;
                 }
-            }*/
+            }
 
             return NoContent();
-        }
+        }*/
 
         /*
          * POST: "api/PostPaciente_Patologia"
@@ -137,9 +202,8 @@ namespace Hospital_TECNologico.Controllers
          * DELETE: "api/DeletePaciente_Patologia/idpacientepatologia"
          * Elimina de la base de datos el paciente_patologia con el idpacientepatologia indicado
          * No necesario por especificacion!
-         *            //SOLO SI SE AGREGA IDPACIENTE_PATOLOGIA!!!
          */
-        [Route("api/DeletePaciente_Patologia/{idpacientepatologia}")]
+        /*[Route("api/DeletePaciente_Patologia/{idpacientepatologia}")]
         [HttpDelete]
         public async Task<ActionResult<Paciente_Patologia>> DeletePaciente_Patologia(int idpacientepatologia)
         {
@@ -155,7 +219,7 @@ namespace Hospital_TECNologico.Controllers
             await _context.SaveChangesAsync();
 
             return paciente_Patologia;
-        }
+        }*/
 
         private bool Paciente_PatologiaExists(int idpacientepatologia)
         {
