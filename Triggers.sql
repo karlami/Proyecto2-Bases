@@ -14,16 +14,38 @@
 */
 
 /*
-Trigger Estados Predefinidos en EstadoPaciente
-No permite que se eliminen los estados predefinidos de los pacientes (Primeros 4 ids).
+Trigger Procedimientos Predefinidos
+No permite que se actualicen los procedimientos predefinidos de los pacientes
+Corresponden a los primeros 8 id's.
 */
-CREATE FUNCTION etapa_default() RETURNS trigger AS $etapa_default$
+CREATE FUNCTION procedimiento_default() RETURNS trigger AS $procedimiento_default$
     BEGIN
-        IF OLD.id >= 1 AND OLD.id <= 20 THEN
-            RAISE EXCEPTION 'No se puede eliminar o actualizar, es un valor default';
+        IF OLD.idprocedimiento >= 1 AND OLD.idprocedimiento < 8 THEN
+            RAISE EXCEPTION 'No se puede actualizar, es un valor default';
 		ELSE
 			RETURN OLD;
 		END IF;
 
     END;
-$etapa_default$ LANGUAGE plpgsql;
+$procedimiento_default$ LANGUAGE plpgsql;
+
+CREATE TRIGGER procedimiento_default BEFORE UPDATE ON procedimiento
+    FOR EACH ROW EXECUTE PROCEDURE procedimiento_default();
+
+/*
+Trigger Equipos Predefinidos
+No permite que se actualicen los equipos predefinidos de las camas
+Corresponden a los primeros 7 id's.
+*/
+CREATE FUNCTION equipo_default() RETURNS trigger AS $equipo_default$
+    BEGIN
+        IF OLD.idequipo >= 1 AND OLD.idequipo < 7 THEN
+            RAISE EXCEPTION 'No se puede actualizar, es un valor default';
+		ELSE
+			RETURN OLD;
+		END IF;
+    END;
+$equipo_default$ LANGUAGE plpgsql;
+
+CREATE TRIGGER equipo_default BEFORE UPDATE ON equipo
+    FOR EACH ROW EXECUTE PROCEDURE equipo_default();

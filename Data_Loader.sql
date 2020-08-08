@@ -247,7 +247,7 @@ INSERT INTO historial_clinico(tratamiento, fecha, idpaciente, idprocedimiento) V
     ('Evite el estrés y duerma lo suficiente.','2020-08-16',5,10),
     ('No tiene ningún tratamiento en particular.','2020-08-10',6,17),
     ('No se exponga al sol directamente para evitar infecciones en los ojos.','2020-08-09',7,3),
-    ('No use sostén con varillas.','2020-08-15',8,2),
+    ('No use sostén con varillas.','2020-08-15',10,2),
     ('Humecte bien su cuerpo en caso de sequedad.','2020-08-13',9,13),
     ('Lave bien su cuerpo luego de la palpación.','2020-08-14',10,18),
     ('Evite rascarse la piel en caso de picazón, puede sufrir descamación.','2020-08-07',1,13),
