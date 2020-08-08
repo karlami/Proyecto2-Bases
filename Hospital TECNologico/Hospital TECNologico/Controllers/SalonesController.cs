@@ -120,7 +120,7 @@ namespace Hospital_TECNologico.Controllers
         }
 
         /*
-         * DELETE: "api/DeleteSalon/{idsalon}"
+         * DELETE: "api/DeleteSalon/{numerosalon}"
          * Elimina de la base de datos el salon con el idsalon indicado
          */
         [Route("api/DeleteSalon/{numerosalon}")]

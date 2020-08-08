@@ -13,6 +13,7 @@ namespace Hospital_TECNologico.Models.Views
         }
 
         [Key]
+        public int idcama_equipo { get; set; }
         public int numerocama { get; set; }
         public string nombreequipo { get; set; }
         public string nombresalon { get; set; }

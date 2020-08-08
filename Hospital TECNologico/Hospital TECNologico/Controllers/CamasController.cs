@@ -40,7 +40,7 @@ namespace Hospital_TECNologico.Controllers
             //Query de SELECT de un View para obtener los datos necesarios para mostrar TODAS las camas
             string query =
                 "SELECT "
-                + "numerocama, " + "nombreequipo, " + "nombresalon, " + "uci "
+                + "idcama_equipo, " + "numerocama, " + "nombreequipo, " + "nombresalon, " + "uci "
                 + "FROM "
                 + "viewCama"
                 + ";";
@@ -60,7 +60,7 @@ namespace Hospital_TECNologico.Controllers
             //Query de SELECT de un View para obtener los datos necesarios para mostrar una sola cama
             string query =
                 "SELECT "
-                + "numerocama, " + "nombreequipo, " + "nombresalon, " + "uci "
+                + "idcama_equipo, " + "numerocama, " + "nombreequipo, " + "nombresalon, " + "uci "
                 + "FROM "
                 + "viewCama "
                 + "WHERE "
