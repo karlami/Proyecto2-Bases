@@ -11,10 +11,10 @@ import { NgForm } from '@angular/forms';
 })
 export class LoginPacienteComponent implements OnInit {
 
-  encuestaList: Login[];
-  encuestaForm: NgForm;
+  loginList: Login[];
+  loginForm: NgForm;
   submitted = false;
-  encuestaa: Login;
+  loginn: Login;
   closeResult = '';
 
   constructor(public service: LoginManagementService, private formBuilder: FormBuilder) { }
