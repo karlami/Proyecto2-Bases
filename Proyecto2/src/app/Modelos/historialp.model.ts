@@ -1,5 +1,5 @@
 export class Historialp {
-    cedula: number;
+    idPaciente: number;
     idprocedimiento: number;
     fechaingreso: Date;
     tratamiento: string;

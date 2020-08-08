@@ -24,22 +24,24 @@
       
       <form #camaForm = "ngForm" (ngSubmit)="onSubmit(camaForm)">
 
-        <!-- -------------------------------------------------------------------- -->
-        <!--Arreglar equipo medico-->
-        <!-- -------------------------------------------------------------------- -->
         <div class="form-group">
-          <label>Equipo Médico</label>
-          <input name="equipo"  #Equipo="ngModel" [(ngModel)]="camaa.idequipo" [ngModelOptions]="{standalone: true}" type= "number" class="form-control" required>
+          <label for="tipomedicina"> Equipo </label>
+          <select name="tipomedicina"  #Equipo="ngModel"  [(ngModel)]="camaa.idequipo" [ngModelOptions]="{standalone: true}" type= "number" class="form-control" required>
+            <option *ngFor= "let equipo of equipoService.equipoList" [value]="equipo.idequipo"> {{equipo.nombre}} </option>
+          </select>
         </div>
         
+                
         <div class="form-group">
-          <label>Salon</label>
-          <input name="idsalon"  #Salon="ngModel" [(ngModel)]="camaa.idsalon" [ngModelOptions]="{standalone: true}" type= "number" class="form-control" required>
+          <label for="tipomedicina"> Salon </label>
+          <select name="tipomedicina"  #Equipo="ngModel"  [(ngModel)]="camaa.idsalon" [ngModelOptions]="{standalone: true}" type= "number" class="form-control" required>
+            <option *ngFor= "let salon of SalonService.salonList" [value]="salon.numerosalon"> {{salon.nombre}} </option>
+          </select>
         </div>
 
         <div class="form-group">
           <label>UCI</label>
-          <input name="uci"  #UCI="ngModel" [(ngModel)]="camaa.uci" [ngModelOptions]="{standalone: true}" type= "boolean" class="form-control" required>
+          <input name="uci"  #UCI="ngModel" [(ngModel)]="camaa.uci" [ngModelOptions]="{standalone: true}" type= "checkbox" class="form-control" required>
         </div>
         
         <div class = "form-group">
@@ -84,22 +86,24 @@
             <input name="numerocama"  #NumeroCama="ngModel" [(ngModel)]="camaU.numerocama" [ngModelOptions]="{standalone: true}" type= "number" class="form-control" required>
         </div>
 
-        <!-- -------------------------------------------------------------------- -->
-        <!--Arreglar equipo medico-->
-        <!-- -------------------------------------------------------------------- -->
         <div class="form-group">
-            <label>Equipo Médico</label>
-            <input name="equipo"  #Equipo="ngModel" [(ngModel)]="camaU.equipomedico" [ngModelOptions]="{standalone: true}" type= "text" class="form-control" required>
+          <label for="tipomedicina"> Equipo </label>
+          <select name="tipomedicina"  #Equipo="ngModel"  [(ngModel)]="camaU.idequipo" [ngModelOptions]="{standalone: true}" type= "number" class="form-control" required>
+            <option *ngFor= "let equipo of equipoService.equipoList" [value]="equipo.idequipo"> {{equipo.nombre}} </option>
+          </select>
         </div>
         
+        
         <div class="form-group">
-            <label>Salón</label>
-            <input name="idsalon"  #Salon="ngModel" [(ngModel)]="camaU.idsalon" [ngModelOptions]="{standalone: true}" type= "number" class="form-control" required>
+          <label for="tipomedicina"> Salon </label>
+          <select name="tipomedicina"  #Equipo="ngModel"  [(ngModel)]="camaU.idsalon" [ngModelOptions]="{standalone: true}" type= "number" class="form-control" required>
+            <option *ngFor= "let salon of SalonService.salonList" [value]="salon.numerosalon"> {{salon.nombre}} </option>
+          </select>
         </div>
 
         <div class="form-group">
             <label>UCI</label>
-            <input name="uci"  #UCI="ngModel" [(ngModel)]="camaU.uci" [ngModelOptions]="{standalone: true}" type= "boolean" class="form-control" required>
+            <input name="uci"  #UCI="ngModel" [(ngModel)]="camaU.uci" [ngModelOptions]="{standalone: true}" type= "checkbox" class="form-control" required>
         </div>
 
         
@@ -130,7 +134,6 @@
 <div class="table-responsive">
   <table class="table table-hover">
     <tr>
-      <th>Id</th>
       <th>Número</th>
       <th>Equipo Médico</th>
       <th>Salón</th>
@@ -138,19 +141,14 @@
     </tr>
 
 
-<!-- 
     <tr *ngFor="let Cama of service.camaList" >
-      <td>{{Cama.idcama}}</td>
       <td>{{Cama.numerocama}}</td>
-      <td>{{Cama.equipomedico}}</td>
-      <td>{{Cama.salon}}</td>
+      <td>{{Cama.nombreequipo}}</td>
+      <td>{{Cama.nombresalon}}</td>
       <td>{{Cama.uci}}</td>
       <button type="button" class="btn btn-default" data-toggle="modal" data-target=" #updateForm" 
       (click)="selectId(Cama)">Ed</button>
-      <td><button type="button" class="btn btn-danger" (click)="onDelete(Cama.idcama)">
-      X<span class="glyphicon glyphicon-trash" ></span></button></td>
     </tr>
   </table>
 </div>
 
--->

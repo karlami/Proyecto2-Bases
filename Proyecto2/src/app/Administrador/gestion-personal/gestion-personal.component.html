@@ -50,9 +50,12 @@
             <input name="telefono"  #Telefono="ngModel" [(ngModel)]="empleadoo.telefono" [ngModelOptions]="{standalone: true}" type= "number" class="form-control" required>
           </div>
 
+
           <div class="form-group">
-            <label>Dirección</label>
-            <input name="direccion"  #Direccion="ngModel" [(ngModel)]="empleadoo.iddireccion" [ngModelOptions]="{standalone: true}" type= "number" class="form-control" required>
+            <label for="tipomedicina"> Dirección </label>
+            <select name="tipomedicina"  #Equipo="ngModel" [(ngModel)]="empleadoo.iddireccion" [ngModelOptions]="{standalone: true}" type= "number" class="form-control" required>
+              <option *ngFor= "let direccion of direccionService.direccionList" [value]="direccion.iddireccion"> {{direccion.direccion}} </option>
+            </select>
           </div>
 
           <div class="form-group">
@@ -145,8 +148,10 @@
           </div>
 
           <div class="form-group">
-            <label>Dirección</label>
-            <input name="direccion"  #Direccion="ngModel" [(ngModel)]="empleadoU.direccion" [ngModelOptions]="{standalone: true}" type= "text" class="form-control" required>
+            <label for="tipomedicina"> Dirección </label>
+            <select name="tipomedicina"  #Equipo="ngModel"  [(ngModel)]="empleadoU.iddireccion" [ngModelOptions]="{standalone: true}" type= "number" class="form-control" required>
+              <option *ngFor= "let direccion of direccionService.direccionList" [value]="direccion.iddireccion"> {{direccion.direccion}} </option>
+            </select>
           </div>
 
 
@@ -206,33 +211,29 @@
 <div class="table-responsive">
   <table class="table table-hover">
     <tr>
-      <th>Id</th>
       <th>Nombre</th>
-      <th>Primer apellido</th>
-      <th>Segundo apellido</th>
+      <th>Apellido 1</th>
+      <th>Apellido 2</th>
       <th>Cédula</th>
       <th>Teléfono</th>
       <th>Dirección</th>
-      <th>Fecha Nacimiento</th>
+      <th>Fecha Nac</th>
       <th>Fecha Ingreso</th>
       <th>Puesto</th>
-      <td>Contraseña</td>>
+      <td>Contraseña</td>
     </tr>
 
-
-<!-- 
     <tr *ngFor="let Empleado of service.empleadoList" >
-      <td>{{Equipo.idempleado}}</td>
-      <td>{{Equipo.nombre}}</td>
-      <td>{{Equipo.primerapellido}}</td>
-      <td>{{Equipo.segundoapellido}}</td>
-      <td>{{Equipo.cedula}}</td>
-      <td>{{Equipo.telefono}}</td>
-      <td>{{Equipo.direccion}}</td>
-      <td>{{Equipo.fechanacimiento}}</td>
-      <td>{{Equipo.fechaingreso}}</td>
-      <td>{{Equipo.puesto}}</td>
-      <td>{{Equipo.contrasena}}</td>
+      <td>{{Empleado.nombre}}</td>
+      <td>{{Empleado.primerapellido}}</td>
+      <td>{{Empleado.segundoapellido}}</td>
+      <td>{{Empleado.cedula}}</td>
+      <td>{{Empleado.telefono}}</td>
+      <td>{{Empleado.direccion}}</td>
+      <td>{{Empleado.fechanacimiento}}</td>
+      <td>{{Empleado.fechaingreso}}</td>
+      <td>{{Empleado.nombrepuesto}}</td>
+      <td>{{Empleado.contrasena}}</td>
       <button type="button" class="btn btn-default" data-toggle="modal" data-target=" #updateForm" 
       (click)="selectId(Empleado)">Ed</button>
       <td><button type="button" class="btn btn-danger" (click)="onDelete(Empleado.idempleado)">
@@ -240,5 +241,3 @@
     </tr>
   </table>
 </div>
-
--->

@@ -49,9 +49,11 @@
             </div>
 
             <div class="form-group">
-                <label>Dirección</label>
-                <input name="iddireccion"  #Direccion="ngModel" [(ngModel)]="pacientee.iddireccion" [ngModelOptions]="{standalone: true}" type= "number" class="form-control" required>
-            </div>
+                <label for="tipomedicina"> Dirección </label>
+                <select name="tipomedicina"  #Equipo="ngModel" [(ngModel)]="pacientee.iddireccion" [ngModelOptions]="{standalone: true}" type= "number" class="form-control" required>
+                  <option *ngFor= "let direccion of direccionService.direccionList" [value]="direccion.iddireccion"> {{direccion.direccion}} </option>
+                </select>
+              </div>
 
             <div class="form-group">
                 <label>Fecha de nacimiento</label>

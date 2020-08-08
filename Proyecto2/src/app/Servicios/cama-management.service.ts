@@ -23,7 +23,6 @@ export class CamaManagementService {
       })
     };
     const body = {
-      numerocama: camaData.numerocama,
       idequipo: camaData.idequipo,
       idsalon: camaData.idsalon,
       uci: camaData.uci
@@ -43,7 +42,7 @@ export class CamaManagementService {
       idsalon: camaData.idsalon,
       uci: camaData.uci
     };
-    this.http.put(this.constante.rutaURL + '/api/PutMedicamentos', body, httpOptions).toPromise();
+    this.http.put(this.constante.rutaURL + '/api/PutCama', body, httpOptions).toPromise();
   }
 
   deleteEmpleado(empleadoid: number) {
@@ -64,7 +63,7 @@ export class CamaManagementService {
   
   getCamas() {
     // tslint:disable-next-line: no-string-literal
-    this.http.get(this.constante.rutaURL + '/api/GetMedicamentos').toPromise().then
+    this.http.get(this.constante.rutaURL + '/api/GetCamas').toPromise().then
     (res => this.camaList = res as Cama[]);
   }
   

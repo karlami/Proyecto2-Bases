@@ -7,6 +7,7 @@ import { PatologiaManagementService } from 'src/app/Servicios/patologia-manageme
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { NgForm } from '@angular/forms';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { DireccionManagementService } from 'src/app/Servicios/direccion-management.service';
 
 @Component({
   selector: 'app-agregar-paciente',
@@ -26,11 +27,11 @@ export class AgregarPacienteComponent implements OnInit {
   idPaciente:number;
   pacienteActual: any;
 
-  constructor(public service: PacienteManagementService,public servicepat: PatologiaManagementService, 
+  constructor(private direccionService: DireccionManagementService, public service: PacienteManagementService,public servicepat: PatologiaManagementService, 
     private formBuilder: FormBuilder, private modalService: NgbModal) { }
 
   ngOnInit(): void {
-    // this.service.getPacientes();
+    this.direccionService.getDirecciones();
     this.generateForm();
     this.generateFormPat();
   }
@@ -88,31 +89,17 @@ export class AgregarPacienteComponent implements OnInit {
 
   // metodo para insertar paciente
   onSubmit(pacienteForm: NgForm) {
-    this.service.addPacienteC(this.pacientee).subscribe(
-      res => {
-        
-        this.pacienteActual= res;
-        
-       },
-       error => {
-         console.error(error);
-         alert(error.error);
-       }
-    );
-    console.log(this.pacienteActual);
-    //this.pacienteActual = this.service.addPacienteC(this.pacientee);
-    //console.log(this.pacienteActual);
+    this.pacientee.iddireccion = Number (this.pacientee.iddireccion);
+    this.service.postPaciente(this.pacientee);
+    console.log(this.pacientee);
     this.generateForm();
-    //window.location.reload();
   }
 
   // metodo para insertar patologias
   onInsertPat(patologiaForm: NgForm) {
-    console.log('Ingresado');
-    // console.log(this.servicepat.postPatologias(this.patologiaa));
-    // this.servicepat.postPatologias(this.patologiaa);
+    console.log(this.patologiaa);
+    this.servicepat.postPatologia(this.patologiaa);
     this.generateForm();
-    console.log(this.pacientee.cedula);
   }
 
 

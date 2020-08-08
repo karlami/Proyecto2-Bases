@@ -6,6 +6,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { NgForm } from '@angular/forms';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { IdPuesto } from 'src/app/Modelos/id-puesto.model';
+import { DireccionManagementService } from 'src/app/Servicios/direccion-management.service';
 
 @Component({
   selector: 'app-gestion-personal',
@@ -24,11 +25,12 @@ export class GestionPersonalComponent implements OnInit {
   puestoList: IdPuesto[] = [{idPuesto: 1, nombre: 'Administrativo'}, {idPuesto: 2, nombre: 'Doctor'}, {idPuesto: 3, nombre: 'Enfermero'}];
   idPuestoSeleccionado: number
 
-  constructor(public service: EmpleadoManagementService, private formBuilder: FormBuilder,
+  constructor(private direccionService: DireccionManagementService, public service: EmpleadoManagementService, private formBuilder: FormBuilder,
     private modalService: NgbModal) { }
 
   ngOnInit(): void {
-  // this.service.getEmpleados();
+  this.service.getEmpleados();
+  this.direccionService.getDirecciones();
   this.generateFormU();
   this.generateForm();
   }
@@ -39,12 +41,12 @@ export class GestionPersonalComponent implements OnInit {
   empleadoForm.reset();
   }
   this.empleadoU = {
-    idempleado: 1,
+    idempleado: undefined,
     nombre: '',
     primerapellido: '',
     segundoapellido: '',
-    cedula: 1,
-    telefono: 1,
+    cedula: undefined,
+    telefono: undefined,
     iddireccion: undefined,
     fechanacimiento: new Date('Ene 01 2020'),
     fechaingreso: new Date('Ene 01 2020'),
@@ -96,31 +98,30 @@ export class GestionPersonalComponent implements OnInit {
   // metodo para hacer el post
   onSubmit(empeadoForm: NgForm) {
   console.log('Ingresado');
-  //console.log(this.empleadoo);
-  // console.log(this.service.postEmpleados(this.empleadoo));
+  this.empleadoo.iddireccion = Number (this.empleadoo.iddireccion);
   this.service.postEmpleado(this.empleadoo);
-  // this.service.getEmpleados();
   this.generateFormU();
   this.generateForm();
+  window.location.reload();
   }
 
   // metodo para hacer el put
   onUpdate(updateForm: NgForm) {
   console.log('Actualizado');
   console.log(this.empleadoU);
-  // this.service.putEmpleados(this.empleadoU);
-  // this.service.getEmpleados();
+  this.service.putEmpleado(this.empleadoU);
   this.generateFormU();
   this.generateForm();
+  window.location.reload();
   }
 
   // metodo para hacer el delete
-  onDelete(idequipo: number) {
+  onDelete(idempleado: number) {
   console.log('Deleted');
-  // this.service.deleteEmpleados(idempleado);
-  // this.service.getEmpleados();
+  this.service.deleteEmpleado(idempleado);
   this.generateFormU();
   this.generateForm();
+  window.location.reload();
   }
 
   // metodo para seleccionar un unico personal

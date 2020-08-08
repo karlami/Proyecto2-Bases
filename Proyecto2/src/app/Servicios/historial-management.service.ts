@@ -22,28 +22,13 @@ export class HistorialManagementService {
       })
     };
     const body = {
-      cedula: historialData.cedula,
-      idprocedimiento: historialData.idprocedimiento,
-      fechaIngreso: historialData.fechaIngreso,
-      tratamiento: historialData.tratamiento
+      idpaciente : historialData.idPaciente,
+      idprocedimiento : historialData.idprocedimiento,
+      tratamiento : historialData.tratamiento,
+      fecha : historialData.fechaingreso
     };
     this.http.post(this.constante.rutaURL + '/api/PostHistorial_Clinico', body, httpOptions).toPromise();
 
-  }
-  putHistorial(historialData: Historial) {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json'
-      })
-    };
-    const body = {
-      idHistorial: historialData.idhistorial,
-      cedula: historialData.cedula,
-      idprocedimiento: historialData.idprocedimiento,
-      fechaIngreso: historialData.fechaingreso,
-      tratamiento: historialData.tratamiento
-    };
-    this.http.put(this.constante.rutaURL + '/api/PutHistorial_Clinico', body, httpOptions).toPromise();
   }
 
   getHistorial(idPaciente: number) {

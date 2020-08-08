@@ -5,6 +5,8 @@ import { CamaManagementService } from 'src/app/Servicios/cama-management.service
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { NgForm } from '@angular/forms';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { EquipoManagementService } from 'src/app/Servicios/equipo-management.service';
+import { SalonManagementService } from 'src/app/Servicios/salon-management.service';
 
 
 @Component({
@@ -22,11 +24,13 @@ export class GestionCamasComponent implements OnInit {
   camaU: Cama;
   closeResult = '';
 
-  constructor(public service: CamaManagementService, private formBuilder: FormBuilder,
+  constructor(private SalonService:SalonManagementService, private equipoService:EquipoManagementService, public service: CamaManagementService, private formBuilder: FormBuilder,
               private modalService: NgbModal) { }
 
   ngOnInit(): void {
-    // this.service.getCamas();
+    this.service.getCamas();
+    this.SalonService.getSalones();
+    this.equipoService.getEquipos();
     this.generateFormU();
     this.generateForm();
   }
@@ -78,8 +82,10 @@ export class GestionCamasComponent implements OnInit {
 
   // metodo para el post
   onSubmit(camaForm: NgForm) {
-    console.log(this.camaa);
+    this.camaa.idequipo = Number (this.camaa.idequipo);
+    this.camaa.idsalon = Number (this.camaa.idsalon);
     this.service.postCama(this.camaa);
+    console.log(this.camaa);
     this.generateFormU();
     this.generateForm();
     window.location.reload();
@@ -88,21 +94,13 @@ export class GestionCamasComponent implements OnInit {
   // metodo para el put
   onUpdate(updateForm: NgForm) {
     console.log('Actualizado');
-    console.log(this.camaU);
-    // this.service.putCamas(this.camaU);
-    // this.service.getCamas();
+    this.camaU.idequipo = Number (this.camaU.idequipo);
+    this.camaU.idsalon = Number (this.camaU.idsalon);
+    this.service.putCama(this.camaU);
     this.generateFormU();
     this.generateForm();
+    window.location.reload();
   }
-
-  // metodo para delete
-  onDelete(idcama: number) {
-    console.log('Deleted');
-    // this.service.deleteCamas(idcama);
-    // this.service.getCamas();
-    this.generateFormU();
-    this.generateForm();
-   }
 
    // metodo para seleccionar una sola cama
   selectId(cama: Cama) {

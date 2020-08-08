@@ -3,6 +3,7 @@ import { Historialp } from 'src/app/Modelos/historialp.model';
 import { HistorialManagementService } from 'src/app/Servicios/historial-management.service';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { NgForm } from '@angular/forms';
+import { Patologia } from 'src/app/Modelos/patologia.model';
 
 @Component({
   selector: 'app-historial',
@@ -29,7 +30,7 @@ export class HistorialComponent implements OnInit {
       historialForm.reset();
     }
     this.historiall = {
-        cedula: undefined,
+        idPaciente: undefined,
         idprocedimiento: undefined,
         tratamiento: '',
         fechaingreso: new Date('2020 01 01')
@@ -39,8 +40,8 @@ export class HistorialComponent implements OnInit {
 
 // metodo para hacer post
   onSubmit(historialForm: NgForm) {
-    console.log('Ingresado');
-    // console.log(this.service.postEncuesta(this.encuestaa));
+    console.log(this.historiall);
+    console.log(this.service.postHistorial(this.historiall));
     // this.service.postEncuesta(this.encuestaa);
     this.generateForm();
   }

@@ -38,7 +38,16 @@ export class EmpleadoManagementService {
     this.http.post(this.constante.rutaURL + '/api/PostEmpleado', body, httpOptions).toPromise();
 
   }
+  deleteEmpleado(idEmpleado: number) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+    this.http.delete(this.constante.rutaURL + '/api/DeleteEmpleado/' + idEmpleado ,
+    httpOptions).toPromise();
 
+  }
   putEmpleado(empleadoData: Empleado) {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -47,18 +56,18 @@ export class EmpleadoManagementService {
     };
     const body = {
       idempleado: empleadoData.idempleado,
+      cedula: empleadoData.cedula,
       nombre: empleadoData.nombre,
       primerapellido: empleadoData.primerapellido,
       segundoapellido: empleadoData.segundoapellido,
-      cedula: empleadoData.cedula,
       telefono: empleadoData.telefono,
-      iddireccion: empleadoData.iddireccion,
       fechanacimiento: empleadoData.fechanacimiento,
+      contrasena: empleadoData.contrasena,
+      iddireccion: empleadoData.iddireccion,
       fechaingreso: empleadoData.fechaingreso,
-      idpuesto: empleadoData.idpuesto,
-      constrasena: empleadoData.contrasena
+      idpuesto: empleadoData.idpuesto
     };
-    this.http.put(this.constante.rutaURL + '/api/PutMedicamentos', body, httpOptions).toPromise();
+    this.http.put(this.constante.rutaURL + '/api/PutEmpleado', body, httpOptions).toPromise();
   }
 
   getEmpleado(idEmpleado: number) {
@@ -68,7 +77,7 @@ export class EmpleadoManagementService {
   
   getEmpleados() {
     //tslint:disable-next-line: no-string-literal
-    this.http.get(this.constante.rutaURL + '/api/GetMedicamentos').toPromise().then
+    this.http.get(this.constante.rutaURL + '/api/GetEmpleados').toPromise().then
     (res => this.empleadoList = res as Empleado[]);
   }  
   
