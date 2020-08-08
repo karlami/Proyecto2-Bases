@@ -155,8 +155,6 @@ begin
     commit;
 end;$$;
 
-
-
 /*
 --Para ejecutar modificarCama:
 

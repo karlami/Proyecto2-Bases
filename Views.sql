@@ -63,15 +63,15 @@ CREATE VIEW viewPaciente AS
         pacpat.tratamiento AS tratamiento,
 	    pacpat.idpaciente_patologia as idpaciente_patologia
 	FROM
-		paciente as pa
-		JOIN persona as pe ON pa.cedula = pe.cedula
-		JOIN paciente_patologia as pacpat ON pa.idpaciente = pacpat.idpaciente
-		JOIN patologia as pat ON pat.idpatologia=pacpat.idpatologia;
- /*
+        persona as pe
+		JOIN paciente as pa ON pe.cedula = pa.cedula
+		LEFT OUTER JOIN paciente_patologia as pacpat ON pa.idpaciente = pacpat.idpaciente
+		LEFT OUTER JOIN patologia as pat ON pat.idpatologia=pacpat.idpatologia;
+
 SELECT *
 FROM viewPaciente
 WHERE idpaciente = 2;
-*/
+
 
  /*
 Vista para Direccion
@@ -80,9 +80,8 @@ Obtiene la direccion concatenada dado el idDireccion:
 
 CREATE VIEW viewDireccion AS
 	SELECT
-        getubicacion(direccion.iddireccion),
-	    direccion.iddireccion
-	    AS ubicacion
+	    direccion.iddireccion AS iddireccion,
+        getubicacion(direccion.iddireccion) AS direccion
     FROM direccion;
 
 /*
