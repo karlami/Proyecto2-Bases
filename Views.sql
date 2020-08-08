@@ -56,6 +56,7 @@ CREATE VIEW viewPaciente AS
 		getNombreCompleto(pa.cedula) AS nombrepaciente,
 		pe.telefono AS telefono,
 	    getubicacion(pe.iddireccion) as direccion,
+	    pe.iddireccion as iddireccion,
 	    pe.fechanacimiento AS fechanacimiento,
 	    pe.contrasena AS contrasena,
 	    pat.nombre AS patologia,
@@ -79,7 +80,9 @@ Obtiene la direccion concatenada dado el idDireccion:
 
 CREATE VIEW viewDireccion AS
 	SELECT
-        getubicacion(direccion.iddireccion) AS ubicacion
+        getubicacion(direccion.iddireccion),
+	    direccion.iddireccion
+	    AS ubicacion
     FROM direccion;
 
 /*
@@ -123,23 +126,22 @@ CREATE VIEW viewSalon AS
         sal.numerosalon as numerosalon,
 	    sal.nombre as nombre,
 	    sal.cantidadcama as cantidadcama,
-	    tsal.tipo as tipo,
-	    sal.numeropiso as numeropiso
+        sal.numeropiso as numeropiso,
+	    tsal.tipo as tipo
 	FROM
 		salon as sal
 		JOIN tiposalon as tsal ON sal.idtiposalon = tsal.idtiposalon;
-/*
+
 SELECT *
 FROM viewSalon
 WHERE numerosalon = 1;
-*/
 
- /*
+
+/*
 Vista para Camas
 Obtiene la siguiente informacion del Salon:
 numero de cama, equipo medico que posee cada cama, salón en el que se encuentra y si es una cama UCI.
 */
-
 CREATE VIEW viewCama AS
 	SELECT
 	    ca.numerocama as numerocama,
@@ -158,3 +160,34 @@ FROM viewCama
 WHERE numerocama = 1;
 */
 
+/*
+Vista para Personal
+Obtiene la siguiente informacion de un empleado:
+id, cedula, nombre, primer y segundo apellido, telefono, fecha de nacimiento
+contraseña, direccion como string, id direccion, fecha de ingreso al hospital
+id puesto y el nombre del puesto.
+*/
+CREATE VIEW viewPersonal AS
+	SELECT
+	    e.idempleado as idempleado,
+	    e.cedula as cedula,
+	    pe.nombre as nombre,
+	    pe.primerapellido as primerapellido,
+	    pe.segundoapellido as segundoapellido,
+		pe.telefono AS telefono,
+        pe.fechanacimiento AS fechanacimiento,
+        pe.contrasena AS contrasena,
+	    getubicacion(pe.iddireccion) as direccion,
+	    pe.iddireccion as iddireccion,
+        e.fechaingreso as fechaingreso,
+	    e.idpuesto as idpuesto,
+        pu.nombre as nombrepuesto
+	FROM
+		empleado as e
+		JOIN persona as pe ON pe.cedula = e.cedula
+        JOIN puesto as pu ON pu.idpuesto = e.idpuesto;
+/*
+SELECT *
+FROM viewPersonal
+WHERE cedula = 102981535;
+*/
