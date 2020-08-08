@@ -64,7 +64,7 @@ export class GestionReservacionesComponent implements OnInit {
   }
 
   // metodo para el post
-  onSubmit(camaForm: NgForm) {
+  onSubmit(reservacionForm: NgForm) {
     this.service.postReservacion(this.reservacionn);
     console.log(this.reservacionn);
     this.generateFormU();
