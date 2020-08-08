@@ -14,46 +14,27 @@
 */
 
 /*
-Trigger Procedimientos Predefinidos
-No permite que se actualicen los procedimientos predefinidos de los pacientes
-Corresponden a los primeros 8 id's.
+Trigger Procedimientos Medico
+No permite que se eliminen los procedimientos de los pacientes.
 */
-CREATE FUNCTION procedimiento_default() RETURNS trigger AS $procedimiento_default$
+CREATE FUNCTION procedimiento() RETURNS trigger AS $procedimiento$
     BEGIN
-        IF NEW.idprocedimiento >= 1 AND NEW.idprocedimiento <= 8 THEN
-            RAISE EXCEPTION 'No se puede eliminar, es un valor default';
-		ELSE
-			RETURN NEW;
-		END IF;
-
+        RAISE EXCEPTION 'No se pueden eliminar procedimientos';
     END;
-$procedimiento_default$ LANGUAGE plpgsql;
+$procedimiento$ LANGUAGE plpgsql;
 
+CREATE TRIGGER procedimiento BEFORE DELETE ON procedimiento
+    FOR EACH ROW EXECUTE PROCEDURE procedimiento();
 
-
-CREATE TRIGGER procedimiento_default BEFORE UPDATE ON procedimiento
-    FOR EACH ROW EXECUTE PROCEDURE procedimiento_default();
-
-UPDATE procedimiento
-            SET diasrecuperacion = 7
-            WHERE idprocedimiento = 9;
-
-SELECT *
-FROM procedimiento;
 /*
 Trigger Equipos Predefinidos
-No permite que se actualicen los equipos predefinidos de las camas
-Corresponden a los primeros 7 id's.
+No permite que se eliminen los equipos predefinidos de las camas.
 */
-CREATE FUNCTION equipo_default() RETURNS trigger AS $equipo_default$
+CREATE FUNCTION equipo() RETURNS trigger AS $equipo$
     BEGIN
-        IF OLD.idequipo >= 1 AND OLD.idequipo <= 7 THEN
-            RAISE EXCEPTION 'No se puede eliminar, es un valor default';
-		ELSE
-			RETURN OLD;
-		END IF;
+        RAISE EXCEPTION 'No se pueden eliminar equipos medicos';
     END;
-$equipo_default$ LANGUAGE plpgsql;
+$equipo$ LANGUAGE plpgsql;
 
-CREATE TRIGGER equipo_default BEFORE UPDATE ON equipo
-    FOR EACH ROW EXECUTE PROCEDURE equipo_default();
+CREATE TRIGGER equipo BEFORE DELETE ON equipo
+    FOR EACH ROW EXECUTE PROCEDURE equipo();
