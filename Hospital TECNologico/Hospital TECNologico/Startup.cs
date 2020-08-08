@@ -14,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using MongoDB.Driver;
 
 namespace Hospital_TECNologico
 {
@@ -68,6 +69,8 @@ namespace Hospital_TECNologico
             services.AddDbContext<HospitalTECNologicoContext>(options => options.UseNpgsql(postgreSQLConnectionString));
 
             //MongoDB
+            MongoClient mongoDBClient = new MongoClient("localhost:27017/?readPreference=primary&appname=MongoDB%20Compass%20Community&ssl=false");
+
 
             //SQLServer
 
@@ -80,7 +83,7 @@ namespace Hospital_TECNologico
             {
                 options.AddPolicy("EnableCORS", builder =>
                 {
-                    builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()/*.AllowCredentials()*/.Build();
+                    builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod().Build();
                 });
             });
         }

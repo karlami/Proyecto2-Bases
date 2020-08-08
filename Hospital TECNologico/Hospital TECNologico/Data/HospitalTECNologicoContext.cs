@@ -1,5 +1,4 @@
-﻿using Hospital_TECNologico.Models.ModelConfigurations;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -46,5 +45,6 @@ namespace Hospital_TECNologico.Data
         public DbSet<vSalon> vsalon { get; set; }
         public DbSet<vCama> vcama { get; set; }
         public DbSet<vEmpleado> vempleado { get; set; }
+        public DbSet<vPaciente_Patologia> vpaciente_patologia { get; set; }
     }
 }

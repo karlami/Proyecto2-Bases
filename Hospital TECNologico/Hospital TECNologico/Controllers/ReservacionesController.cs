@@ -121,15 +121,10 @@ namespace Hospital_TECNologico.Controllers
         public async Task<ActionResult<Reservacion>> PostReservacion([FromBody] Reservacion reservacion)
         {
             //Escoger la cama
-            reservacion.idcama = 4; //CAMBIAR
-            //Calcular la fecha de salida
-            /*var dateString = "04/01/1992"; //CAMBIAR
-            DateTime date1 = DateTime.Parse(dateString,
-                                      System.Globalization.CultureInfo.InvariantCulture);
-            reservacion.fechasalida = date1;*/
-            //Fecha de salida, al ingresarse por primera vez la reservacion deberia ser igual a
-            //fechainicial para luego cambiarse cuando se calcule.
-            reservacion.fechasalida = reservacion.fechaingreso;
+            reservacion.idcama = new Random().Next(1, 15); //CAMBIAR
+
+            //Calcula fecha de salida
+            reservacion.fechasalida = new DateTime(2020, 08, 19);
 
 
             _context.reservacion.Add(reservacion);

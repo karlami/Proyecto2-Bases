@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Hospital_TECNologico.Data;
 using Hospital_TECNologico.Models;
+using Hospital_TECNologico.Models.Views;
 
 namespace Hospital_TECNologico.Controllers
 {
@@ -34,34 +35,18 @@ namespace Hospital_TECNologico.Controllers
          */
         [Route("api/GetPacientes_Patologias")]
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Paciente_Patologia>>> Getpaciente_patologia()
+        public async Task<ActionResult<IEnumerable<vPaciente_Patologia>>> Getpaciente_patologia()
         {
-            //GET DE UN VIEW ESPECIFICO DE PACIENTES_PATOLOGIAS
-            //TODOS TODOS LOS (PACIENTES_PATOLOGIAS X PATOLOGIAS)
-
-
-
-
-
-            /*
-            //Query de SELECT del view VIEWPACIENTE para obtener los datos necesarios para mostrar todos los pacientes
+            //Query de SELECT del view VIEWPACIENTE para obtener los datos necesarios para mostrar todos los pacientes_patologiaS
             string query =
                 "SELECT "
-                + "idreservacion, " + "fechaingreso, " + "fechasalida, " + "idpaciente, " + "idcama "
+                + "idpaciente_patologia, " + "idpaciente, " + "patologia, " + "idpatologia, " + "tratamiento "
                 + "FROM "
-                + "reservacion " + ";";
+                + "viewpaciente"
+                + ";";
 
             //Retorna todos los objetos obtenidos del view de historial_clinico
-            return await _context.vpaciente.FromSqlRaw(query).ToListAsync();
-            */
-
-
-
-
-
-
-            //FUNCIONA CON LA TABLA ESPECIFICA DE PACIENTES_PATOLOGIAS -> POR MIENTRAS
-            return await _context.paciente_patologia.ToListAsync();
+            return await _context.vpaciente_patologia.FromSqlRaw(query).ToListAsync();
         }
 
         /*
@@ -70,32 +55,20 @@ namespace Hospital_TECNologico.Controllers
          */
         [Route("api/GetPaciente_Patologias/{idpaciente}")]
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Paciente_Patologia>>> Getpaciente_patologia(int idpaciente)
+        public async Task<ActionResult<IEnumerable<vPaciente_Patologia>>> Getpaciente_patologia(int idpaciente)
         {
-            //GET DE UN VIEW ESPECIFICO DE PACIENTES_PATOLOGIAS
-            //TODOS TODOS LOS (PACIENTES_PATOLOGIAS X PATOLOGIAS) DE UN PACIENTE ESPECIFICO
-
-
-
-
-
-            /*
             //Query de SELECT del view VIEWPACIENTE para obtener los datos necesarios para mostrar todos los pacientes
             string query =
                 "SELECT "
-                + "idreservacion, " + "fechaingreso, " + "fechasalida, " + "idpaciente, " + "idcama "
+                + "idpaciente_patologia, " + "idpaciente, " + "patologia, " + "idpatologia, " + "tratamiento "
                 + "FROM "
-                + "reservacion " + ";";
+                + "viewpaciente "
+                + "WHERE "
+                + "idpaciente = " + idpaciente.ToString()
+                + ";";
 
             //Retorna todos los objetos obtenidos del view de historial_clinico
-            return await _context.vpaciente.FromSqlRaw(query).ToListAsync();
-            */
-
-
-
-
-
-            return await _context.paciente_patologia.ToListAsync();
+            return await _context.vpaciente_patologia.FromSqlRaw(query).ToListAsync();
         }
 
 
@@ -107,44 +80,20 @@ namespace Hospital_TECNologico.Controllers
          */
         [Route("api/GetPaciente_Patologia/{idpacientepatologia}")]
         [HttpGet]
-        public async Task<ActionResult<Paciente_Patologia>> GetPaciente_Patologia(int idpacientepatologia)
+        public async Task<ActionResult<IEnumerable<vPaciente_Patologia>>> GetPaciente_Patologia(int idpacientepatologia)
         {
-            //SOLO SI SE AGREGA IDPACIENTE_PATOLOGIA!!!
-            //GET DE UN VIEW ESPECIFICO DE PACIENTES_PATOLOGIAS
-            //UN UNICO (PACIENTES_PATOLOGIAS X PATOLOGIAS)
-
-
-
-
-
-
-
-            /*
             //Query de SELECT del view VIEWPACIENTE para obtener los datos necesarios para mostrar todos los pacientes
             string query =
                 "SELECT "
-                + "idreservacion, " + "fechaingreso, " + "fechasalida, " + "idpaciente, " + "idcama "
+                + "idpaciente_patologia, " + "idpaciente, " + "patologia, " + "idpatologia, " + "tratamiento "
                 + "FROM "
-                + "reservacion " + ";";
+                + "viewpaciente "
+                + "WHERE "
+                + "idpacientepatologia = " + idpacientepatologia.ToString()
+                + ";";
 
             //Retorna todos los objetos obtenidos del view de historial_clinico
-            return await _context.vpaciente.FromSqlRaw(query).ToListAsync();
-            */
-
-
-
-
-
-
-
-            var paciente_Patologia = await _context.paciente_patologia.FindAsync(idpacientepatologia);
-
-            if (paciente_Patologia == null)
-            {
-                return NotFound();
-            }
-
-            return paciente_Patologia;
+            return await _context.vpaciente_patologia.FromSqlRaw(query).ToListAsync();
         }
 
         /*

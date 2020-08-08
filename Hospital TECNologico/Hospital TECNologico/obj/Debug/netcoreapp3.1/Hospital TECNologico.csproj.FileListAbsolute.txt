@@ -235,5 +235,14 @@ D:\Desktop - HDD\Proyecto_2\API\Hospital TECNologico\Hospital TECNologico\bin\De
 D:\Desktop - HDD\Proyecto_2\API\Hospital TECNologico\Hospital TECNologico\bin\Debug\netcoreapp3.1\Microsoft.AspNet.TelemetryCorrelation.dll
 D:\Desktop - HDD\Proyecto_2\API\Hospital TECNologico\Hospital TECNologico\bin\Debug\netcoreapp3.1\System.Runtime.CompilerServices.Unsafe.dll
 D:\Desktop - HDD\Proyecto_2\API\Hospital TECNologico\Hospital TECNologico\bin\Debug\netcoreapp3.1\System.Text.Encodings.Web.dll
+D:\Desktop - HDD\Proyecto_2\API\Hospital TECNologico\Hospital TECNologico\bin\Debug\netcoreapp3.1\DnsClient.dll
+D:\Desktop - HDD\Proyecto_2\API\Hospital TECNologico\Hospital TECNologico\bin\Debug\netcoreapp3.1\MongoDB.Bson.dll
+D:\Desktop - HDD\Proyecto_2\API\Hospital TECNologico\Hospital TECNologico\bin\Debug\netcoreapp3.1\MongoDB.Driver.dll
+D:\Desktop - HDD\Proyecto_2\API\Hospital TECNologico\Hospital TECNologico\bin\Debug\netcoreapp3.1\MongoDB.Driver.Core.dll
+D:\Desktop - HDD\Proyecto_2\API\Hospital TECNologico\Hospital TECNologico\bin\Debug\netcoreapp3.1\MongoDB.Libmongocrypt.dll
+D:\Desktop - HDD\Proyecto_2\API\Hospital TECNologico\Hospital TECNologico\bin\Debug\netcoreapp3.1\SharpCompress.dll
+D:\Desktop - HDD\Proyecto_2\API\Hospital TECNologico\Hospital TECNologico\bin\Debug\netcoreapp3.1\runtimes\win\native\libzstd.dll
+D:\Desktop - HDD\Proyecto_2\API\Hospital TECNologico\Hospital TECNologico\bin\Debug\netcoreapp3.1\runtimes\win\native\snappy32.dll
+D:\Desktop - HDD\Proyecto_2\API\Hospital TECNologico\Hospital TECNologico\bin\Debug\netcoreapp3.1\runtimes\win\native\snappy64.dll
 D:\Desktop - HDD\Proyecto_2\API\Hospital TECNologico\Hospital TECNologico\obj\Debug\netcoreapp3.1\Hospital TECNologico.csproj.CoreCompileInputs.cache
 D:\Desktop - HDD\Proyecto_2\API\Hospital TECNologico\Hospital TECNologico\obj\Debug\netcoreapp3.1\Hospital TECNologico.MvcApplicationPartsAssemblyInfo.cache
