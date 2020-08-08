@@ -110,4 +110,28 @@ FROM viewReservacion_procedimiento
 WHERE idreservacion = 2;
 */
 
+ /*
+Vista para Salones
+Obtiene la siguiente informacion del Salon:
+numero del salon, nombre del salon, capacidad en camas, nombre del tipo de
+medicina al que pertenece el salon,
+nombre del tratamiento para el procedimiento en especifico, fecha del procedimiento y
+dias de recuperacion de cada procedimiento.
+*/
+
+CREATE VIEW viewSalon AS
+	SELECT
+        sal.numerosalon as numerosalon,
+	    sal.nombre as nombre,
+	    sal.cantidadcama as cantidadcama,
+	    tsal.tipo as tipo,
+	    sal.numeropiso as numeropiso
+	FROM
+		salon as sal
+		JOIN tiposalon as tsal ON sal.idtiposalon = tsal.idtiposalon;
+/*
+SELECT *
+FROM viewSalon
+WHERE numerosalon = 1;
+*/
 
