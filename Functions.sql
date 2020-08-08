@@ -83,9 +83,9 @@ LANGUAGE 'plpgsql';
 -- SELECT getcanton(4);
 
 /*
-Obtiene el nombre completo de una persona al ingresar su cedula.
-param: _cedula INTEGER
-return: nombre completo concatenado
+Obtiene la dirección completa concatena dando un idDireccion.
+param: _idDireccion INTEGER
+return: dirección completa concatenada.
 */
 
 CREATE OR REPLACE FUNCTION getUbicacion(_idDireccion INTEGER)

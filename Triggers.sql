@@ -27,8 +27,8 @@ CREATE TRIGGER procedimiento BEFORE DELETE ON procedimiento
     FOR EACH ROW EXECUTE PROCEDURE procedimiento();
 
 /*
-Trigger Equipos Predefinidos
-No permite que se eliminen los equipos predefinidos de las camas.
+Trigger Equipos Medicos
+No permite que se eliminen los equipos de las camas.
 */
 CREATE FUNCTION equipo() RETURNS trigger AS $equipo$
     BEGIN

@@ -12,7 +12,7 @@
 --------------------------------------------------------------------
 
 /*
-Proceso para modificar datos de CentroHospitalario
+Proceso para agregar datos a Paciente
 */
 
 CREATE PROCEDURE agregarPaciente(
@@ -163,7 +163,7 @@ CALL modificarCama(0, true, 3, 2, 'Insert');
 */
 
 /*
-Proceso para modificar datos de CentroHospitalario
+Proceso para agregar datos de paciente_patologia
 */
 
 CREATE PROCEDURE agregarPaciente_Patologia(
@@ -177,7 +177,7 @@ begin
 end;$$;
 
 /*
---Para ejecutar agregarPaciente:
+--Para ejecutar agregarPaciente_Patologia:
 
 CALL agregarPaciente_Patologia(
 -- Atributos de Persona
