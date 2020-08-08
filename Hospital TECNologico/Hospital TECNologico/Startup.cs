@@ -32,7 +32,7 @@ namespace Hospital_TECNologico
         {
             services.AddControllers();
 
-            //Llama a la función de inicializado
+            //Llama a la funciÃ³n de inicializado
             InitializeStorage(services);
 
             //Llama a la funcion para habilitar CORS
@@ -61,7 +61,7 @@ namespace Hospital_TECNologico
             });
         }
 
-        //Metodo para iniciar la conección a las bases de datos
+        //Metodo para iniciar la conecciÃ³n a las bases de datos
         private void InitializeStorage(IServiceCollection services)
         {
             //PostgreSQL
@@ -69,7 +69,7 @@ namespace Hospital_TECNologico
             services.AddDbContext<HospitalTECNologicoContext>(options => options.UseNpgsql(postgreSQLConnectionString));
 
             //MongoDB
-            MongoClient mongoDBClient = new MongoClient("localhost:27017/?readPreference=primary&appname=MongoDB%20Compass%20Community&ssl=false");
+            //MongoClient mongoDBClient = new MongoClient("localhost:27017/?readPreference=primary&appname=MongoDB%20Compass%20Community&ssl=false");
 
 
             //SQLServer
