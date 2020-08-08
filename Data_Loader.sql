@@ -555,7 +555,7 @@ INSERT INTO cama_salon VALUES
 
 -- Datos de relacion cama_equipo
 
-INSERT INTO cama_equipo VALUES
+INSERT INTO cama_equipo(idcama, idequipo) VALUES
     (76,10),
     (46,11),
     (26,13),
