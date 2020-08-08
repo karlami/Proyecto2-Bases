@@ -26,6 +26,8 @@ import { AgregarPacienteComponent } from './Doctor/agregar-paciente/agregar-paci
 import { RegistrarseComponent } from './Paciente/registrarse/registrarse.component';
 import { MiHistorialComponent } from './Paciente/mi-historial/mi-historial.component';
 import { LoginPacienteComponent } from './Paciente/login-paciente/login-paciente.component';
+import { NavBarLoginPacienteComponent } from './Miscellanious/nav-bar-login-paciente/nav-bar-login-paciente.component';
+import { WelcomeLoginPacienteComponent } from './Miscellanious/welcome-login-paciente/welcome-login-paciente.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,9 @@ import { LoginPacienteComponent } from './Paciente/login-paciente/login-paciente
     AgregarPacienteComponent,
     RegistrarseComponent,
     MiHistorialComponent,
-    LoginPacienteComponent
+    LoginPacienteComponent,
+    NavBarLoginPacienteComponent,
+    WelcomeLoginPacienteComponent
   ],
   imports: [
     BrowserModule,

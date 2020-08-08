@@ -17,6 +17,9 @@ import { EncuestaComponent } from './Paciente/encuesta/encuesta.component';
 import { AgregarPacienteComponent } from './Doctor/agregar-paciente/agregar-paciente.component';
 import { RegistrarseComponent } from './Paciente/registrarse/registrarse.component';
 import { MiHistorialComponent } from './Paciente/mi-historial/mi-historial.component';
+import { LoginPacienteComponent } from './Paciente/login-paciente/login-paciente.component';
+import { WelcomeLoginPacienteComponent } from './Miscellanious/welcome-login-paciente/welcome-login-paciente.component';
+
 
 
 const routes: Routes = [
@@ -28,6 +31,15 @@ const routes: Routes = [
       { path: 'GestionReservaciones', component: GestionReservacionesComponent},
       { path: 'Encuesta', component: EncuestaComponent},
       { path: '**', component: WelcomePacienteComponent}
+    ]
+},
+
+{ path: 'HospitalTECnologico', pathMatch: 'prefix',
+    children: [
+      { path: 'Inicio', component: WelcomeLoginPacienteComponent},
+      { path: 'Registrase', component: RegistrarseComponent},
+      { path: 'Ingresar', component: LoginPacienteComponent},
+      { path: '**', component: WelcomeLoginPacienteComponent}
     ]
 },
 

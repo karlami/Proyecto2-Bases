@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Login } from 'src/app/Modelos/login.model';
+import { LoginManagementService } from 'src/app/Servicios/login-management.service';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-login-paciente',
@@ -7,9 +11,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginPacienteComponent implements OnInit {
 
-  constructor() { }
+  encuestaList: Login[];
+  encuestaForm: NgForm;
+  submitted = false;
+  encuestaa: Login;
+  closeResult = '';
+
+  constructor(public service: LoginManagementService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    this.generateForm();
+  }
+
+  generateForm(loginForm?: NgForm) {
+    if (loginForm != null) {
+      loginForm.reset();
+    }
+    this.loginn = {
+        cedula: undefined,
+        contrasena: ''
+    };
+
+  }
+
+  onSubmit(loginForm: NgForm) {
+    console.log('Ingresado');
+    // console.log(this.service.postEncuesta(this.encuestaa));
+    // this.service.postLogin(this.encuestaa);
+    this.generateForm();
   }
 
 }

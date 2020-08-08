@@ -1,1 +1,48 @@
-<p>login-paciente works!</p>
+<app-nav-bar-login-paciente></app-nav-bar-login-paciente>
+
+
+<br><br><br><br><br><br>
+
+<div class="container">
+  <h1 style="color:#54CA8F">Ingresar al sistema del HospitalTECnológico: </h1>
+</div>
+  
+  <div class="container">
+    
+        <div class="starter-template">
+    
+          <div class="row">       
+    
+            <div class="col-md-12 mt-5">
+    
+        
+              <form #loginForm = "ngForm" (ngSubmit)="onSubmit(loginForm)">
+  
+                <div class="form-group">
+                    <label>Cédula</label>
+                    <input name="cedula"  #Cedula="ngModel" [(ngModel)]="loginn.cedula" [ngModelOptions]="{standalone: true}" type= "number" class="form-control" required>
+                </div>
+  
+                <div class="form-group">
+                    <label>Contraseña</label>
+                    <input name="contrasena"  #Contraseña="ngModel" [(ngModel)]="loginn.contrasena" [ngModelOptions]="{standalone: true}" type= "text" class="form-control" required>
+                </div>
+  
+                <div class = "form-group">
+                    <div class = "col-md-4 col-md-offset-3">
+                        <input class = "btn btn-primary" type = "submit" value = "Verificar" />
+                    </div>
+                </div>
+                    
+    
+            </form>
+    
+        </div>
+    
+    
+      </div>
+    
+    </div>
+    
+</div>
+
