@@ -372,7 +372,7 @@ INSERT INTO reservacion(fechaingreso, fechasalida, idpaciente, idcama) VALUES
     ('2020-07-14','2020-07-15',8,39);
 
 -- Datos de relacion reservacion_procedimiento
-INSERT INTO reservacion_procedimiento VALUES
+INSERT INTO reservacion_procedimiento(idreservacion, idprocedimiento) VALUES
     (1,19),
     (2,2),
     (3,10),
