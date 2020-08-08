@@ -20,6 +20,7 @@ namespace Hospital_TECNologico.Models.Views
         public string direccion { get; set; }
         public DateTime fechanacimiento { get; set; }
         public string contrasena { get; set; }
+        public string patologia { get; set; } 
         public string tratamiento { get; set; }
     }
 }

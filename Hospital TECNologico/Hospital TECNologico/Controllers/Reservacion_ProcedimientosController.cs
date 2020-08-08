@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Hospital_TECNologico.Data;
 using Hospital_TECNologico.Models;
+using Hospital_TECNologico.Models.Views;
 
 namespace Hospital_TECNologico.Controllers
 {
@@ -34,89 +35,72 @@ namespace Hospital_TECNologico.Controllers
          * NOT ESSENTIAL!
          */
         [Route("api/GetReservaciones_Procedimientos")]
-        public async Task<ActionResult<IEnumerable<Reservacion_Procedimiento>>> Getreservacion_procedimiento()
+        public async Task<ActionResult<IEnumerable<vReservacion_Procedimiento>>> Getreservacion_procedimiento()
         {
-            /*
             //Query de SELECT de un View para obtener los datos necesarios para mostrar TODOS los historiales clinicos
             string query =
                 "SELECT "
-                + "idhistorial, " + "idpac, " + "nombrepaciente, " + "procedimiento, " + "tratam, " + "fechaProc, " + "dias "
+                + "idreservacion_procedimiento, " + "idreservacion, " + "idprocedimiento, " + "nombre, " + "diasrecuperacion "
                 + "FROM "
-                + "viewhistorial"
+                + "viewReservacion_procedimiento "
                 + ";";
 
             //Retorna todos los objetos obtenidos del view de historial_clinico
-            return await _context.vhistorial_clinico.FromSqlRaw(query).ToListAsync();
-            */
-
-            return await _context.reservacion_procedimiento.ToListAsync();
+            return await _context.vreservacion_procedimiento.FromSqlRaw(query).ToListAsync();
         }
 
         /*
          * GET: "api/GetReservacion_Procedimientos/idreservacion"
-         * Obtiene todas las reservaciones_procedimientos de  UNA SOLA RESERVACION con el idreservacion indicado
+         * Obtiene todas las reservaciones_procedimientos de UNA SOLA RESERVACION con el idreservacion indicado
          */
         [Route("api/GetReservacion_Procedimientos/{idreservacion}")]
-        public async Task<ActionResult<IEnumerable<Reservacion_Procedimiento>>> Getreservacion_procedimiento(int idreservacion)
+        public async Task<ActionResult<IEnumerable<vReservacion_Procedimiento>>> Getreservacion_procedimiento(int idreservacion)
         {
-            /*
-             * //Query de SELECT de un View para obtener los datos necesarios para mostrar los historiales clinicos de un solo Paciente (idpaciente)
+            //Query de SELECT de un View para obtener los datos necesarios para mostrar TODOS los historiales clinicos
             string query =
                 "SELECT "
-                + "idhistorial, " + "idpac, " + "nombrepaciente, " + "procedimiento, " + "tratam, " + "fechaProc, " + "dias "
+                + "idreservacion_procedimiento, " + "idreservacion, " + "idprocedimiento, " + "nombre, " + "diasrecuperacion "
                 + "FROM "
-                + "viewhistorial "
-                + "WHERE"
-                + " idpac = " + idpaciente.ToString() + ";";
+                + "viewReservacion_procedimiento "
+                + "WHERE "
+                + "idreservacion = " + idreservacion.ToString()
+                + ";";
 
             //Retorna todos los objetos obtenidos del view de historial_clinico
-            return await _context.vhistorial_clinico.FromSqlRaw(query).ToListAsync();
-            */
-
-            return await _context.reservacion_procedimiento.ToListAsync();
+            return await _context.vreservacion_procedimiento.FromSqlRaw(query).ToListAsync();
         }
 
         /*
-         * GET: "api/GetReservacion_Procedimiento/idReservacionProcedimiento"
-         * Obtiene solo la reservacion_procedimiento con el idreservacionprocedimiento indicado
+         * GET: "api/GetReservacion_Procedimiento/idreservacion_procedimiento"
+         * Obtiene solo la reservacion_procedimiento con el idreservacion_procedimiento indicado
          */
-        [Route("api/GetReservacion_Procedimiento/{idreservacionprocedimiento}")]
+        [Route("api/GetReservacion_Procedimiento/{idreservacion_procedimiento}")]
         [HttpGet]
-        public async Task<ActionResult<Reservacion_Procedimiento>> GetReservacion_Procedimiento(int idreservacionprocedimiento)
-        {                          //Cambiar returnType
-            /*
-            //Query de SELECT de un View para obtener los datos necesarios para mostrar un historial clinico (idhistorial)
+        public async Task<ActionResult<IEnumerable<vReservacion_Procedimiento>>> GetReservacion_Procedimiento(int idreservacion_procedimiento)
+        {
+            //Query de SELECT de un View para obtener los datos necesarios para mostrar TODOS los historiales clinicos
             string query =
                 "SELECT "
-                + "idhistorial, " + "idpac, " + "nombrepaciente, " + "procedimiento, " + "tratam, " + "fechaProc, " + "dias "
+                + "idreservacion_procedimiento, " + "idreservacion, " + "idprocedimiento, " + "nombre, " + "diasrecuperacion "
                 + "FROM "
-                + "viewhistorial "
-                + "WHERE"
-                + " idhistorial = " + idhistorial.ToString() + ";";
+                + "viewReservacion_procedimiento "
+                + "WHERE "
+                + "idreservacion_procedimiento = " + idreservacion_procedimiento.ToString()
+                + ";";
 
             //Retorna todos los objetos obtenidos del view de historial_clinico
-            return await _context.vhistorial_clinico.FromSqlRaw(query).ToListAsync();
-            */
-
-            var reservacion_Procedimiento = await _context.reservacion_procedimiento.FindAsync(idreservacionprocedimiento);
-
-            if (reservacion_Procedimiento == null)
-            {
-                return NotFound();
-            }
-
-            return reservacion_Procedimiento;
+            return await _context.vreservacion_procedimiento.FromSqlRaw(query).ToListAsync();
         }
 
         /*
          * PUT: "api/PutReservacion_Procedimiento"
-         * Actualiza una reservacion_procedimiento con el idreservacionprocedimiento que se indica en el Form.
+         * Actualiza una reservacion_procedimiento con el idreservacion_procedimiento que se indica en el Form.
          */
         [Route("api/PutReservacion_Procedimiento")]
         [HttpPut]
         public async Task<IActionResult> PutReservacion_Procedimiento([FromBody] Reservacion_Procedimiento reservacion_Procedimiento)
         {
-            /*if (idreservacionprocedimiento != reservacion_Procedimiento.idreservacion)
+            /*if (idreservacion_procedimiento != reservacion_Procedimiento.idreservacion)
             {
                 return BadRequest();
             }*/
@@ -129,7 +113,7 @@ namespace Hospital_TECNologico.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!Reservacion_ProcedimientoExists(reservacion_Procedimiento.idreservacionprocedimiento))
+                if (!Reservacion_ProcedimientoExists(reservacion_Procedimiento.idreservacion_procedimiento))
                 {
                     return NotFound();
                 }
@@ -153,18 +137,18 @@ namespace Hospital_TECNologico.Controllers
             _context.reservacion_procedimiento.Add(reservacion_Procedimiento);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetReservacion_Procedimiento", new { id = reservacion_Procedimiento.idreservacionprocedimiento }, reservacion_Procedimiento);
+            return CreatedAtAction("GetReservacion_Procedimiento", new { id = reservacion_Procedimiento.idreservacion_procedimiento }, reservacion_Procedimiento);
         }
 
         /*
          * DELETE: "api/DeleteReservacion_Procedimiento/idReservacionProcedimiento"
-         * Elimina de la base de datos la reservacion_procedimiento con el idreservacionprocedimiento indicado
+         * Elimina de la base de datos la reservacion_procedimiento con el idreservacion_procedimiento indicado
          */
-        [Route("api/DeleteReservacion_Procedimiento/{idreservacionprocedimiento}")]
+        [Route("api/DeleteReservacion_Procedimiento/{idreservacion_procedimiento}")]
         [HttpDelete]
-        public async Task<ActionResult<Reservacion_Procedimiento>> DeleteReservacion_Procedimiento(int idreservacionprocedimiento)
+        public async Task<ActionResult<Reservacion_Procedimiento>> DeleteReservacion_Procedimiento(int idreservacion_procedimiento)
         {
-            var reservacion_Procedimiento = await _context.reservacion_procedimiento.FindAsync(idreservacionprocedimiento);
+            var reservacion_Procedimiento = await _context.reservacion_procedimiento.FindAsync(idreservacion_procedimiento);
             if (reservacion_Procedimiento == null)
             {
                 return NotFound();
@@ -176,9 +160,9 @@ namespace Hospital_TECNologico.Controllers
             return reservacion_Procedimiento;
         }
 
-        private bool Reservacion_ProcedimientoExists(int idreservacionprocedimiento)
+        private bool Reservacion_ProcedimientoExists(int idreservacion_procedimiento)
         {
-            return _context.reservacion_procedimiento.Any(e => e.idreservacionprocedimiento == idreservacionprocedimiento);
+            return _context.reservacion_procedimiento.Any(e => e.idreservacion_procedimiento == idreservacion_procedimiento);
         }
     }
 }

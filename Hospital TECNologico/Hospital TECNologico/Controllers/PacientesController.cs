@@ -35,31 +35,18 @@ namespace Hospital_TECNologico.Controllers
          */
         [Route("api/GetPacientes")]
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Paciente>>> Getpaciente()
+        public async Task<ActionResult<IEnumerable<vPaciente>>> Getpaciente()
         {
-            //GET DE UN VIEW ESPECIFICO DE PACIENTES
-            //TODOS TODOS LOS (PACIENTES X PERSONAS)
-
-
-
-
-
-            /*
             //Query de SELECT del view VIEWPACIENTE para obtener los datos necesarios para mostrar todos los pacientes
             string query =
                 "SELECT "
-                + "idreservacion, " + "fechaingreso, " + "fechasalida, " + "idpaciente, " + "idcama "
+                + "idpaciente, " + "cedula, " + "nombrepaciente, " + "telefono, " + "direccion, " + "fechanacimiento, " + "contrasena, " + "patologia, " + "tratamiento "
                 + "FROM "
-                + "viewPaciente " + ";";
+                + "viewPaciente"
+                + ";";
 
             //Retorna todos los objetos obtenidos del view de historial_clinico
-            return await _context.vpaciente.FromSqlRaw(query).ToListAsync();*/
-            
-
-
-
-
-            return await _context.paciente.ToListAsync();
+            return await _context.vpaciente.FromSqlRaw(query).ToListAsync();
         }
 
         /*
@@ -70,11 +57,6 @@ namespace Hospital_TECNologico.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<vPaciente>>> GetPacienteC(int cedula)
         {
-            //GET DE UN VIEW ESPECIFICO DE PACIENTES
-            //UN UNICO (PACIENTES X PERSONAS)
-
-
-            
             //Query de SELECT del view VIEWPACIENTE para obtener los datos necesarios para mostrar todos los pacientes
             string query =
                 "SELECT "
@@ -87,7 +69,6 @@ namespace Hospital_TECNologico.Controllers
 
             //Retorna todos los objetos obtenidos del view de historial_clinico
             return await _context.vpaciente.FromSqlRaw(query).ToListAsync();
-        
         }
 
         /*
@@ -96,45 +77,20 @@ namespace Hospital_TECNologico.Controllers
          */
         [Route("api/GetPaciente/{idpaciente}")]
         [HttpGet]
-        public async Task<ActionResult<Paciente>> GetPaciente(int idpaciente)
+        public async Task<ActionResult<IEnumerable<vPaciente>>> GetPaciente(int idpaciente)
         {
-            //GET DE UN VIEW ESPECIFICO DE PACIENTES
-            //UN UNICO (PACIENTES X PERSONAS)
-
-
-
-
-
-
-
-
-            /*
             //Query de SELECT del view VIEWPACIENTE para obtener los datos necesarios para mostrar todos los pacientes
             string query =
                 "SELECT "
-                + "idreservacion, " + "fechaingreso, " + "fechasalida, " + "idpaciente, " + "idcama "
+                + "idpaciente, " + "cedula, " + "nombrepaciente, " + "telefono, " + "direccion, " + "fechanacimiento, " + "contrasena, " + "patologia, " + "tratamiento "
                 + "FROM "
-                + "reservacion " + ";";
+                + "viewPaciente "
+                + "WHERE "
+                + "idpaciente = " + idpaciente.ToString()
+                + ";";
 
             //Retorna todos los objetos obtenidos del view de historial_clinico
             return await _context.vpaciente.FromSqlRaw(query).ToListAsync();
-            */
-
-
-
-
-
-
-
-
-            var paciente = await _context.paciente.FindAsync(idpaciente);
-
-            if (paciente == null)
-            {
-                return NotFound();
-            }
-
-            return paciente;
         }
 
         /*
