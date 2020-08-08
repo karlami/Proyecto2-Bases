@@ -23,9 +23,7 @@ export class ReservacionManagementService {
     };
     const body = {
       idpaciente: reservacionData.idpaciente,
-      fechaingreso: reservacionData.fechaingreso,
-      idprocedimientos: reservacionData.idprocedimientos,
-      fechasalida: reservacionData.fechasalida
+      fechaingreso: reservacionData.fechaingreso
     };
     this.http.post(this.constante.rutaURL + '/api/PostMedicamentos', body, httpOptions).toPromise();
 
@@ -40,16 +38,14 @@ export class ReservacionManagementService {
     const body = {
       idreservacion: reservacionData.idreservacion,
       idpaciente: reservacionData.idpaciente,
-      fechaingreso: reservacionData.fechaingreso,
-      idprocedimientos: reservacionData.idprocedimientos,
-      fechasalida: reservacionData.fechasalida
+      fechaingreso: reservacionData.fechaingreso
     };
     this.http.put(this.constante.rutaURL + '/api/PutMedicamentos', body, httpOptions).toPromise();
   }
 
-  getReservacion(idReservacion: number) {
-    this.http.get(this.constante.rutaURL + '/api/GetMedicamento/' + idReservacion ).
-    toPromise().then(res => this.reservacion = res as Reservacion);
+  getReservacion(idPaciente: number) {
+    this.http.get(this.constante.rutaURL + '/api/GetReservaciones/' + idPaciente ).
+    toPromise().then(res => this.reservacionList = res as Reservacion[]);
   }
   
 }
