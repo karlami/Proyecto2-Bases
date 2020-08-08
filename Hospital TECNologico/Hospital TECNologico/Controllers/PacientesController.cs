@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Hospital_TECNologico.Data;
 using Hospital_TECNologico.Models;
+using Hospital_TECNologico.Models.Views;
 
 namespace Hospital_TECNologico.Controllers
 {
@@ -49,11 +50,11 @@ namespace Hospital_TECNologico.Controllers
                 "SELECT "
                 + "idreservacion, " + "fechaingreso, " + "fechasalida, " + "idpaciente, " + "idcama "
                 + "FROM "
-                + "reservacion " + ";";
+                + "viewPaciente " + ";";
 
             //Retorna todos los objetos obtenidos del view de historial_clinico
-            return await _context.vpaciente.FromSqlRaw(query).ToListAsync();
-            */
+            return await _context.vpaciente.FromSqlRaw(query).ToListAsync();*/
+            
 
 
 
@@ -67,45 +68,26 @@ namespace Hospital_TECNologico.Controllers
          */
         [Route("api/GetPacienteC/{cedula}")]
         [HttpGet]
-        public async Task<ActionResult<Paciente>> GetPacienteC(int cedula)
+        public async Task<ActionResult<IEnumerable<vPaciente>>> GetPacienteC(int cedula)
         {
             //GET DE UN VIEW ESPECIFICO DE PACIENTES
             //UN UNICO (PACIENTES X PERSONAS)
 
 
-
-
-
-
-
-
-            /*
+            
             //Query de SELECT del view VIEWPACIENTE para obtener los datos necesarios para mostrar todos los pacientes
             string query =
                 "SELECT "
-                + "idreservacion, " + "fechaingreso, " + "fechasalida, " + "idpaciente, " + "idcama "
+                + "idpaciente, " + "cedula, " + "nombrepaciente, " + "telefono, " + "direccion, " + "fechanacimiento, " + "contrasena, " + "patologia, " + "tratamiento "
                 + "FROM "
-                + "reservacion " + ";";
+                + "viewPaciente " 
+                + "WHERE "
+                + "cedula = " + cedula.ToString()
+                + ";";
 
             //Retorna todos los objetos obtenidos del view de historial_clinico
             return await _context.vpaciente.FromSqlRaw(query).ToListAsync();
-            */
-
-
-
-
-
-
-
-
-            var paciente = await _context.paciente.FindAsync(cedula);
-
-            if (paciente == null)
-            {
-                return NotFound();
-            }
-
-            return paciente;
+        
         }
 
         /*

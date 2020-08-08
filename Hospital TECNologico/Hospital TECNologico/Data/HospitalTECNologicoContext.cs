@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Hospital_TECNologico.Models;
+using Hospital_TECNologico.Models.Views;
 
 namespace Hospital_TECNologico.Data
 {
@@ -39,6 +40,7 @@ namespace Hospital_TECNologico.Data
         
         //Views
         public DbSet<vHistorial_Clinico> vhistorial_clinico { get; set; }
+        public DbSet<vPaciente> vpaciente { get; set; }
 
 
 
