@@ -57,6 +57,7 @@ CREATE VIEW viewPaciente AS
 		pe.telefono AS telefono,
 	    getubicacion(pe.iddireccion) as direccion,
 	    pe.fechanacimiento AS fechanacimiento,
+	    pe.contrasena AS contrasena,
 	    pat.nombre AS patologia,
         pacpat.tratamiento AS tratamiento
 	FROM
@@ -64,7 +65,6 @@ CREATE VIEW viewPaciente AS
 		JOIN persona as pe ON pa.cedula = pe.cedula
 		JOIN paciente_patologia as pacpat ON pa.idpaciente = pacpat.idpaciente
 		JOIN patologia as pat ON pat.idpatologia=pacpat.idpatologia;
-
  /*
 SELECT *
 FROM viewPaciente
@@ -84,6 +84,30 @@ CREATE VIEW viewDireccion AS
 /*
 SELECT *
 FROM viewDireccion;
+*/
+
+ /*
+Vista para Paciente
+Obtiene la siguiente informacion del Paciente:
+idPaciente, idPaciente, Nombre completo del paciente, nombre de cada procedimiento,
+nombre del tratamiento para el procedimiento en especifico, fecha del procedimiento y
+dias de recuperacion de cada procedimiento.
+*/
+
+CREATE VIEW viewReservacion_procedimiento AS
+	SELECT
+        rp.idreservacion_procedimiento AS idreservacion_procedimiento,
+	    rp.idreservacion AS idreservacion,
+	    rp.idprocedimiento AS idprocedimiento,
+	    p.nombre AS nombre,
+	    p.diasrecuperacion
+	FROM
+		reservacion_procedimiento as rp
+		JOIN procedimiento as p ON rp.idprocedimiento = p.idprocedimiento;
+/*
+SELECT *
+FROM viewReservacion_procedimiento
+WHERE idreservacion = 2;
 */
 
 
