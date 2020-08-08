@@ -137,23 +137,24 @@ WHERE numerosalon = 1;
  /*
 Vista para Camas
 Obtiene la siguiente informacion del Salon:
-numero de cama, nombre del salon, capacidad en camas, nombre del tipo de
-medicina al que pertenece el salon y numero de piso donde se ubica.
+numero de cama, equipo medico que posee cada cama, salón en el que se encuentra y si es una cama UCI.
 */
 
-CREATE VIEW viewSalon AS
+CREATE VIEW viewCama AS
 	SELECT
-        sal.numerosalon as numerosalon,
-	    sal.nombre as nombre,
-	    sal.cantidadcama as cantidadcama,
-	    tsal.tipo as tipo,
-	    sal.numeropiso as numeropiso
+	    ca.numerocama as numerocama,
+        e.nombre as nombreequipo,
+	    sal.nombre as nombresalon,
+	    ca.uci as uci
 	FROM
-		salon as sal
-		JOIN tiposalon as tsal ON sal.idtiposalon = tsal.idtiposalon;
+		cama as ca
+		JOIN cama_salon as casal ON casal.idcama = ca.numerocama
+        JOIN salon as sal ON sal.numerosalon = casal.idsalon
+        JOIN cama_equipo as cae ON cae.idcama = ca.numerocama
+        JOIN equipo as e ON e.idequipo = cae.idequipo;
 /*
 SELECT *
-FROM viewSalon
-WHERE numerosalon = 1;
+FROM viewCama
+WHERE numerocama = 1;
 */
 
